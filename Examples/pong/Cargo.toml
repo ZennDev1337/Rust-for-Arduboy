@@ -9,4 +9,4 @@ edition = "2021"
 crate-type = ["staticlib"]
 
 [dependencies]
-arduboy-rust = "1.0.0"
+arduboy-rust = { path = "../../arduboy-rust" }

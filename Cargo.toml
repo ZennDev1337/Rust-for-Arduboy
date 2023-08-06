@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "arduboy-rust",
     "Examples/Arduboy-Tutorials/eeprom",
     "Examples/Arduboy-Tutorials/tone",
     "Examples/Arduboy-Tutorials/demo2",

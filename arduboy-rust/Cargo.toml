@@ -1,0 +1,16 @@
+[package]
+name = "arduboy-rust"
+version = "1.0.0"
+authors = ["ZennDev <ZennDev@protonmail.com>"]
+description = "This is a library used in Rust for Arduboy to program Arduboy games in Rust."
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+edition = "2021"
+repository = "https://github.com/ZennDev1337/arduboy-rust.git"
+homepage = "https://github.com/ZennDev1337/arduboy-rust"
+keywords = ["arduboy", "game", "arduboy-tone", "atmega32u4"]
+categories = ["game-engines", "games", "api-bindings"]
+
+
+[dependencies]
+panic-halt = "0.2.0"

@@ -43,7 +43,7 @@ Inside the game folder you will find a lib.rs file which contains the setup and 
 You can use the following command to open the Rust doc of the arduboy_rust crate
 
 ```bash
-cargo doc -p arduboy_rust --open
+cargo doc -p arduboy-rust --open
 ```
 
 Most of the time you will use the prelude.

@@ -5,8 +5,6 @@ version = 3
 [[package]]
 name = "arduboy-rust"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e80037f297e2a5db1e58804b7a3b1b10f448b104623422db1c94b185b45b1ea5"
 dependencies = [
  "panic-halt",
 ]
