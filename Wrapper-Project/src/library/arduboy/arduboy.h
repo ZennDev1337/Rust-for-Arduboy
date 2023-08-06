@@ -12,6 +12,7 @@ extern "C"
     void arduboy_draw_pixel(int16_t x, int16_t y, uint8_t color);
     void arduboy_draw_circle(int16_t x, int16_t y, uint8_t r, uint8_t color);
     void arduboy_fill_circle(int16_t x, int16_t y, uint8_t r, uint8_t color);
+    void arduboy_draw_rect(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t color);
     void arduboy_fill_rect(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t color);
     unsigned long arduboy_generate_random_seed();
     uint8_t arduboy_get_pixel(uint8_t x, uint8_t y);

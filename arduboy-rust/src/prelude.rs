@@ -12,7 +12,7 @@ pub const arduboy: Arduboy = Arduboy {};
 #[allow(non_upper_case_globals)]
 pub const sound: Sound = Sound {};
 pub use crate::hardware::buttons::*;
-pub use crate::library::arduboy::{Color, FONT_SIZE, HEIGHT, WIDTH};
+pub use crate::library::arduboy::{Color, Point, Rect, FONT_SIZE, HEIGHT, WIDTH};
 pub use crate::library::arduboy_tone::*;
 pub use crate::library::arduino::*;
 pub use crate::library::c::*;

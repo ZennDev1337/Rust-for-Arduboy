@@ -39,6 +39,17 @@ impl Not for Color {
         }
     }
 }
+pub struct Rect {
+    x: i16,
+    y: i16,
+    width: u8,
+    height: u8,
+}
+pub struct Point {
+    x: i16,
+    y: i16,
+}
+
 /// This is the struct to interact in a save way with the Arduboy2 C++ library.
 pub struct Arduboy {}
 impl Arduboy {
@@ -122,6 +133,9 @@ impl Arduboy {
     ///color	The color of the pixel (optional; defaults to WHITE).
     pub fn fill_rect(&self, x: i16, y: i16, w: u8, h: u8, color: Color) {
         unsafe { fill_rect_raw(x, y, w, h, color as u8) }
+    }
+    pub fn draw_rect(&self, x: i16, y: i16, w: u8, h: u8, color: Color) {
+        unsafe { draw_rect_raw(x, y, w, h, color as u8) }
     }
     pub fn draw_circle(&self, x: i16, y: i16, r: u8, color: Color) {
         unsafe { draw_circle_raw(x, y, r, color as u8) }
@@ -322,6 +336,18 @@ impl Arduboy {
     pub fn invert(&self, inverse: bool) {
         unsafe { arduboy_invert(inverse) }
     }
+    pub fn collide_point(point: Point, rect: Rect) -> bool {
+        point.x >= rect.x
+            && point.x < rect.x + rect.width as i16
+            && point.y >= rect.y
+            && point.y < rect.y + rect.height as i16
+    }
+    pub fn collide_rect(rect1: Rect, rect2: Rect) -> bool {
+        !(rect2.x >= rect1.x + rect1.width as i16
+            || rect2.x + rect2.width as i16 <= rect1.x
+            || rect2.y >= rect1.y + rect1.height as i16
+            || rect2.y + rect2.height as i16 <= rect1.y)
+    }
 }
 
 extern "C" {
@@ -348,6 +374,9 @@ extern "C" {
 
     #[link_name = "arduboy_draw_circle"]
     fn draw_circle_raw(x: i16, y: i16, r: u8, color: u8);
+
+    #[link_name = "arduboy_draw_rect"]
+    fn draw_rect_raw(x: i16, y: i16, w: u8, h: u8, color: u8);
 
     #[link_name = "arduboy_fill_circle"]
     fn fill_circle_raw(x: i16, y: i16, r: u8, color: u8);

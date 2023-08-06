@@ -41,6 +41,10 @@ void arduboy_fill_rect(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t color
 {
     arduboy.fillRect(x, y, w, h, color);
 }
+void arduboy_draw_rect(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t color)
+{
+    arduboy.drawRect(x, y, w, h, color);
+}
 unsigned long arduboy_generate_random_seed()
 {
     return arduboy.generateRandomSeed();
