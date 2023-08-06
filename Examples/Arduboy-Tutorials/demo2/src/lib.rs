@@ -1,0 +1,18 @@
+#![no_std]
+//Include the Arduboy Library
+//Initialize the arduboy object
+use arduboy_rust::prelude::*;
+//The setup() function runs once when you turn your Arduboy on
+#[no_mangle]
+pub unsafe extern "C" fn setup() {
+    // put your setup code here, to run once:
+    arduboy.begin();
+    arduboy.clear();
+    arduboy.print("Holmes is cool!\0");
+    arduboy.display();
+}
+#[no_mangle]
+#[export_name = "loop"]
+pub unsafe extern "C" fn loop_() {
+    // put your main code here, to run repeatedly:
+}

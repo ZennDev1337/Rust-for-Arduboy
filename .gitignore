@@ -1,0 +1,5 @@
+/target
+/.vscode
+
+/Wrapper-Project/.pio
+/Wrapper-Project/lib/*.a

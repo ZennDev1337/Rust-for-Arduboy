@@ -1,0 +1,4 @@
+[toolchain]
+# We need to pin to this old Rust version due to an LLVM bug: https://github.com/rust-lang/rust/issues/82104
+channel = "nightly"
+components = ["rust-src"]
