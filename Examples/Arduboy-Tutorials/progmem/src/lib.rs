@@ -10,7 +10,7 @@ use arduboy_rust::prelude::*;
 
 // Progmem data
 progmem!(
-    static lol1: [u8; _] = *b"I'm a PROGMEM Text\0";
+    static text1: [u8; _] = *b"I'm a PROGMEM Text\0";
     static player_sprite1: [u8; _] = [
         16, 16, 0xfe, 0x01, 0x3d, 0x25, 0x25, 0x3d, 0x01, 0x01, 0xc1, 0x01, 0x3d, 0x25, 0x25, 0x3d,
         0x01, 0xfe, 0x7f, 0x80, 0x9c, 0xbc, 0xb0, 0xb0, 0xb2, 0xb2, 0xb3, 0xb0, 0xb0, 0xb0, 0xbc,
@@ -158,8 +158,8 @@ pub unsafe extern "C" fn loop_() {
         }
     }
     arduboy.clear();
-    arduboy.set_cursor((WIDTH as i16 / 2) - (lol1.len() as i16 * FONT_SIZE as i16 / 2), 10);
-    arduboy.print(get_string_addr!(lol1));
+    arduboy.set_cursor((WIDTH as i16 / 2) - (text1.len() as i16 * FONT_SIZE as i16 / 2), 10);
+    arduboy.print(get_string_addr!(text1));
     sprites::draw_override(playerx, playery, get_sprite_addr!(player_sprite1), 0);
     arduboy.display();
 }
