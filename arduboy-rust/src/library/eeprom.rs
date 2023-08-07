@@ -36,8 +36,8 @@ impl EEPROM {
         let c2 = self.read_start_c2();
 
         if c1 != b'Z' || c2 != b'D' {
-            self.update(b'M');
-            self.update(b'V');
+            self.update(b'Z');
+            self.update(b'D');
             self.update(0);
         };
     }
