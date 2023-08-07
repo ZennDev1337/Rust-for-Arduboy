@@ -140,6 +140,7 @@ Windows:
 -   not done [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
 -   not done [demo8] [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
 -   [eeprom] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
+-   [progmem] Usage of the big 28'000 Bytes flash memory for Bitmaps Sound sequeces and Text.
 -   [tone] [ArduboyTonesTest](https://github.com/MLXXXp/ArduboyTones/blob/master/examples/ArduboyTonesTest/ArduboyTonesTest.ino)
 
 To upload a demo to the Arduboy use:
@@ -153,6 +154,7 @@ Linux:
 ./run demo5
 ./run demo6
 ./run eeprom
+./run progmem
 ./run tone
 ```
 
@@ -165,6 +167,7 @@ Windows:
 .\run.bat demo5
 .\run.bat demo6
 .\run.bat eeprom
+.\run.bat progmem
 .\run.bat tone
 ```
 

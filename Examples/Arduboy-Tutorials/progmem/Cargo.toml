@@ -1,5 +1,5 @@
 [package]
-name = "game"
+name = "progmem"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,4 +7,4 @@ edition = "2021"
 crate-type = ["staticlib"]
 
 [dependencies]
-arduboy-rust = { path = "../../arduboy-rust" }
+arduboy-rust = { path = "../../../arduboy-rust" }

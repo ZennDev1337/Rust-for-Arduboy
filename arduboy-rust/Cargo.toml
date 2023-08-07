@@ -13,5 +13,4 @@ categories = ["game-engines", "games", "api-bindings"]
 
 
 [dependencies]
-avr-progmem = "0.3.3"
 panic-halt = "0.2.0"

@@ -5,12 +5,14 @@ target-dir = "./target"
 [profile.release]
 codegen-units = 1
 lto = "fat"
+strip = true
 opt-level = "z"
 panic = "abort"
 
 [profile.dev]
 codegen-units = 1
 lto = "fat"
+strip = true
 opt-level = "z"
 panic = "abort"
 

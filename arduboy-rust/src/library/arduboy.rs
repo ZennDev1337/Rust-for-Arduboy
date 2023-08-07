@@ -20,7 +20,7 @@ pub const WIDTH: u8 = 128;
 ///
 /// this is to calculate with it.
 pub const HEIGHT: u8 = 64;
-
+#[doc(hidden)]
 #[derive(Copy, Clone)]
 pub struct Pstring {
     pub pointer: *const i8,
