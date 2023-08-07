@@ -12,14 +12,14 @@ pub const arduboy: Arduboy = Arduboy {};
 #[allow(non_upper_case_globals)]
 pub const sound: Sound = Sound {};
 pub use crate::hardware::buttons::*;
-pub use crate::library::arduboy::{Color, Point, Rect, FONT_SIZE, HEIGHT, WIDTH};
+pub use crate::library::arduboy::{Color, Point, Pstring, Rect, FONT_SIZE, HEIGHT, WIDTH};
 pub use crate::library::arduboy_tone::*;
 pub use crate::library::arduino::*;
 pub use crate::library::c::*;
 pub use crate::library::eeprom::EEPROM;
 pub use crate::library::sprites;
 pub use crate::print::*;
-pub use crate::{get_sprite_addr, get_tones_addr};
+pub use crate::{get_sprite_addr, get_string_addr, get_tones_addr};
 use core::cmp;
 
 pub fn constrain<T: Ord>(x: T, a: T, b: T) -> T {

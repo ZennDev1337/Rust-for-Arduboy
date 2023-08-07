@@ -7,4 +7,5 @@ edition = "2021"
 crate-type = ["staticlib"]
 
 [dependencies]
+avr-progmem = "0.3.3"
 arduboy-rust = { path = "../../arduboy-rust" }

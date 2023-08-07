@@ -81,6 +81,10 @@ void arduboy_print_chars(const char *cstr)
 {
     arduboy.print(cstr);
 }
+size_t arduboy_print_chars_progmem(const char *cstr)
+{
+    return arduboy.print(reinterpret_cast<const __FlashStringHelper *>(cstr));
+}
 size_t arduboy_print_char(char c)
 {
     return arduboy.print(c);

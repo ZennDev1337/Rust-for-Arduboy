@@ -20,6 +20,11 @@ pub const WIDTH: u8 = 128;
 ///
 /// this is to calculate with it.
 pub const HEIGHT: u8 = 64;
+
+#[derive(Copy, Clone)]
+pub struct Pstring {
+    pub pointer: *const i8,
+}
 /// This item is to chose between Black or White
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[repr(u8)]
@@ -410,6 +415,9 @@ extern "C" {
 
     #[link_name = "arduboy_print_chars"]
     pub fn print_chars(cstr: *const c_char);
+
+    #[link_name = "arduboy_print_chars_progmem"]
+    pub fn print_chars_progmem(pstring: *const c_char);
 
     // #[link_name = "arduboy_print_char"]
     // fn print_char(c: c_char) -> c_size_t;

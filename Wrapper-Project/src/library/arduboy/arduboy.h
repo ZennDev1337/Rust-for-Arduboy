@@ -24,6 +24,7 @@ extern "C"
     bool arduboy_pressed(uint8_t buttons);
     void arduboy_print_chars(const char *cstr);
     size_t arduboy_print_char(char c);
+    size_t arduboy_print_chars_progmem(const char *);
     size_t arduboy_print_int(int n, int base);
     size_t arduboy_print_long(long n, int base);
     size_t arduboy_print_unsigned_char(unsigned char n, int base);

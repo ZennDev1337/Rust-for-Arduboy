@@ -1,5 +1,18 @@
 use core::ffi::c_int;
 
+#[macro_export]
+macro_rules! get_string_addr {
+    ( $s:expr ) => {
+        Pstring {
+            pointer: addr_of!($s) as *const i8,
+        }
+    };
+}
+#[allow(unused_imports)]
+pub(super) use get_string_addr;
+
+use crate::Pstring;
+
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum Base {
     Bin = 2,
@@ -96,6 +109,18 @@ impl Printable for &str {
     fn print_2(self, _params: Self::Parameters) {
         unsafe {
             crate::library::arduboy::print_chars(self.as_bytes() as *const [u8] as *const i8);
+        }
+    }
+
+    fn default_parameters() -> Self::Parameters {}
+}
+
+impl Printable for Pstring {
+    type Parameters = ();
+
+    fn print_2(self, _params: Self::Parameters) {
+        unsafe {
+            crate::library::arduboy::print_chars_progmem(self.pointer);
         }
     }
 
