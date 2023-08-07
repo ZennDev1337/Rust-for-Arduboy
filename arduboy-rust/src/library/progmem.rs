@@ -63,3 +63,22 @@ macro_rules! get_string_addr {
     };
 }
 pub(super) use get_string_addr;
+///This is the way to go if you want print some random text
+///
+/// This doesn't waste the 2kb ram it saves to progmem (28kb)
+/// This automatically saves the given text to the Progmem.
+/// ## Example
+/// ```
+/// arduboy.print(f!(b"Random text to print"))
+/// ```
+#[macro_export]
+macro_rules! f {
+    ($string_literal:literal) => {{
+        progmem!(
+            static local: [u8; _] = *$string_literal;
+        );
+
+        get_string_addr!(local)
+    }};
+}
+pub(super) use f;

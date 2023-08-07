@@ -19,7 +19,7 @@ pub use crate::library::c::*;
 pub use crate::library::eeprom::EEPROM;
 pub use crate::library::sprites;
 pub use crate::print::*;
-pub use crate::{get_sprite_addr, get_string_addr, get_tones_addr, progmem};
+pub use crate::{f, get_sprite_addr, get_string_addr, get_tones_addr, progmem};
 use core::cmp;
 
 pub fn constrain<T: Ord>(x: T, a: T, b: T) -> T {

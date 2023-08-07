@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(non_upper_case_globals)]
 
 use arduboy_rust::prelude::*;
 
@@ -91,9 +92,9 @@ pub unsafe extern "C" fn loop_() {
     match G.game_state {
         GameState::Title => {
             arduboy.set_cursor(52, 10);
-            arduboy.print(&b"PONG\0"[..]);
+            arduboy.print(f!(b"PONG\0"));
             arduboy.set_cursor(16, 22);
-            arduboy.print(&b"Press A to start\0"[..]);
+            arduboy.print(f!(b"Press A to start\0"));
             if A.just_pressed() {
                 G.game_state = GameState::Gameplay;
             }
@@ -106,14 +107,14 @@ pub unsafe extern "C" fn loop_() {
         }
         GameState::Win => {
             arduboy.set_cursor(40, 10);
-            arduboy.print(&b"You Win!\0"[..]);
+            arduboy.print(f!(b"You Win!\0"));
             if A.just_pressed() {
                 reset_game();
             }
         }
         GameState::Lose => {
             arduboy.set_cursor(37, 10);
-            arduboy.print(&b"Game Over\0"[..]);
+            arduboy.print(f!(b"Game Over\0"));
             if A.just_pressed() {
                 reset_game();
             }

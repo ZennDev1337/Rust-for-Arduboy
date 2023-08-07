@@ -33,9 +33,9 @@ pub unsafe extern "C" fn loop_() {
         if attempts == 7 {
             //Game Over screen
             arduboy.set_cursor(0, 0);
-            arduboy.print("You lost!\0");
-            arduboy.print("\n\0");
-            arduboy.print("Correct Number: \0");
+            arduboy.print(f!(b"You lost!\0"));
+            arduboy.print(f!(b"\n\0"));
+            arduboy.print(f!(b"Correct Number: \0"));
             arduboy.print(randomnumber);
             if A.just_pressed() {
                 randomnumber = random_between(1, 101) as i16;
@@ -59,30 +59,30 @@ pub unsafe extern "C" fn loop_() {
                 }
             }
             arduboy.set_cursor(0, 0);
-            arduboy.print("Attempt: \0");
+            arduboy.print(f!(b"Attempt: \0"));
             arduboy.print(attempts);
-            arduboy.print("\n\0");
-            arduboy.print("Number to guess: \0");
+            arduboy.print(f!(b"\n\0"));
+            arduboy.print(f!(b"Number to guess: \0"));
             arduboy.print(guessednumber);
-            arduboy.print("\n\0");
+            arduboy.print(f!(b"\n\0"));
             if attempts == 0 {
-                arduboy.print("Good luck!\0");
+                arduboy.print(f!(b"Good luck!\0"));
             } else {
                 arduboy.print(lastguess);
                 if lastguess > randomnumber {
-                    arduboy.print(" is too high!\0");
+                    arduboy.print(f!(b" is too high!\0"));
                 }
                 if lastguess < randomnumber {
-                    arduboy.print(" is too low!\0");
+                    arduboy.print(f!(b" is too low!\0"));
                 }
             }
         }
     } else {
         //Tell the player that they won!
         arduboy.set_cursor(0, 0);
-        arduboy.print("You won!\0");
-        arduboy.print("\n\0");
-        arduboy.print("Correct Number: \0");
+        arduboy.print(f!(b"You won!\0"));
+        arduboy.print(f!(b"\n\0"));
+        arduboy.print(f!(b"Correct Number: \0"));
         arduboy.print(randomnumber);
 
         if A.just_pressed() {

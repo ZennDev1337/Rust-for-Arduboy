@@ -341,7 +341,7 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tone(1000, 0);
     arduboy.clear();
-    arduboy.print("tone(1000)\n\nB: no_tone()\n   delay(1000)\n   break\0");
+    arduboy.print(f!(b"tone(1000)\n\nB: no_tone()\n   delay(1000)\n   break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B_BUTTON) {
@@ -353,7 +353,7 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tone(500, 4000);
     arduboy.clear();
-    arduboy.print("tone(500, 4000)\n\nB: break\0");
+    arduboy.print(f!(b"tone(500, 4000)\n\nB: break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B_BUTTON) {
@@ -364,7 +364,7 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tone2(NOTE_C4, 500, NOTE_C5H, 5000);
     arduboy.clear();
-    arduboy.print("tone(C4,500,C5H,5000)\n\nB: no_tone(), break\0");
+    arduboy.print(f!(b"tone(C4,500,C5H,5000)\n\nB: no_tone(), break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B_BUTTON) {
@@ -376,7 +376,7 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tone3(NOTE_C7H, 500, NOTE_REST, 1000, NOTE_C6, 5000);
     arduboy.clear();
-    arduboy.print("tone(C7H,500,\n     REST,1000,\n     C6,6000)\n\nB: no_tone(), break\0");
+    arduboy.print(f!(b"tone(C7H,500,\n     REST,1000,\n     C6,6000)\n\nB: no_tone(), break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B_BUTTON) {
@@ -388,7 +388,7 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tones(get_tones_addr!(allNotes));
     arduboy.clear();
-    arduboy.print("tones(allNotes)\n\nA: no_tone(), again\nUP: again\nB: break\0");
+    arduboy.print(f!(b"tones(allNotes)\n\nA: no_tone(), again\nUP: again\nB: break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(A_BUTTON) {
@@ -407,7 +407,7 @@ pub unsafe extern "C" fn loop_() {
     new_notes = false;
     sound.tones_in_ram(get_tones_addr!(in_ram) as *mut u32);
     arduboy.clear();
-    arduboy.print("tonesInRAM(inRAM)\n\nA: change notes\nB: break\0");
+    arduboy.print(f!(b"tonesInRAM(inRAM)\n\nA: change notes\nB: break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(A_BUTTON) {
@@ -429,7 +429,7 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tones(get_tones_addr!(sound1));
     arduboy.clear();
-    arduboy.print("volume_mode(IN_TONES)\ntones(sound1)\n\nB: break\0");
+    arduboy.print(f!(b"volume_mode(IN_TONES)\ntones(sound1)\n\nB: break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B) {
@@ -441,7 +441,7 @@ pub unsafe extern "C" fn loop_() {
     sound.volume_mode(VOLUME_ALWAYS_NORMAL);
     sound.tones(get_tones_addr!(sound1));
     arduboy.clear();
-    arduboy.print("volume_mode(NORMAL)\ntones(sound1)\n\nB: no_tone(), break\0");
+    arduboy.print(f!(b"volume_mode(NORMAL)\ntones(sound1)\n\nB: no_tone(), break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B) {
@@ -454,7 +454,7 @@ pub unsafe extern "C" fn loop_() {
     sound.volume_mode(VOLUME_ALWAYS_HIGH);
     sound.tones(get_tones_addr!(sound1));
     arduboy.clear();
-    arduboy.print("volume_mode(HIGH)\ntones(sound1)\n\nB: break\0");
+    arduboy.print(f!(b"volume_mode(HIGH)\ntones(sound1)\n\nB: break\0"));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B) {
@@ -480,13 +480,13 @@ fn move_circle() {
 
 fn display_audio() {
     arduboy.clear();
-    arduboy.print("Audio enabled: \0");
+    arduboy.print(f!(b"Audio enabled: \0"));
     if arduboy.audio_enabled() {
-        arduboy.print("YES\0");
+        arduboy.print(f!(b"YES\0"));
     } else {
-        arduboy.print("NO\0")
+        arduboy.print(f!(b"NO\0"))
     }
 
-    arduboy.print("\n\nUP:   enable\nDOWN: disable\nB: break\0");
+    arduboy.print(f!(b"\n\nUP:   enable\nDOWN: disable\nB: break\0"));
     arduboy.invert(!arduboy.audio_enabled());
 }

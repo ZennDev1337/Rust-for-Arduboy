@@ -14,6 +14,10 @@ use arduboy_rust::prelude::*;
 #[no_mangle]
 pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
+    arduboy.begin();
+    arduboy.clear();
+    arduboy.print(f!(b"hello boys\0"));
+    arduboy.display();
 }
 
 // The loop() function repeats forever after setup() is done

@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(non_upper_case_globals)]
 use arduboy_rust::prelude::*;
 
 static mut MEM: u8 = 0;
@@ -201,10 +202,10 @@ pub unsafe extern "C" fn loop_() {
         State::Title => {
             arduboy.set_cursor(0, 0);
             arduboy.set_text_size(2);
-            arduboy.print(&b"RustySnake\n\0"[..]);
+            arduboy.print(f!(b"RustySnake\n\0"));
             arduboy.set_text_size(1);
-            arduboy.print(&b"\nControls: \nB for Pause\nA&B for reset\n\0"[..]);
-            arduboy.print(&b"\nZennDev 2023\n\0"[..]);
+            arduboy.print(f!(b"\nControls: \nB for Pause\nA&B for reset\n\0"));
+            arduboy.print(f!(b"\nZennDev 2023\n\0"));
             if A.just_pressed() {
                 snake.game_state = State::Game;
             }
@@ -224,7 +225,7 @@ pub unsafe extern "C" fn loop_() {
         }
         State::Win => (),
         State::Pause => {
-            let msg = &b"[ Break ]\0"[..];
+            let msg = "[ Break ]\0";
             let l = msg.len() as u8 * FONT_SIZE / 2;
             arduboy.set_cursor(
                 ((WIDTH / 2) as u16 - l as u16).try_into().unwrap(),
@@ -248,14 +249,14 @@ pub unsafe extern "C" fn loop_() {
             }
 
             arduboy.set_cursor(0, 0);
-            arduboy.print(&b"Game Over!\0"[..]);
-            arduboy.print(&b"\n\n\0"[..]);
-            arduboy.print(&b"Score: \0"[..]);
+            arduboy.print(f!(b"Game Over!\0"));
+            arduboy.print(f!(b"\n\n\0"));
+            arduboy.print(f!(b"Score: \0"));
             arduboy.print(snake.points as u16);
-            arduboy.print(&b"\nHigh Score: \0"[..]);
+            arduboy.print(f!(b"\nHigh Score: \0"));
             arduboy.print(MEM as u16);
-            arduboy.print(&b"\n\n\0"[..]);
-            arduboy.print(&b"Press A to Play Again\0"[..]);
+            arduboy.print(f!(b"\n\n\0"));
+            arduboy.print(f!(b"Press A to Play Again\0"));
 
             if A.just_pressed() {
                 snake.game_state = State::Reset;

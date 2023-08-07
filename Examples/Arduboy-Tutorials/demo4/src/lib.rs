@@ -43,7 +43,7 @@ pub unsafe extern "C" fn loop_() {
         //Move the cursor to the position 30, 30 of the screen
         arduboy.set_cursor(30, 30);
         //Printing the yay (important always put the \0 at the end for &str)
-        arduboy.print("Yay!\0");
+        arduboy.print(f!(b"Yay!\0"));
     }
     //Move the cursor back to the top-left of the screen
     arduboy.set_cursor(0, 0);

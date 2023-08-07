@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(non_upper_case_globals)]
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
@@ -8,7 +9,7 @@ pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
     arduboy.begin();
     arduboy.clear();
-    arduboy.print("Holmes is cool!\0");
+    arduboy.print(f!(b"Holmes is cool!\0"));
     arduboy.display();
 }
 #[no_mangle]

@@ -48,10 +48,10 @@ pub unsafe extern "C" fn loop_() {
     arduboy.print(count as u16);
 
     arduboy.set_cursor(0, 30);
-    arduboy.print("Memory:\0");
+    arduboy.print(f!(b"Memory:\0"));
     arduboy.print(MEM as u16);
     arduboy.set_cursor(0, 40);
-    arduboy.print("eeprom:\0");
+    arduboy.print(f!(b"eeprom:\0"));
 
     arduboy.print(eeprom.read() as u16);
 
