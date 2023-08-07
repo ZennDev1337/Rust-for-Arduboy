@@ -1,14 +1,5 @@
 //pub use crate::library::arduboy_tone_pitch::*;
 use core::ffi::{c_uchar, c_uint, c_ulong};
-///Create a `const` raw pointer to a sprite as u16, without creating an intermediate reference.
-#[macro_export]
-macro_rules! get_tones_addr {
-    ( $s:expr ) => {
-        addr_of!($s) as *const u16
-    };
-}
-#[allow(unused_imports)]
-pub(super) use get_tones_addr;
 
 extern "C" {
     #[link_name = "sound_tone"]

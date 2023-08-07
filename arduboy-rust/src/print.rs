@@ -1,16 +1,5 @@
 use crate::prelude::Pstring;
 use core::ffi::c_int;
-///Create a `const` raw pointer to a \[u8;_] that saves text, without creating an intermediate reference.
-#[macro_export]
-macro_rules! get_string_addr {
-    ( $s:expr ) => {
-        Pstring {
-            pointer: addr_of!($s) as *const i8,
-        }
-    };
-}
-#[allow(unused_imports)]
-pub(super) use get_string_addr;
 
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum Base {

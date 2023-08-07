@@ -1,14 +1,5 @@
 //!This is the module to interact in a save way with the Sprites C++ library.
 use core::ffi::{c_int, c_uchar};
-///Create a `const` raw pointer to a sprite as u8, without creating an intermediate reference.
-#[macro_export]
-macro_rules! get_sprite_addr {
-    ( $s:expr ) => {
-        addr_of!($s) as *const u8
-    };
-}
-#[allow(unused_imports)]
-pub(super) use get_sprite_addr;
 
 extern "C" {
     #[link_name = "arduino_draw_override"]
