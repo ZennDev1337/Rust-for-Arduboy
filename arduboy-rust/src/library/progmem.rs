@@ -82,3 +82,12 @@ macro_rules! f {
     }};
 }
 pub(super) use f;
+
+/// This struct is important for the Progmem functionality.
+///
+/// Typically you will never use this by your self.
+/// It will be used by the get_string_addr macro in combination with a print command.
+#[derive(Copy, Clone)]
+pub struct Pstring {
+    pub pointer: *const i8,
+}

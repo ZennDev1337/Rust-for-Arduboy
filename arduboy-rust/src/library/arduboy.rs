@@ -20,11 +20,7 @@ pub const WIDTH: u8 = 128;
 ///
 /// this is to calculate with it.
 pub const HEIGHT: u8 = 64;
-#[doc(hidden)]
-#[derive(Copy, Clone)]
-pub struct Pstring {
-    pub pointer: *const i8,
-}
+
 /// This item is to chose between Black or White
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[repr(u8)]
@@ -44,15 +40,23 @@ impl Not for Color {
         }
     }
 }
+/// This struct is used by a few Arduboy functions.
 pub struct Rect {
-    x: i16,
-    y: i16,
-    width: u8,
-    height: u8,
+    /// Position X
+    pub x: i16,
+    /// Position Y
+    pub y: i16,
+    /// Rect width
+    pub width: u8,
+    /// Rect height
+    pub height: u8,
 }
+/// This struct is used by a few Arduboy functions.
 pub struct Point {
-    x: i16,
-    y: i16,
+    /// Position X
+    pub x: i16,
+    /// Position Y
+    pub y: i16,
 }
 
 /// This is the struct to interact in a save way with the Arduboy2 C++ library.

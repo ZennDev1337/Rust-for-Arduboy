@@ -40,7 +40,11 @@ Your game is located in the Project/game folder. This is also the folder you are
 
 Inside the game folder you will find a lib.rs file which contains the setup and loop function as you know it from a normal Arduboy C project.
 
-You can use the following command to open the Rust doc of the arduboy_rust crate
+You can find the Docs here:
+
+-   [arduboy-rust Crate Docs](https://zenndev1337.github.io/Rust-for-Arduboy-Docs/arduboy_rust/index.html)
+
+or you can use the following command to open the arduboy-rust Crate docs locally
 
 ```bash
 cargo doc -p arduboy-rust --open
