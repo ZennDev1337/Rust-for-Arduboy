@@ -10,6 +10,8 @@ extern "C"
     void arduboy_audio_on();
     void arduboy_audio_off();
     bool arduboy_audio_enabled();
+    void arduboy_audio_toggle();
+    void arduboy_audio_save_on_off();
     void sound_tone(unsigned int frequency, unsigned long duration);
     void sound_tone2(unsigned int frequency1, unsigned long duration1, unsigned int frequency2, unsigned long duration2);
     void sound_tone3(unsigned int frequency1, unsigned long duration1, unsigned int frequency2, unsigned long duration2, unsigned int frequency3, unsigned long duration3);

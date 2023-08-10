@@ -325,6 +325,12 @@ impl Arduboy {
     pub fn audio_off(&self) {
         unsafe { arduboy_audio_off() }
     }
+    pub fn audio_save_on_off(&self) {
+        unsafe { arduboy_audio_save_on_off() }
+    }
+    pub fn audio_save_toggle(&self) {
+        unsafe { arduboy_audio_toggle() }
+    }
     ///Get the current sound state.
     ///
     ///### Returns
@@ -455,6 +461,12 @@ extern "C" {
 
     #[link_name = "arduboy_audio_off"]
     fn arduboy_audio_off();
+
+    #[link_name = "arduboy_audio_save_on_off"]
+    fn arduboy_audio_save_on_off();
+
+    #[link_name = "arduboy_audio_toggle"]
+    fn arduboy_audio_toggle();
 
     #[link_name = "arduboy_audio_enabled"]
     fn arduboy_audio_enabled() -> bool;

@@ -8,6 +8,14 @@ void arduboy_audio_off()
 {
     arduboy.audio.off();
 }
+void arduboy_audio_toggle()
+{
+    arduboy.audio.toggle();
+}
+void arduboy_audio_save_on_off()
+{
+    arduboy.audio.saveOnOff();
+}
 bool arduboy_audio_enabled()
 {
     return arduboy.audio.enabled();
