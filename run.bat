@@ -22,6 +22,9 @@ if %option%==snake (
 ) else if %option%==eeprom (
     powershell -Command "cargo build -p eeprom-demo --release; cp ./target/arduboy/release/libeeprom_demo.a ./Wrapper-Project/lib/libgame.a; cd Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom.hex; pio run -t clean; rm lib/libgame.a; cd .."
     goto :eof
+) else if %option%==eeprom-byte (
+    powershell -Command "cargo build -p eeprom-byte-demo --release; cp ./target/arduboy/release/libeeprom_byte_demo.a ./Wrapper-Project/lib/libgame.a; cd Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom-byte.hex; pio run -t clean; rm lib/libgame.a; cd .."
+    goto :eof
 ) else if %option%==progmem (
     powershell -Command "cargo build -p progmem --release; cp ./target/arduboy/release/libprogmem.a ./Wrapper-Project/lib/libgame.a; cd Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./.pio/build/progmem.hex; pio run -t clean; rm lib/libgame.a; cd .."
     goto :eof

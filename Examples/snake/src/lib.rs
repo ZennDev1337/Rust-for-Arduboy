@@ -1,10 +1,21 @@
 #![no_std]
 #![allow(non_upper_case_globals)]
 use arduboy_rust::prelude::*;
+#[allow(dead_code)]
+#[repr(C)]
+struct Scorebord {
+    places: [u16; 3],
+}
+impl Scorebord {
+    fn check_score(&mut self, mut score: u16) -> bool {
+        let res = self.places[2] < score;
+        //todo
+        res
+    }
+}
 
-static mut MEM: u8 = 0;
-static SCORE: EEPROM = EEPROM::new(100);
-
+static mut scoreboard: Scorebord = Scorebord { places: [0, 0, 0] };
+static eeprom: EEPROM = EEPROM::new(100);
 const WORLD_WIDTH: u8 = 32;
 const WORLD_HEIGHT: u8 = 16;
 const SCALE_FACTOR: u8 = 4;
@@ -13,6 +24,7 @@ enum State {
     Title,
     Game,
     Win,
+    Scorebord,
     GameOver,
     Reset,
     Pause,
@@ -26,7 +38,7 @@ enum Direction {
 }
 struct Snake {
     game_state: State,
-    points: u8,
+    points: u16,
     len: u8,
     pos: [(u8, u8); 255 as usize],
     next_food: (u8, u8),
@@ -179,7 +191,7 @@ static mut snake: Snake = Snake {
 #[no_mangle]
 pub unsafe extern "C" fn setup() {
     arduboy.begin();
-    SCORE.init();
+    eeprom.init(&mut scoreboard);
     arduboy.init_random_seed();
     arduboy.set_frame_rate(60);
     arduboy.clear();
@@ -204,7 +216,8 @@ pub unsafe extern "C" fn loop_() {
             arduboy.set_text_size(2);
             arduboy.print(f!(b"RustySnake\n\0"));
             arduboy.set_text_size(1);
-            arduboy.print(f!(b"\nControls: \nB for Pause\nA&B for reset\n\0"));
+            arduboy.print(f!(b"\nControls: \nB for Pause\nA&B for reset\nScore: \0"));
+            arduboy.print(f!(b"Press A for Scorebord\0"));
             arduboy.print(f!(b"\nZennDev 2023\n\0"));
             if A.just_pressed() {
                 snake.game_state = State::Game;
@@ -240,27 +253,37 @@ pub unsafe extern "C" fn loop_() {
             }
         }
         State::GameOver => {
-            SCORE.get(&mut MEM);
-            if MEM == 255 {
-                MEM = 0;
-            }
-            if snake.points > MEM {
-                SCORE.put(snake.points);
-            }
-
             arduboy.set_cursor(0, 0);
-            arduboy.print(f!(b"Game Over!\0"));
-            arduboy.print(f!(b"\n\n\0"));
-            arduboy.print(f!(b"Score: \0"));
-            arduboy.print(snake.points as u16);
+            if scoreboard.check_score(snake.points) {
+                eeprom.put(&scoreboard);
+                arduboy.print(f!(b"New Highscore!\0"));
+                arduboy.print(f!(b"\n\n\0"));
+                arduboy.print(f!(b"\nHigh Score: \0"));
+                arduboy.print(scoreboard.places[0] as u16);
+                arduboy.print(f!(b"\n\n\0"));
+                arduboy.print(f!(b"Press A to Play Again\0"));
+            } else {
+                arduboy.print(f!(b"Game Over!\0"));
+                arduboy.print(f!(b"\n\n\0"));
+                arduboy.print(f!(b"Score: \0"));
+                arduboy.print(snake.points as u16);
+            }
             arduboy.print(f!(b"\nHigh Score: \0"));
-            arduboy.print(MEM as u16);
+            arduboy.print(scoreboard.places[0] as u16);
             arduboy.print(f!(b"\n\n\0"));
             arduboy.print(f!(b"Press A to Play Again\0"));
-
             if A.just_pressed() {
                 snake.game_state = State::Reset;
             }
+        }
+        State::Scorebord => {
+            arduboy.set_cursor(0, 0);
+            arduboy.print(f!(b"1 place: \0"));
+            arduboy.print(scoreboard.places[0]);
+            arduboy.print(f!(b"\n2 place: \0"));
+            arduboy.print(scoreboard.places[1]);
+            arduboy.print(f!(b"\n3 place: \0"));
+            arduboy.print(scoreboard.places[2]);
         }
     }
     if (A | B).pressed() {

@@ -1,27 +1,33 @@
 #![no_std]
 #![allow(non_upper_case_globals)]
+
 //Include the Arduboy Library
-//Initialize the arduboy object
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
 
-// #[link_section = ".progmem.data"]
+// Progmem data
 
-// Setup eeprom memory
-static mut eeprom: EEPROM = EEPROM::new(10);
-
-static mut count: u8 = 0;
-static mut MEM: u8 = 0;
+// dynamic ram variables
+static e: EEPROM = EEPROM::new(10);
+struct Scorebord {
+    player1: u16,
+    text: &'static str,
+}
+static mut s: Scorebord = Scorebord {
+    player1: 0,
+    text: "lol\0",
+};
 
 // The setup() function runs once when you turn your Arduboy on
 #[no_mangle]
 pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
     arduboy.begin();
-    eeprom.init();
+    arduboy.set_frame_rate(1);
     arduboy.clear();
-    arduboy.set_frame_rate(30);
+    e.init(&mut s);
 }
+
 // The loop() function repeats forever after setup() is done
 #[no_mangle]
 #[export_name = "loop"]
@@ -30,30 +36,39 @@ pub unsafe extern "C" fn loop_() {
     if !arduboy.next_frame() {
         return;
     }
-    arduboy.clear();
     arduboy.poll_buttons();
-    if arduboy.just_pressed(UP) {
-        count += 1;
+    if arduboy.just_pressed(B) {
+        s.player1 += 1;
+        e.put(&s);
     }
     if arduboy.just_pressed(DOWN) {
-        count -= 1;
+        s.player1 -= 1;
+        e.put(&s);
     }
     if arduboy.just_pressed(A) {
-        unsafe { eeprom.put(count) }
+        s.player1 += 1;
+        e.get(&mut s);
     }
-    if arduboy.just_pressed(B) {
-        eeprom.get(&mut MEM)
+    arduboy.clear();
+    if s.player1 == 5 {
+        arduboy.print(f!(b"lolxd\0"));
+        s.text = "it works!!!\0";
+        e.put(&s)
+    } else {
+        arduboy.print(f!(b"nope\0"));
+        s.text = "lol\0";
+        e.put(&s)
     }
-    arduboy.set_cursor(0, 0);
-    arduboy.print(count as u16);
 
-    arduboy.set_cursor(0, 30);
-    arduboy.print(f!(b"Memory:\0"));
-    arduboy.print(MEM as u16);
-    arduboy.set_cursor(0, 40);
-    arduboy.print(f!(b"eeprom:\0"));
-
-    arduboy.print(eeprom.read() as u16);
+    //e.get(&mut s);
+    arduboy.print("\n\0");
+    arduboy.print("eeprom save: \0");
+    let ss: Scorebord = e.get_direct();
+    arduboy.print(ss.player1);
+    arduboy.print("\nscore save: \0");
+    arduboy.print(s.player1);
+    arduboy.print("\n \0");
+    arduboy.print(s.text);
 
     arduboy.display();
 }

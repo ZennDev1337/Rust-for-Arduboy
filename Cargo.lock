@@ -45,6 +45,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "eeprom-byte-demo"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
 name = "eeprom-demo"
 version = "0.1.0"
 dependencies = [
