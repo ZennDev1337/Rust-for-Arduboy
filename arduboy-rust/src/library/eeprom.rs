@@ -19,17 +19,16 @@ extern "C" {
 /// ```
 /// static e: EEPROM = EEPROM::new(10);
 /// struct Scorebord {
-///    player1: u16,
-///    text: &'static str,
+///     player1: u16,
+///     text: &'static str,
 /// }
 /// static mut s: Scorebord = Scorebord {
-///    player1: 0,
-///    text: "lol\0",
+///     player1: 0,
+///     text: "lol\0",
 /// };
 ///
 /// // init inside of the setup function
-///    e.init(&mut s);
-/// }
+/// e.init(&mut s);
 /// ```
 pub struct EEPROM {
     start_c1: i16,
