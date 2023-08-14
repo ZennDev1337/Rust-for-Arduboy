@@ -8,7 +8,7 @@ pub mod prelude;
 mod print;
 pub use crate::library::arduboy::{Arduboy, Color, FONT_SIZE, HEIGHT, WIDTH};
 pub use crate::library::arduboy_tone::Sound;
-pub use crate::library::eeprom::EEPROM;
+pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
 pub use crate::library::{arduboy_tone_pitch, c, sprites};
 
 pub use hardware::buttons;

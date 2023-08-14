@@ -270,6 +270,8 @@ const BUTTON_DELAY: u32 = 200;
 pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
     arduboy.begin();
+    arduboy.audio_on();
+    arduboy.audio_save_on_off()
 }
 // The loop() function repeats forever after setup() is done
 #[no_mangle]

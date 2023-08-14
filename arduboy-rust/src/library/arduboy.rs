@@ -328,8 +328,14 @@ impl Arduboy {
     pub fn audio_save_on_off(&self) {
         unsafe { arduboy_audio_save_on_off() }
     }
-    pub fn audio_save_toggle(&self) {
+    pub fn audio_toggle(&self) {
         unsafe { arduboy_audio_toggle() }
+    }
+    pub fn audio_on_and_save(&self) {
+        unsafe {
+            arduboy_audio_on();
+            arduboy_audio_save_on_off()
+        }
     }
     ///Get the current sound state.
     ///
