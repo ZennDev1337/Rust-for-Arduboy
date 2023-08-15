@@ -1,10 +1,11 @@
 #![no_std]
+#![allow(non_upper_case_globals)]
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
 const arduboy: Arduboy2 = Arduboy2::new();
 //Initialize our counter variable
-#[allow(non_upper_case_globals)]
+
 static mut counter: c_int = 0;
 //The setup() function runs once when you turn your Arduboy on
 #[no_mangle]

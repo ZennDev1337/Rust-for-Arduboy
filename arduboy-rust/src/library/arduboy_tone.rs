@@ -32,7 +32,7 @@ extern "C" {
     fn sound_volume_mode(mode: c_uchar);
 
 }
-///This is the struct to interact in a save way with the Arduboy2Audio C++ library.
+///This is the struct to interact in a save way with the ArduboyTones C++ library.
 pub struct ArduboyTones {}
 impl ArduboyTones {
     ///Get a new instance of [ArduboyTones]

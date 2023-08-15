@@ -14,7 +14,7 @@ extern "C" {
     #[link_name = "arduboy_eeprom_put"]
     fn arduboy_eeprom_put_raw(idx: c_int, object: *const u8, size: usize);
 }
-///This struct to store and read structs objects to eeprom memory.
+///This struct to store and read structs objects to/from eeprom memory.
 /// ## Example
 /// ```
 /// static e: EEPROM = EEPROM::new(10);

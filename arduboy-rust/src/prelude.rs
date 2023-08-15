@@ -1,4 +1,9 @@
 //! This is the important one to use this library effective in your project
+//!
+//! Import the module:
+//! ```
+//! use arduboy_rust::prelude::*;
+//! ```
 #[doc(inline)]
 pub use crate::hardware::buttons::{self, *};
 #[doc(inline)]

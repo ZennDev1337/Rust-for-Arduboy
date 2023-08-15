@@ -1,5 +1,5 @@
 #![allow(unused_imports)]
-/// Create a space for Progrem variable
+/// Create a space for Progmem variable
 /// ## Example
 /// ```
 /// //for text

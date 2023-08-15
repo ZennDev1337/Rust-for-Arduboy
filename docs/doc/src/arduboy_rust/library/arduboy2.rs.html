@@ -751,51 +751,9 @@
 <a href="#751" id="751">751</a>
 <a href="#752" id="752">752</a>
 <a href="#753" id="753">753</a>
-<a href="#754" id="754">754</a>
-<a href="#755" id="755">755</a>
-<a href="#756" id="756">756</a>
-<a href="#757" id="757">757</a>
-<a href="#758" id="758">758</a>
-<a href="#759" id="759">759</a>
-<a href="#760" id="760">760</a>
-<a href="#761" id="761">761</a>
-<a href="#762" id="762">762</a>
-<a href="#763" id="763">763</a>
-<a href="#764" id="764">764</a>
-<a href="#765" id="765">765</a>
-<a href="#766" id="766">766</a>
-<a href="#767" id="767">767</a>
-<a href="#768" id="768">768</a>
-<a href="#769" id="769">769</a>
-<a href="#770" id="770">770</a>
-<a href="#771" id="771">771</a>
-<a href="#772" id="772">772</a>
-<a href="#773" id="773">773</a>
-<a href="#774" id="774">774</a>
-<a href="#775" id="775">775</a>
-<a href="#776" id="776">776</a>
-<a href="#777" id="777">777</a>
-<a href="#778" id="778">778</a>
-<a href="#779" id="779">779</a>
-<a href="#780" id="780">780</a>
-<a href="#781" id="781">781</a>
-<a href="#782" id="782">782</a>
-<a href="#783" id="783">783</a>
-<a href="#784" id="784">784</a>
-<a href="#785" id="785">785</a>
-<a href="#786" id="786">786</a>
-<a href="#787" id="787">787</a>
-<a href="#788" id="788">788</a>
-<a href="#789" id="789">789</a>
-<a href="#790" id="790">790</a>
-<a href="#791" id="791">791</a>
-<a href="#792" id="792">792</a>
-<a href="#793" id="793">793</a>
-<a href="#794" id="794">794</a>
-<a href="#795" id="795">795</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! This is the Module to interact in a save way with the Arduboy2 C++ library.
 //!
-//! All of the functions are safe wrapped inside the struct.
+//! All of the functions are safe wrapped inside the [Arduboy2] struct.
 </span><span class="attr">#![allow(dead_code)]
 </span><span class="kw">use </span><span class="kw">crate</span>::hardware::buttons::ButtonSet;
 <span class="kw">use </span><span class="kw">crate</span>::print::Printable;
@@ -888,11 +846,9 @@
     ///
     ///### Parameters:
     ///
-    ///x	The X coordinate of the left start point.
-    ///
-    ///y	The Y coordinate of the left start point.
-    ///
-    ///w	The width of the line.
+    ///- x	The X coordinate of the left start point.
+    ///- y	The Y coordinate of the left start point.
+    ///- w	The width of the line.
     ///
     ///color	The color of the line (optional; defaults to WHITE).
     </span><span class="kw">pub fn </span>draw_fast_hline(<span class="kw-2">&amp;</span><span class="self">self</span>, x: i16, y: i16, w: u8, color: Color) {
@@ -902,11 +858,9 @@
     ///
     ///### Parameters:
     ///
-    ///x	The X coordinate of the left start point.
-    ///
-    ///y	The Y coordinate of the left start point.
-    ///
-    ///h	The height of the line.
+    ///- x	The X coordinate of the left start point.
+    ///- y	The Y coordinate of the left start point.
+    ///- h	The height of the line.
     ///
     ///color	The color of the line (optional; defaults to WHITE).
     </span><span class="kw">pub fn </span>draw_fast_vline(<span class="kw-2">&amp;</span><span class="self">self</span>, x: i16, y: i16, h: u8, color: Color) {
@@ -915,12 +869,9 @@
     <span class="doccomment">///Set a single pixel in the display buffer to the specified color.
     ///
     ///### Parameters
-    ///
-    ///x	The X coordinate of the pixel.
-    ///
-    ///y	The Y coordinate of the pixel.
-    ///
-    ///color	The color of the pixel (optional; defaults to WHITE).
+    ///- x	The X coordinate of the pixel.
+    ///- y	The Y coordinate of the pixel.
+    ///- color	The color of the pixel (optional; defaults to WHITE).
     ///
     ///The single pixel specified location in the display buffer is set to the specified color. The values WHITE or BLACK can be used for the color. If the color parameter isn&#39;t included, the pixel will be set to WHITE.
     </span><span class="kw">pub fn </span>draw_pixel(<span class="kw-2">&amp;</span><span class="self">self</span>, x: i16, y: i16, color: Color) {
@@ -930,13 +881,10 @@
     ///
     ///### Parameters
     ///
-    ///x	The X coordinate of the upper left corner.
-    ///
-    ///y	The Y coordinate of the upper left corner.
-    ///
-    ///w	The width of the rectangle.
-    ///
-    ///h	The height of the rectangle.
+    ///- x	The X coordinate of the upper left corner.
+    ///- y	The Y coordinate of the upper left corner.
+    ///- w	The width of the rectangle.
+    ///- h	The height of the rectangle.
     ///
     ///color	The color of the pixel (optional; defaults to WHITE).
     </span><span class="kw">pub fn </span>fill_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, x: i16, y: i16, w: u8, h: u8, color: Color) {
@@ -967,11 +915,9 @@
     ///
     ///### Parameters
     ///
-    ///x0	The X coordinate of the circle&#39;s center.
-    ///
-    ///y0	The Y coordinate of the circle&#39;s center.
-    ///
-    ///r	The radius of the circle in pixels.
+    ///- x	The X coordinate of the circle&#39;s center.
+    ///- y	The Y coordinate of the circle&#39;s center.
+    ///- r	The radius of the circle in pixels.
     ///
     ///color	The circle&#39;s color (optional; defaults to WHITE).
     </span><span class="kw">pub fn </span>fill_circle(<span class="kw-2">&amp;</span><span class="self">self</span>, x: i16, y: i16, r: u8, color: Color) {
@@ -1044,9 +990,8 @@
     <span class="doccomment">///Returns the state of the given pixel in the screen buffer.
     ///
     ///### Parameters
-    ///x	The X coordinate of the pixel.
-    ///
-    ///y	The Y coordinate of the pixel.
+    ///- x	The X coordinate of the pixel.
+    ///- y	The Y coordinate of the pixel.
     ///
     ///### Returns
     ///WHITE if the pixel is on or BLACK if the pixel is off.
@@ -1062,7 +1007,7 @@
     <span class="doccomment">///Check if a button has just been pressed.
     ///
     ///### Parameters
-    ///button	The button to test for. Only one button should be specified.
+    ///- button	The button to test for. Only one button should be specified.
     ///
     ///### Returns
     ///true if the specified button has just been pressed.
@@ -1078,7 +1023,7 @@
     <span class="doccomment">///Check if a button has just been released.
     ///
     ///### Parameters
-    ///button	The button to test for. Only one button should be specified.
+    ///- button	The button to test for. Only one button should be specified.
     ///
     ///### Returns
     ///true if the specified button has just been released.
@@ -1095,7 +1040,7 @@
     ///
     ///### Parameters
     ///
-    ///buttons	A bit mask indicating which buttons to test. (Can be a single button)
+    ///- buttons	A bit mask indicating which buttons to test. (Can be a single button)
     ///
     ///### Returns
     ///
@@ -1129,7 +1074,7 @@
     <span class="doccomment">///Test if the all of the specified buttons are pressed.
     ///
     ///### Parameters
-    ///   buttons	A bit mask indicating which buttons to test. (Can be a single button)
+    ///-   buttons	A bit mask indicating which buttons to test. (Can be a single button)
     ///
     ///### Returns
     ///   true if all buttons in the provided mask are currently pressed.
@@ -1149,15 +1094,14 @@
     ///
     ///
     ///Example
-    /// ```text
-    /// let value:i16 = 42;
+    /// ```
+    /// let value: i16 = 42;
     ///
-    /// arduboy.println(&quot;Hello World\0&quot;); // Prints &quot;Hello World&quot; and then sets the
-    ///                                   // text cursor to the start of the next line
-    /// arduboy.print(value);             // Prints &quot;42&quot;
-    /// arduboy.print(&#39;\n\0&#39;);            // Sets the text cursor to the start of the next line
-    /// arduboy.print(78, HEX);           // Prints &quot;4E&quot; (78 in hexadecimal)
-    /// arduboy.print(&quot;\x03\xEA&quot;);        // Prints a heart symbol and a Greek uppercase omega
+    /// arduboy.print(b&quot;Hello World\n\0&quot;[..]); // Prints &quot;Hello World&quot; and then sets the
+    ///                                        // text cursor to the start of the next line
+    /// arduboy.print(value); // Prints &quot;42&quot;
+    /// arduboy.print(&quot;\n\0&quot;); // Sets the text cursor to the start of the next line
+    /// arduboy.print(&quot;hello world&quot;) // Prints normal [&amp;str]
     /// ```
     </span><span class="kw">pub fn </span>print(<span class="kw-2">&amp;</span><span class="self">self</span>, x: <span class="kw">impl </span>Printable) {
         x.print()
@@ -1165,9 +1109,9 @@
     <span class="doccomment">///Set the location of the text cursor.
     ///
     ///### Parameters
-    ///   x	The X (horizontal) coordinate, in pixels, for the new location of the text cursor.
+    ///-   x	The X (horizontal) coordinate, in pixels, for the new location of the text cursor.
     ///
-    ///   y	The Y (vertical) coordinate, in pixels, for the new location of the text cursor.
+    /// -  y	The Y (vertical) coordinate, in pixels, for the new location of the text cursor.
     ///
     ///The location of the text cursor is set the the specified coordinates. The coordinates are in pixels. Since the coordinates can specify any pixel location, the text does not have to be placed on specific rows. As with all drawing functions, location 0, 0 is the top left corner of the display. The cursor location represents the top left corner of the next character written.
     </span><span class="kw">pub fn </span>set_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, x: i16, y: i16) {
@@ -1176,7 +1120,7 @@
     <span class="doccomment">///Set the frame rate used by the frame control functions.
     ///
     ///### Parameters
-    ///   rate	The desired frame rate in frames per second.
+    ///-   rate	The desired frame rate in frames per second.
     ///
     ///Normally, the frame rate would be set to the desired value once, at the start of the game, but it can be changed at any time to alter the frame update rate.
     </span><span class="kw">pub fn </span>set_frame_rate(<span class="kw-2">&amp;</span><span class="self">self</span>, rate: u8) {
@@ -1185,7 +1129,7 @@
     <span class="doccomment">///Set the text character size.
     ///
     ///### Parameters
-    ///   s	The text size multiplier. Must be 1 or higher.
+    ///-   s	The text size multiplier. Must be 1 or higher.
     ///
     ///Setting a text size of 1 will result in standard size characters with one pixel for each bit in the bitmap for a character. The value specified is a multiplier. A value of 2 will double the width and height. A value of 3 will triple the dimensions, etc.
     </span><span class="kw">pub fn </span>set_text_size(<span class="kw-2">&amp;</span><span class="self">self</span>, size: u8) {
@@ -1237,7 +1181,7 @@
     <span class="doccomment">///Invert the entire display or set it back to normal.
     ///
     ///### Parameters
-    ///inverse	true will invert the display. false will set the display to no-inverted.
+    ///- inverse	true will invert the display. false will set the display to no-inverted.
     ///
     ///Calling this function with a value of true will set the display to inverted mode. A pixel with a value of 0 will be on and a pixel set to 1 will be off.
     ///
@@ -1407,20 +1351,20 @@
 }
 
 <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_begin&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_begin&quot;</span>]
     </span><span class="kw">fn </span>begin();
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_clear&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_clear&quot;</span>]
     </span><span class="kw">fn </span>clear();
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_display&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_display&quot;</span>]
     </span><span class="kw">fn </span>display();
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_display_and_clear_buffer&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_display_and_clear_buffer&quot;</span>]
     </span><span class="kw">fn </span>display_and_clear_buffer();
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_draw_fast_hline&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_draw_fast_hline&quot;</span>]
     </span><span class="kw">fn </span>draw_fast_hline_raw(x: i16, y: i16, w: u8, color: u8);
 
     <span class="attr">#[link_name = <span class="string">&quot;arduboy_draw_fast_vline&quot;</span>]
@@ -1467,11 +1411,11 @@
     <span class="attr">#[doc(hidden)]
     #[link_name = <span class="string">&quot;arduboy_not_pressed&quot;</span>]
     </span><span class="kw">pub fn </span>not_pressed(button: u8) -&gt; bool;
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_next_frame&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_next_frame&quot;</span>]
     </span><span class="kw">fn </span>next_frame() -&gt; bool;
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_poll_buttons&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_poll_buttons&quot;</span>]
     </span><span class="kw">fn </span>poll_buttons();
     <span class="attr">#[doc(hidden)]
     #[link_name = <span class="string">&quot;arduboy_pressed&quot;</span>]
@@ -1500,17 +1444,17 @@
     <span class="attr">#[doc(hidden)]
     #[link_name = <span class="string">&quot;arduboy_print_unsigned_long&quot;</span>]
     </span><span class="kw">pub fn </span>print_unsigned_long(n: c_ulong, base: c_int) -&gt; c_size_t;
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_set_cursor&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_set_cursor&quot;</span>]
     </span><span class="kw">fn </span>set_cursor(x: i16, y: i16);
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_set_frame_rate&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_set_frame_rate&quot;</span>]
     </span><span class="kw">fn </span>set_frame_rate(rate: u8);
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_set_text_size&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_set_text_size&quot;</span>]
     </span><span class="kw">fn </span>set_text_size(size: u8);
-    <span class="attr">#[doc(hidden)]
-    #[link_name = <span class="string">&quot;arduboy_audio_on&quot;</span>]
+
+    <span class="attr">#[link_name = <span class="string">&quot;arduboy_audio_on&quot;</span>]
     </span><span class="kw">fn </span>arduboy_audio_on();
 
     <span class="attr">#[link_name = <span class="string">&quot;arduboy_audio_off&quot;</span>]
@@ -1560,32 +1504,4 @@
     <span class="attr">#[link_name = <span class="string">&quot;arduboy_digital_write_rgb&quot;</span>]
     </span><span class="kw">fn </span>digital_write_rgb(red: c_uchar, green: c_uchar, blue: c_uchar);
 }
-
-<span class="comment">// pub unsafe fn print(x: impl Printable) {
-//     x.print();
-// }
-
-// pub unsafe fn draw_fast_hline(x: i16, y: i16, w: u8, color: Color) {
-//     draw_fast_hline_raw(x, y, w, color as u8);
-// }
-
-// pub unsafe fn draw_fast_vline(x: i16, y: i16, h: u8, color: Color) {
-//     draw_fast_vline_raw(x, y, h, color as u8);
-// }
-
-// pub unsafe fn draw_pixel(x: i16, y: i16, color: Color) {
-//     draw_pixel_raw(x, y, color as u8);
-// }
-
-// pub unsafe fn fill_rect(x: i16, y: i16, w: u8, h: u8, color: Color) {
-//     fill_rect_raw(x, y, w, h, color as u8);
-// }
-
-// pub unsafe fn draw_circle(x: i16, y: i16, r: u8, color: Color) {
-//     draw_circle_raw(x, y, r, color as u8);
-// }
-
-// pub unsafe fn get_pixel(x: u8, y: u8) -&gt; Color {
-//     mem::transmute::&lt;u8, Color&gt;(get_pixel_raw(x, y))
-// }
-</span></code></pre></div></section></main></body></html>
+</code></pre></div></section></main></body></html>

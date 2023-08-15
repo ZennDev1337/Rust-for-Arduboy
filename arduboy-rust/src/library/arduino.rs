@@ -1,3 +1,4 @@
+//! This is the Module to interact in a save way with the Arduino C++ library.
 use core::ffi::{c_long, c_ulong};
 
 extern "C" {

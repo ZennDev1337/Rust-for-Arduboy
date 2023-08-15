@@ -24,7 +24,9 @@
 <a href="#24" id="24">24</a>
 <a href="#25" id="25">25</a>
 <a href="#26" id="26">26</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span>core::ffi::{c_long, c_ulong};
+<a href="#27" id="27">27</a>
+</pre></div><pre class="rust"><code><span class="doccomment">//! This is the Module to interact in a save way with the Arduino C++ library.
+</span><span class="kw">use </span>core::ffi::{c_long, c_ulong};
 
 <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
     <span class="attr">#[link_name = <span class="string">&quot;arduino_random_between&quot;</span>]

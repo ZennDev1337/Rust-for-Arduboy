@@ -1,6 +1,6 @@
 //! This is the Module to interact in a save way with the Arduboy2 C++ library.
 //!
-//! All of the functions are safe wrapped inside the struct.
+//! All of the functions are safe wrapped inside the [Arduboy2] struct.
 #![allow(dead_code)]
 use crate::hardware::buttons::ButtonSet;
 use crate::print::Printable;
@@ -93,11 +93,9 @@ impl Arduboy2 {
     ///
     ///### Parameters:
     ///
-    ///x	The X coordinate of the left start point.
-    ///
-    ///y	The Y coordinate of the left start point.
-    ///
-    ///w	The width of the line.
+    ///- x	The X coordinate of the left start point.
+    ///- y	The Y coordinate of the left start point.
+    ///- w	The width of the line.
     ///
     ///color	The color of the line (optional; defaults to WHITE).
     pub fn draw_fast_hline(&self, x: i16, y: i16, w: u8, color: Color) {
@@ -107,11 +105,9 @@ impl Arduboy2 {
     ///
     ///### Parameters:
     ///
-    ///x	The X coordinate of the left start point.
-    ///
-    ///y	The Y coordinate of the left start point.
-    ///
-    ///h	The height of the line.
+    ///- x	The X coordinate of the left start point.
+    ///- y	The Y coordinate of the left start point.
+    ///- h	The height of the line.
     ///
     ///color	The color of the line (optional; defaults to WHITE).
     pub fn draw_fast_vline(&self, x: i16, y: i16, h: u8, color: Color) {
@@ -120,12 +116,9 @@ impl Arduboy2 {
     ///Set a single pixel in the display buffer to the specified color.
     ///
     ///### Parameters
-    ///
-    ///x	The X coordinate of the pixel.
-    ///
-    ///y	The Y coordinate of the pixel.
-    ///
-    ///color	The color of the pixel (optional; defaults to WHITE).
+    ///- x	The X coordinate of the pixel.
+    ///- y	The Y coordinate of the pixel.
+    ///- color	The color of the pixel (optional; defaults to WHITE).
     ///
     ///The single pixel specified location in the display buffer is set to the specified color. The values WHITE or BLACK can be used for the color. If the color parameter isn't included, the pixel will be set to WHITE.
     pub fn draw_pixel(&self, x: i16, y: i16, color: Color) {
@@ -135,13 +128,10 @@ impl Arduboy2 {
     ///
     ///### Parameters
     ///
-    ///x	The X coordinate of the upper left corner.
-    ///
-    ///y	The Y coordinate of the upper left corner.
-    ///
-    ///w	The width of the rectangle.
-    ///
-    ///h	The height of the rectangle.
+    ///- x	The X coordinate of the upper left corner.
+    ///- y	The Y coordinate of the upper left corner.
+    ///- w	The width of the rectangle.
+    ///- h	The height of the rectangle.
     ///
     ///color	The color of the pixel (optional; defaults to WHITE).
     pub fn fill_rect(&self, x: i16, y: i16, w: u8, h: u8, color: Color) {
@@ -172,11 +162,9 @@ impl Arduboy2 {
     ///
     ///### Parameters
     ///
-    ///x0	The X coordinate of the circle's center.
-    ///
-    ///y0	The Y coordinate of the circle's center.
-    ///
-    ///r	The radius of the circle in pixels.
+    ///- x	The X coordinate of the circle's center.
+    ///- y	The Y coordinate of the circle's center.
+    ///- r	The radius of the circle in pixels.
     ///
     ///color	The circle's color (optional; defaults to WHITE).
     pub fn fill_circle(&self, x: i16, y: i16, r: u8, color: Color) {
@@ -249,9 +237,8 @@ impl Arduboy2 {
     ///Returns the state of the given pixel in the screen buffer.
     ///
     ///### Parameters
-    ///x	The X coordinate of the pixel.
-    ///
-    ///y	The Y coordinate of the pixel.
+    ///- x	The X coordinate of the pixel.
+    ///- y	The Y coordinate of the pixel.
     ///
     ///### Returns
     ///WHITE if the pixel is on or BLACK if the pixel is off.
@@ -267,7 +254,7 @@ impl Arduboy2 {
     ///Check if a button has just been pressed.
     ///
     ///### Parameters
-    ///button	The button to test for. Only one button should be specified.
+    ///- button	The button to test for. Only one button should be specified.
     ///
     ///### Returns
     ///true if the specified button has just been pressed.
@@ -283,7 +270,7 @@ impl Arduboy2 {
     ///Check if a button has just been released.
     ///
     ///### Parameters
-    ///button	The button to test for. Only one button should be specified.
+    ///- button	The button to test for. Only one button should be specified.
     ///
     ///### Returns
     ///true if the specified button has just been released.
@@ -300,7 +287,7 @@ impl Arduboy2 {
     ///
     ///### Parameters
     ///
-    ///buttons	A bit mask indicating which buttons to test. (Can be a single button)
+    ///- buttons	A bit mask indicating which buttons to test. (Can be a single button)
     ///
     ///### Returns
     ///
@@ -334,7 +321,7 @@ impl Arduboy2 {
     ///Test if the all of the specified buttons are pressed.
     ///
     ///### Parameters
-    ///   buttons	A bit mask indicating which buttons to test. (Can be a single button)
+    ///-   buttons	A bit mask indicating which buttons to test. (Can be a single button)
     ///
     ///### Returns
     ///   true if all buttons in the provided mask are currently pressed.
@@ -354,15 +341,14 @@ impl Arduboy2 {
     ///
     ///
     ///Example
-    /// ```text
-    /// let value:i16 = 42;
+    /// ```
+    /// let value: i16 = 42;
     ///
-    /// arduboy.println("Hello World\0"); // Prints "Hello World" and then sets the
-    ///                                   // text cursor to the start of the next line
-    /// arduboy.print(value);             // Prints "42"
-    /// arduboy.print('\n\0');            // Sets the text cursor to the start of the next line
-    /// arduboy.print(78, HEX);           // Prints "4E" (78 in hexadecimal)
-    /// arduboy.print("\x03\xEA");        // Prints a heart symbol and a Greek uppercase omega
+    /// arduboy.print(b"Hello World\n\0"[..]); // Prints "Hello World" and then sets the
+    ///                                        // text cursor to the start of the next line
+    /// arduboy.print(value); // Prints "42"
+    /// arduboy.print("\n\0"); // Sets the text cursor to the start of the next line
+    /// arduboy.print("hello world") // Prints normal [&str]
     /// ```
     pub fn print(&self, x: impl Printable) {
         x.print()
@@ -370,9 +356,9 @@ impl Arduboy2 {
     ///Set the location of the text cursor.
     ///
     ///### Parameters
-    ///   x	The X (horizontal) coordinate, in pixels, for the new location of the text cursor.
+    ///-   x	The X (horizontal) coordinate, in pixels, for the new location of the text cursor.
     ///
-    ///   y	The Y (vertical) coordinate, in pixels, for the new location of the text cursor.
+    /// -  y	The Y (vertical) coordinate, in pixels, for the new location of the text cursor.
     ///
     ///The location of the text cursor is set the the specified coordinates. The coordinates are in pixels. Since the coordinates can specify any pixel location, the text does not have to be placed on specific rows. As with all drawing functions, location 0, 0 is the top left corner of the display. The cursor location represents the top left corner of the next character written.
     pub fn set_cursor(&self, x: i16, y: i16) {
@@ -381,7 +367,7 @@ impl Arduboy2 {
     ///Set the frame rate used by the frame control functions.
     ///
     ///### Parameters
-    ///   rate	The desired frame rate in frames per second.
+    ///-   rate	The desired frame rate in frames per second.
     ///
     ///Normally, the frame rate would be set to the desired value once, at the start of the game, but it can be changed at any time to alter the frame update rate.
     pub fn set_frame_rate(&self, rate: u8) {
@@ -390,7 +376,7 @@ impl Arduboy2 {
     ///Set the text character size.
     ///
     ///### Parameters
-    ///   s	The text size multiplier. Must be 1 or higher.
+    ///-   s	The text size multiplier. Must be 1 or higher.
     ///
     ///Setting a text size of 1 will result in standard size characters with one pixel for each bit in the bitmap for a character. The value specified is a multiplier. A value of 2 will double the width and height. A value of 3 will triple the dimensions, etc.
     pub fn set_text_size(&self, size: u8) {
@@ -442,7 +428,7 @@ impl Arduboy2 {
     ///Invert the entire display or set it back to normal.
     ///
     ///### Parameters
-    ///inverse	true will invert the display. false will set the display to no-inverted.
+    ///- inverse	true will invert the display. false will set the display to no-inverted.
     ///
     ///Calling this function with a value of true will set the display to inverted mode. A pixel with a value of 0 will be on and a pixel set to 1 will be off.
     ///
@@ -612,19 +598,19 @@ impl Arduboy2 {
 }
 
 extern "C" {
-    #[doc(hidden)]
+
     #[link_name = "arduboy_begin"]
     fn begin();
-    #[doc(hidden)]
+
     #[link_name = "arduboy_clear"]
     fn clear();
-    #[doc(hidden)]
+
     #[link_name = "arduboy_display"]
     fn display();
-    #[doc(hidden)]
+
     #[link_name = "arduboy_display_and_clear_buffer"]
     fn display_and_clear_buffer();
-    #[doc(hidden)]
+
     #[link_name = "arduboy_draw_fast_hline"]
     fn draw_fast_hline_raw(x: i16, y: i16, w: u8, color: u8);
 
@@ -672,10 +658,10 @@ extern "C" {
     #[doc(hidden)]
     #[link_name = "arduboy_not_pressed"]
     pub fn not_pressed(button: u8) -> bool;
-    #[doc(hidden)]
+
     #[link_name = "arduboy_next_frame"]
     fn next_frame() -> bool;
-    #[doc(hidden)]
+
     #[link_name = "arduboy_poll_buttons"]
     fn poll_buttons();
     #[doc(hidden)]
@@ -705,16 +691,16 @@ extern "C" {
     #[doc(hidden)]
     #[link_name = "arduboy_print_unsigned_long"]
     pub fn print_unsigned_long(n: c_ulong, base: c_int) -> c_size_t;
-    #[doc(hidden)]
+
     #[link_name = "arduboy_set_cursor"]
     fn set_cursor(x: i16, y: i16);
-    #[doc(hidden)]
+
     #[link_name = "arduboy_set_frame_rate"]
     fn set_frame_rate(rate: u8);
-    #[doc(hidden)]
+
     #[link_name = "arduboy_set_text_size"]
     fn set_text_size(size: u8);
-    #[doc(hidden)]
+
     #[link_name = "arduboy_audio_on"]
     fn arduboy_audio_on();
 
@@ -765,31 +751,3 @@ extern "C" {
     #[link_name = "arduboy_digital_write_rgb"]
     fn digital_write_rgb(red: c_uchar, green: c_uchar, blue: c_uchar);
 }
-
-// pub unsafe fn print(x: impl Printable) {
-//     x.print();
-// }
-
-// pub unsafe fn draw_fast_hline(x: i16, y: i16, w: u8, color: Color) {
-//     draw_fast_hline_raw(x, y, w, color as u8);
-// }
-
-// pub unsafe fn draw_fast_vline(x: i16, y: i16, h: u8, color: Color) {
-//     draw_fast_vline_raw(x, y, h, color as u8);
-// }
-
-// pub unsafe fn draw_pixel(x: i16, y: i16, color: Color) {
-//     draw_pixel_raw(x, y, color as u8);
-// }
-
-// pub unsafe fn fill_rect(x: i16, y: i16, w: u8, h: u8, color: Color) {
-//     fill_rect_raw(x, y, w, h, color as u8);
-// }
-
-// pub unsafe fn draw_circle(x: i16, y: i16, r: u8, color: Color) {
-//     draw_circle_raw(x, y, r, color as u8);
-// }
-
-// pub unsafe fn get_pixel(x: u8, y: u8) -> Color {
-//     mem::transmute::<u8, Color>(get_pixel_raw(x, y))
-// }
