@@ -2,9 +2,9 @@
 
 #include <ArduboyTones.h>
 #include <Arduboy2.h>
-extern ArduboyTones sound;
-extern Arduboy2 arduboy;
 
+extern Arduboy2 arduboy;
+ArduboyTones sound(arduboy.audio.enabled);
 extern "C"
 {
     void arduboy_audio_on()
