@@ -61,7 +61,7 @@ pub struct Point {
 /// This is the struct to interact in a save way with the Arduboy2 C++ library.
 pub struct Arduboy2 {}
 impl Arduboy2 {
-    /// gives you a new instans of the [Arduboy2]
+    /// gives you a new instance of the [Arduboy2]
     /// ## Example
     /// ```
     /// const arduboy: Arduboy2 = Arduboy2::new();
@@ -485,15 +485,15 @@ impl Arduboy2 {
     ///The RGB LED is actually individual red, green and blue LEDs placed very close together in a single package. This 3 parameter version of the function will set each LED either on or off, to set the RGB LED to 7 different colors at their highest brightness or turn it off.
     ///```text
     /// The colors are as follows:
-    /// RED LED 	GREEN LED 	BLUE LED 	COLOR
-    /// RGB_OFF 	RGB_OFF 	RGB_OFF 	OFF
-    /// RGB_OFF 	RGB_OFF 	RGB_ON 	    Blue
-    /// RGB_OFF 	RGB_ON 	    RGB_OFF 	Green
-    /// RGB_OFF 	RGB_ON 	    RGB_ON 	    Cyan
-    /// RGB_ON 	    RGB_OFF 	RGB_OFF 	Red
-    /// RGB_ON 	    RGB_OFF 	RGB_ON 	    Magenta
-    /// RGB_ON 	    RGB_ON 	    RGB_OFF 	Yellow
-    /// RGB_ON 	    RGB_ON 	    RGB_ON 	    White
+    /// RED LED    GREEN LED    BLUE LED    COLOR
+    /// RGB_OFF    RGB_OFF      RGB_OFF     OFF
+    /// RGB_OFF    RGB_OFF      RGB_ON      Blue
+    /// RGB_OFF    RGB_ON       RGB_OFF     Green
+    /// RGB_OFF    RGB_ON       RGB_ON      Cyan
+    /// RGB_ON     RGB_OFF      RGB_OFF     Red
+    /// RGB_ON     RGB_OFF      RGB_ON      Magenta
+    /// RGB_ON     RGB_ON       RGB_OFF     Yellow
+    /// RGB_ON     RGB_ON       RGB_ON      White
     /// ```
     pub fn digital_write_rgb(&self, red: u8, green: u8, blue: u8) {
         unsafe { digital_write_rgb(red, green, blue) }
@@ -501,7 +501,7 @@ impl Arduboy2 {
     ///Indicate if the specified number of frames has elapsed.
     ///
     ///Parameters
-    ///    frames	The desired number of elapsed frames.
+    ///-    frames	The desired number of elapsed frames.
     ///
     ///Returns
     ///    true if the specified number of frames has elapsed.
