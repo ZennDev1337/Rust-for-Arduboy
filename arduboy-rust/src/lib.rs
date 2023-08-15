@@ -8,6 +8,13 @@
 //! ```
 //! use arduboy_rust::prelude::*;
 //! ```
+//! Inside the Wrapper-Project folder is a folder named src.
+//! You can disable C++ libraries in the main.h file.
+//! Just comment the unused library definition out.
+//!
+//! To get an idea, the ArduboyTones Library needs 2-3% of the flash memory.
+//!
+//! [Here is the link to the GitHub Repo](https://github.com/zenndev1337/rust-for-arduboy)
 
 extern crate panic_halt;
 pub mod hardware;

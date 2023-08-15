@@ -445,7 +445,7 @@ impl Arduboy2 {
     ///Returns
     ///    true if the specified point is within the specified rectangle.
     ///
-    ///This function is intended to detemine if an object, whose boundaries are are defined by the given rectangle, is in contact with the given point.
+    ///This function is intended to detemine if an object, whose boundaries are defined by the given rectangle, is in contact with the given point.
     pub fn collide_point(&self, point: Point, rect: Rect) -> bool {
         point.x >= rect.x
             && point.x < rect.x + rect.width as i16
@@ -460,7 +460,7 @@ impl Arduboy2 {
     ///Returns
     ///    true if the first rectangle is intersecting the second.
     ///
-    ///This function is intended to detemine if an object, whose boundaries are are defined by the given rectangle, is in contact with another rectangular object.
+    ///This function is intended to detemine if an object, whose boundaries are defined by the given rectangle, is in contact with another rectangular object.
     pub fn collide_rect(&self, rect1: Rect, rect2: Rect) -> bool {
         !(rect2.x >= rect1.x + rect1.width as i16
             || rect2.x + rect2.width as i16 <= rect1.x
