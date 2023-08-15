@@ -8,7 +8,7 @@
 /// );
 /// //for tone sequence
 /// progmem!(
-///     static tone: [u16; 43] = [
+///     static tone: [u16; _] = [
 ///         NOTE_E4, 400, NOTE_D4, 200, NOTE_C4, 400, NOTE_D4, 200, NOTE_C4, 300, NOTE_REST,
 ///     ];
 /// );

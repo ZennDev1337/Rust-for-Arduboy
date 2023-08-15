@@ -47,6 +47,59 @@ extern "C"
     {
         arduboy.drawRect(x, y, w, h, color);
     }
+    void arduboy_fill_round_rect(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t r, uint8_t color)
+    {
+        arduboy.fillRoundRect(x, y, w, h, r, color);
+    }
+    void arduboy_draw_round_rect(int16_t x, int16_t y, uint8_t w, uint8_t h, uint8_t r, uint8_t color)
+    {
+        arduboy.drawRoundRect(x, y, w, h, r, color);
+    }
+    void arduboy_fill_triangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint8_t color)
+    {
+        arduboy.fillTriangle(x0, y0, x1, y1, x2, y2, color);
+    }
+    void arduboy_draw_triangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint8_t color)
+    {
+        arduboy.drawTriangle(x0, y0, x1, y1, x2, y2, color);
+    }
+    bool arduboy_every_x_frames(uint8_t frames)
+    {
+        return arduboy.everyXFrames(frames);
+    }
+    void arduboy_flip_horizontal(bool flipped)
+    {
+        arduboy.flipHorizontal(flipped);
+    }
+    void arduboy_flip_vertical(bool flipped)
+    {
+        arduboy.flipVertical(flipped);
+    }
+    void arduboy_set_text_color(uint8_t color)
+    {
+        arduboy.setTextColor(color);
+    }
+    void arduboy_set_text_background_color(uint8_t color)
+    {
+        arduboy.setTextBackground(color);
+    }
+    void arduboy_set_cursor_x(int16_t x)
+    {
+        arduboy.setCursorX(x);
+    }
+    void arduboy_set_cursor_y(int16_t y)
+    {
+        arduboy.setCursorY(y);
+    }
+    void arduboy_set_text_wrap(bool w)
+    {
+        arduboy.setTextWrap(w);
+    }
+    void arduboy_idle()
+    {
+        arduboy.idle();
+    }
+
     unsigned long arduboy_generate_random_seed()
     {
         return arduboy.generateRandomSeed();
@@ -130,5 +183,13 @@ extern "C"
     void arduboy_invert(bool inverse)
     {
         arduboy.invert(inverse);
+    }
+    void arduboy_digital_write_rgb_single(uint8_t color, uint8_t val)
+    {
+        arduboy.digitalWriteRGB(color, val);
+    }
+    void arduboy_digital_write_rgb(uint8_t red, uint8_t green, uint8_t blue)
+    {
+        arduboy.digitalWriteRGB(red, green, blue);
     }
 }

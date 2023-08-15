@@ -1,7 +1,6 @@
 //! This is the Module to interact in a save way with the Arduboy2 C++ library.
 //!
-//! Ignore the functions here you only need to import the prelude here you will find all sorts of unsafe functions
-//! All of them are safe wrapped inside the struct.
+//! All of the functions are safe wrapped inside the struct.
 #![allow(dead_code)]
 use crate::prelude::ButtonSet;
 use crate::print::Printable;
@@ -60,10 +59,15 @@ pub struct Point {
 }
 
 /// This is the struct to interact in a save way with the Arduboy2 C++ library.
-pub struct Arduboy {}
-impl Arduboy {
+pub struct Arduboy2 {}
+impl Arduboy2 {
+    /// gives you a new instans of the [Arduboy2]
+    /// ## Example
+    /// ```
+    /// const arduboy: Arduboy2 = Arduboy2::new();
+    /// ```
     pub fn new() -> Self {
-        Arduboy {}
+        Arduboy2 {}
     }
     /// Initialize the hardware, display the boot logo, provide boot utilities, etc.
     /// This function should be called once near the start of the sketch, usually in setup(), before using any other functions in this class. It initializes the display, displays the boot logo, provides "flashlight" and system control features and initializes audio control.
@@ -143,9 +147,24 @@ impl Arduboy {
     pub fn fill_rect(&self, x: i16, y: i16, w: u8, h: u8, color: Color) {
         unsafe { fill_rect_raw(x, y, w, h, color as u8) }
     }
+    ///Draw a rectangle of a specified width and height.
+    ///
+    ///Parameters
+    ///-    x	The X coordinate of the upper left corner.
+    ///-    y	The Y coordinate of the upper left corner.
+    ///-    w	The width of the rectangle.
+    ///-    h	The height of the rectangle.
+    ///-    color	The color of the pixel (optional; defaults to WHITE).
     pub fn draw_rect(&self, x: i16, y: i16, w: u8, h: u8, color: Color) {
         unsafe { draw_rect_raw(x, y, w, h, color as u8) }
     }
+    ///Draw a circle of a given radius.
+    ///
+    ///Parameters
+    ///-    x0	The X coordinate of the circle's center.
+    ///-    y0	The Y coordinate of the circle's center.
+    ///-    r	The radius of the circle in pixels.
+    ///-    color	The circle's color (optional; defaults to WHITE).
     pub fn draw_circle(&self, x: i16, y: i16, r: u8, color: Color) {
         unsafe { draw_circle_raw(x, y, r, color as u8) }
     }
@@ -162,6 +181,70 @@ impl Arduboy {
     ///color	The circle's color (optional; defaults to WHITE).
     pub fn fill_circle(&self, x: i16, y: i16, r: u8, color: Color) {
         unsafe { fill_circle_raw(x, y, r, color as u8) }
+    }
+    ///Draw a filled-in rectangle with rounded corners.
+    ///
+    ///Parameters
+    ///-    x	The X coordinate of the left edge.
+    ///-    y	The Y coordinate of the top edge.
+    ///-    w	The width of the rectangle.
+    ///-    h	The height of the rectangle.
+    ///-    r	The radius of the semicircles forming the corners.
+    ///-    color	The color of the rectangle (optional; defaults to WHITE).
+    pub fn fill_round_rect(&self, x: i16, y: i16, w: u8, h: u8, r: u8, color: Color) {
+        unsafe { fill_round_rect(x, y, w, h, r, color as u8) }
+    }
+    ///Draw a rectangle with rounded corners.
+    ///
+    ///Parameters
+    ///-    x	The X coordinate of the left edge.
+    ///-    y	The Y coordinate of the top edge.
+    ///-    w	The width of the rectangle.
+    ///-    h	The height of the rectangle.
+    ///-    r	The radius of the semicircles forming the corners.
+    ///-    color	The color of the rectangle (optional; defaults to WHITE).
+    pub fn draw_round_rect(&self, x: i16, y: i16, w: u8, h: u8, r: u8, color: Color) {
+        unsafe { draw_round_rect(x, y, w, h, r, color as u8) }
+    }
+    ///Draw a triangle given the coordinates of each corner.
+    ///
+    ///Parameters
+    ///-    x0,x1,x2	The X coordinates of the corners.
+    ///-    y0,y1,y2	The Y coordinates of the corners.
+    ///-    color	The triangle's color (optional; defaults to WHITE).
+    ///
+    ///A triangle is drawn by specifying each of the three corner locations. The corners can be at any position with respect to the others.
+    pub fn draw_triangle(
+        &self,
+        x0: i16,
+        y0: i16,
+        x1: i16,
+        y1: i16,
+        x2: i16,
+        y2: i16,
+        color: Color,
+    ) {
+        unsafe { draw_triangle(x0, y0, x1, y1, x2, y2, color as u8) }
+    }
+    ///Draw a filled-in triangle given the coordinates of each corner.
+    ///
+    ///Parameters
+    ///-    x0,x1,x2	The X coordinates of the corners.
+    ///-    y0,y1,y2	The Y coordinates of the corners.
+    ///-    color	The triangle's color (optional; defaults to WHITE).
+    ///
+    ///A triangle is drawn by specifying each of the three corner locations. The corners can be at any position with respect to the others.
+    pub fn fill_triangle(
+        &self,
+        x0: i16,
+        y0: i16,
+        x1: i16,
+        y1: i16,
+        x2: i16,
+        y2: i16,
+        color: Color,
+    ) {
+        unsafe { fill_triangle(x0, y0, x1, y1, x2, y2, color as u8) }
     }
     ///Returns the state of the given pixel in the screen buffer.
     ///
@@ -325,12 +408,22 @@ impl Arduboy {
     pub fn audio_off(&self) {
         unsafe { arduboy_audio_off() }
     }
+    /// Save the current sound state in EEPROM.
+    ///
+    ///The current sound state, set by on() or off(), is saved to the reserved system area in EEPROM. This allows the state to carry over between power cycles and after uploading a different sketch.
+    ///
+    ///Note
+    /// EEPROM is limited in the number of times it can be written to. Sketches should not continuously change and then save the state rapidly.
     pub fn audio_save_on_off(&self) {
         unsafe { arduboy_audio_save_on_off() }
     }
+    ///Toggle the sound on/off state.
+    ///
+    ///If the system is configured for sound on, it will be changed to sound off (mute). If sound is off, it will be changed to on. This function sets the sound mode only until the unit is powered off. To save the current mode use saveOnOff().
     pub fn audio_toggle(&self) {
         unsafe { arduboy_audio_toggle() }
     }
+    /// Combines the use function of `audio_on()` and `audio_save_on_off()`
     pub fn audio_on_and_save(&self) {
         unsafe {
             arduboy_audio_on();
@@ -357,33 +450,181 @@ impl Arduboy {
     pub fn invert(&self, inverse: bool) {
         unsafe { arduboy_invert(inverse) }
     }
-    pub fn collide_point(point: Point, rect: Rect) -> bool {
+    ///Test if a point falls within a rectangle.
+    ///
+    ///Parameters
+    ///-    point	A structure describing the location of the point.
+    ///-    rect	A structure describing the location and size of the rectangle.
+    ///
+    ///Returns
+    ///    true if the specified point is within the specified rectangle.
+    ///
+    ///This function is intended to detemine if an object, whose boundaries are are defined by the given rectangle, is in contact with the given point.
+    pub fn collide_point(&self, point: Point, rect: Rect) -> bool {
         point.x >= rect.x
             && point.x < rect.x + rect.width as i16
             && point.y >= rect.y
             && point.y < rect.y + rect.height as i16
     }
-    pub fn collide_rect(rect1: Rect, rect2: Rect) -> bool {
+    ///Test if a rectangle is intersecting with another rectangle.
+    ///
+    ///Parameters
+    /// -   rect1,rect2	Structures describing the size and locations of the rectangles.
+    ///
+    ///Returns
+    ///    true if the first rectangle is intersecting the second.
+    ///
+    ///This function is intended to detemine if an object, whose boundaries are are defined by the given rectangle, is in contact with another rectangular object.
+    pub fn collide_rect(&self, rect1: Rect, rect2: Rect) -> bool {
         !(rect2.x >= rect1.x + rect1.width as i16
             || rect2.x + rect2.width as i16 <= rect1.x
             || rect2.y >= rect1.y + rect1.height as i16
             || rect2.y + rect2.height as i16 <= rect1.y)
     }
+    /// Set one of the RGB LEDs digitally, to either fully on or fully off.
+    ///
+    /// Parameters
+    /// -    color	The name of the LED to set. The value given should be one of RED_LED, GREEN_LED or BLUE_LED.
+    /// -    val	Indicates whether to turn the specified LED on or off. The value given should be RGB_ON or RGB_OFF.
+    ///
+    /// This 2 parameter version of the function will set a single LED within the RGB LED either fully on or fully off. See the description of the 3 parameter version of this function for more details on the RGB LED.
+    pub fn digital_write_rgb_single(&self, color: u8, val: u8) {
+        unsafe { digital_write_rgb_single(color, val) }
+    }
+    ///Set the RGB LEDs digitally, to either fully on or fully off.
+    ///
+    ///Parameters
+    ///-    red,green,blue	Use value RGB_ON or RGB_OFF to set each LED.
+    ///
+    ///The RGB LED is actually individual red, green and blue LEDs placed very close together in a single package. This 3 parameter version of the function will set each LED either on or off, to set the RGB LED to 7 different colors at their highest brightness or turn it off.
+    ///```text
+    /// The colors are as follows:
+    /// RED LED 	GREEN LED 	BLUE LED 	COLOR
+    /// RGB_OFF 	RGB_OFF 	RGB_OFF 	OFF
+    /// RGB_OFF 	RGB_OFF 	RGB_ON 	    Blue
+    /// RGB_OFF 	RGB_ON 	    RGB_OFF 	Green
+    /// RGB_OFF 	RGB_ON 	    RGB_ON 	    Cyan
+    /// RGB_ON 	    RGB_OFF 	RGB_OFF 	Red
+    /// RGB_ON 	    RGB_OFF 	RGB_ON 	    Magenta
+    /// RGB_ON 	    RGB_ON 	    RGB_OFF 	Yellow
+    /// RGB_ON 	    RGB_ON 	    RGB_ON 	    White
+    /// ```
+    pub fn digital_write_rgb(&self, red: u8, green: u8, blue: u8) {
+        unsafe { digital_write_rgb(red, green, blue) }
+    }
+    ///Indicate if the specified number of frames has elapsed.
+    ///
+    ///Parameters
+    ///    frames	The desired number of elapsed frames.
+    ///
+    ///Returns
+    ///    true if the specified number of frames has elapsed.
+    ///
+    ///This function should be called with the same value each time for a given event. It will return true if the given number of frames has elapsed since the previous frame in which it returned true.
+    ///
+    ///## Example
+    ///If you wanted to fire a shot every 5 frames while the A button is being held down:
+    /// ```
+    /// if arduboy.everyXFrames(5) {
+    ///     if arduboy.pressed(A_BUTTON) {
+    ///         fireShot();
+    ///     }
+    /// }
+    /// ```
+    pub fn every_x_frames(&self, frames: u8) -> bool {
+        unsafe { every_x_frames(frames) }
+    }
+    ///Flip the display vertically or set it back to normal.
+    ///
+    ///Parameters
+    ///-    flipped	true will set vertical flip mode. false will set normal vertical orientation.
+    ///
+    ///Calling this function with a value of true will cause the Y coordinate to start at the bottom edge of the display instead of the top, effectively flipping the display vertically.
+    ///
+    ///Once in vertical flip mode, it will remain this way until normal vertical mode is set by calling this function with a value of false.
+    pub fn flip_vertical(&self, flipped: bool) {
+        unsafe { flip_vertical(flipped) }
+    }
+    ///Flip the display horizontally or set it back to normal.
+    ///
+    ///Parameters
+    /// -   flipped	true will set horizontal flip mode. false will set normal horizontal orientation.
+    ///
+    ///Calling this function with a value of true will cause the X coordinate to start at the left edge of the display instead of the right, effectively flipping the display horizontally.
+    ///
+    ///Once in horizontal flip mode, it will remain this way until normal horizontal mode is set by calling this function with a value of false.
+    pub fn flip_horizontal(&self, flipped: bool) {
+        unsafe { flip_horizontal(flipped) }
+    }
+    ///Set the text foreground color.
+    ///
+    ///Parameters
+    ///-    color	The color to be used for following text. The values WHITE or BLACK should be used.
+    pub fn set_text_color(&self, color: Color) {
+        unsafe { set_text_color(color as u8) }
+    }
+    ///Set the text background color.
+    ///
+    ///Parameters
+    ///-    color	The background color to be used for following text. The values WHITE or BLACK should be used.
+    ///
+    ///The background pixels of following characters will be set to the specified color.
+    ///
+    ///However, if the background color is set to be the same as the text color, the background will be transparent. Only the foreground pixels will be drawn. The background pixels will remain as they were before the character was drawn.
+    pub fn set_text_background_color(&self, color: Color) {
+        unsafe { set_text_background_color(color as u8) }
+    }
+    ///Set the X coordinate of the text cursor location.
+    ///
+    ///Parameters
+    /// -   x	The X (horizontal) coordinate, in pixels, for the new location of the text cursor.
+    ///
+    ///The X coordinate for the location of the text cursor is set to the specified value, leaving the Y coordinate unchanged. For more details about the text cursor, see the setCursor() function.
+    pub fn set_cursor_x(&self, x: i16) {
+        unsafe { set_cursor_x(x) }
+    }
+    ///Set the Y coordinate of the text cursor location.
+    ///
+    ///Parameters
+    ///-    y	The Y (vertical) coordinate, in pixels, for the new location of the text cursor.
+    ///
+    ///The Y coordinate for the location of the text cursor is set to the specified value, leaving the X coordinate unchanged. For more details about the text cursor, see the setCursor() function.
+    pub fn set_cursor_y(&self, y: i16) {
+        unsafe { set_cursor_y(y) }
+    }
+    ///Set or disable text wrap mode.
+    ///
+    ///Parameters
+    /// -   w	true enables text wrap mode. false disables it.
+    ///
+    ///Text wrap mode is enabled by specifying true. In wrap mode, if a character to be drawn would end up partially or fully past the right edge of the screen (based on the current text size), it will be placed at the start of the next line. The text cursor will be adjusted accordingly.
+    ///
+    ///If wrap mode is disabled, characters will always be written at the current text cursor position. A character near the right edge of the screen may only be partially displayed and characters drawn at a position past the right edge of the screen will remain off screen.
+    pub fn set_text_wrap(&self, w: bool) {
+        unsafe { set_text_wrap(w) }
+    }
+    ///Idle the CPU to save power.
+    ///
+    ///This puts the CPU in idle sleep mode. You should call this as often as you can for the best power savings. The timer 0 overflow interrupt will wake up the chip every 1ms, so even at 60 FPS a well written app should be able to sleep maybe half the time in between rendering it's own frames.
+    pub fn idle(&self) {
+        unsafe { idle() }
+    }
 }
 
 extern "C" {
+    #[doc(hidden)]
     #[link_name = "arduboy_begin"]
-    pub fn begin();
-
+    fn begin();
+    #[doc(hidden)]
     #[link_name = "arduboy_clear"]
-    pub fn clear();
-
+    fn clear();
+    #[doc(hidden)]
     #[link_name = "arduboy_display"]
-    pub fn display();
-
+    fn display();
+    #[doc(hidden)]
     #[link_name = "arduboy_display_and_clear_buffer"]
-    pub fn display_and_clear_buffer();
-
+    fn display_and_clear_buffer();
+    #[doc(hidden)]
     #[link_name = "arduboy_draw_fast_hline"]
     fn draw_fast_hline_raw(x: i16, y: i16, w: u8, color: u8);
 
@@ -405,63 +646,75 @@ extern "C" {
     #[link_name = "arduboy_fill_rect"]
     fn fill_rect_raw(x: i16, y: i16, w: u8, h: u8, color: u8);
 
+    #[link_name = "arduboy_fill_round_rect"]
+    fn fill_round_rect(x: i16, y: i16, w: u8, h: u8, r: u8, color: u8);
+
+    #[link_name = "arduboy_draw_round_rect"]
+    fn draw_round_rect(x: i16, y: i16, w: u8, h: u8, r: u8, color: u8);
+
+    #[link_name = "arduboy_fill_triangle"]
+    fn fill_triangle(x0: i16, y0: i16, x1: i16, y1: i16, x2: i16, y2: i16, color: u8);
+
+    #[link_name = "arduboy_draw_triangle"]
+    fn draw_triangle(x0: i16, y0: i16, x1: i16, y1: i16, x2: i16, y2: i16, color: u8);
+
     #[link_name = "arduboy_get_pixel"]
     fn get_pixel_raw(x: u8, y: u8) -> u8;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_init_random_seed"]
-    pub fn init_random_seed();
-
+    fn init_random_seed();
+    #[doc(hidden)]
     #[link_name = "arduboy_just_pressed"]
     pub fn just_pressed(button: u8) -> bool;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_just_released"]
     pub fn just_released(button: u8) -> bool;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_not_pressed"]
     pub fn not_pressed(button: u8) -> bool;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_next_frame"]
-    pub fn next_frame() -> bool;
-
+    fn next_frame() -> bool;
+    #[doc(hidden)]
     #[link_name = "arduboy_poll_buttons"]
-    pub fn poll_buttons();
-
+    fn poll_buttons();
+    #[doc(hidden)]
     #[link_name = "arduboy_pressed"]
     pub fn pressed(buttons: u8) -> bool;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_chars"]
     pub fn print_chars(cstr: *const c_char);
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_chars_progmem"]
     pub fn print_chars_progmem(pstring: *const c_char);
 
     // #[link_name = "arduboy_print_char"]
     // fn print_char(c: c_char) -> c_size_t;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_int"]
     pub fn print_int(n: c_int, base: c_int) -> c_size_t;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_long"]
     pub fn print_long(n: c_long, base: c_int) -> c_size_t;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_unsigned_char"]
     pub fn print_unsigned_char(n: c_uchar, base: c_int) -> c_size_t;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_unsigned_int"]
     pub fn print_unsigned_int(n: c_uint, base: c_int) -> c_size_t;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_print_unsigned_long"]
     pub fn print_unsigned_long(n: c_ulong, base: c_int) -> c_size_t;
-
+    #[doc(hidden)]
     #[link_name = "arduboy_set_cursor"]
-    pub fn set_cursor(x: i16, y: i16);
-
+    fn set_cursor(x: i16, y: i16);
+    #[doc(hidden)]
     #[link_name = "arduboy_set_frame_rate"]
-    pub fn set_frame_rate(rate: u8);
-
+    fn set_frame_rate(rate: u8);
+    #[doc(hidden)]
     #[link_name = "arduboy_set_text_size"]
-    pub fn set_text_size(size: u8);
-
+    fn set_text_size(size: u8);
+    #[doc(hidden)]
     #[link_name = "arduboy_audio_on"]
     fn arduboy_audio_on();
 
@@ -479,32 +732,64 @@ extern "C" {
 
     #[link_name = "arduboy_invert"]
     fn arduboy_invert(inverse: bool);
+
+    #[link_name = "arduboy_every_x_frames"]
+    fn every_x_frames(frames: u8) -> bool;
+
+    #[link_name = "arduboy_flip_horizontal"]
+    fn flip_horizontal(flipped: bool);
+
+    #[link_name = "arduboy_flip_vertical"]
+    fn flip_vertical(flipped: bool);
+
+    #[link_name = "arduboy_set_text_color"]
+    fn set_text_color(color: u8);
+
+    #[link_name = "arduboy_set_text_background_color"]
+    fn set_text_background_color(color: u8);
+
+    #[link_name = "arduboy_set_cursor_x"]
+    fn set_cursor_x(x: i16);
+    #[link_name = "arduboy_set_cursor_y"]
+    fn set_cursor_y(y: i16);
+
+    #[link_name = "arduboy_set_text_wrap"]
+    fn set_text_wrap(w: bool);
+
+    #[link_name = "arduboy_idle"]
+    fn idle();
+
+    #[link_name = "arduboy_digital_write_rgb_single"]
+    fn digital_write_rgb_single(color: c_uchar, val: c_uchar);
+
+    #[link_name = "arduboy_digital_write_rgb"]
+    fn digital_write_rgb(red: c_uchar, green: c_uchar, blue: c_uchar);
 }
 
-pub unsafe fn print(x: impl Printable) {
-    x.print();
-}
+// pub unsafe fn print(x: impl Printable) {
+//     x.print();
+// }
 
-pub unsafe fn draw_fast_hline(x: i16, y: i16, w: u8, color: Color) {
-    draw_fast_hline_raw(x, y, w, color as u8);
-}
+// pub unsafe fn draw_fast_hline(x: i16, y: i16, w: u8, color: Color) {
+//     draw_fast_hline_raw(x, y, w, color as u8);
+// }
 
-pub unsafe fn draw_fast_vline(x: i16, y: i16, h: u8, color: Color) {
-    draw_fast_vline_raw(x, y, h, color as u8);
-}
+// pub unsafe fn draw_fast_vline(x: i16, y: i16, h: u8, color: Color) {
+//     draw_fast_vline_raw(x, y, h, color as u8);
+// }
 
-pub unsafe fn draw_pixel(x: i16, y: i16, color: Color) {
-    draw_pixel_raw(x, y, color as u8);
-}
+// pub unsafe fn draw_pixel(x: i16, y: i16, color: Color) {
+//     draw_pixel_raw(x, y, color as u8);
+// }
 
-pub unsafe fn fill_rect(x: i16, y: i16, w: u8, h: u8, color: Color) {
-    fill_rect_raw(x, y, w, h, color as u8);
-}
+// pub unsafe fn fill_rect(x: i16, y: i16, w: u8, h: u8, color: Color) {
+//     fill_rect_raw(x, y, w, h, color as u8);
+// }
 
-pub unsafe fn draw_circle(x: i16, y: i16, r: u8, color: Color) {
-    draw_circle_raw(x, y, r, color as u8);
-}
+// pub unsafe fn draw_circle(x: i16, y: i16, r: u8, color: Color) {
+//     draw_circle_raw(x, y, r, color as u8);
+// }
 
-pub unsafe fn get_pixel(x: u8, y: u8) -> Color {
-    mem::transmute::<u8, Color>(get_pixel_raw(x, y))
-}
+// pub unsafe fn get_pixel(x: u8, y: u8) -> Color {
+//     mem::transmute::<u8, Color>(get_pixel_raw(x, y))
+// }

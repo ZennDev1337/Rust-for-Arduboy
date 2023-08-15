@@ -1,6 +1,4 @@
 //! A list of all tones available and used by the Sounds library Arduboy2Tones
-pub const NDUR: u16 = 100;
-
 pub const TONES_END: u16 = 0x8000;
 pub const TONES_REPEAT: u16 = 0x8001;
 pub const TONE_HIGH_VOLUME: u16 = 0x8000;
