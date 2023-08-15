@@ -1,6 +1,9 @@
 #![no_std]
 #![feature(c_size_t)]
+#![allow(non_upper_case_globals)]
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
+const sound: ArduboyTones = ArduboyTones::new();
 
 const BOTTOM: u8 = 64;
 const RIGHT_END: u8 = 128;

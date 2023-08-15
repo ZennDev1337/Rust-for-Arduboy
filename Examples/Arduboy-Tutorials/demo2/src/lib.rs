@@ -3,6 +3,7 @@
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 //The setup() function runs once when you turn your Arduboy on
 #[no_mangle]
 pub unsafe extern "C" fn setup() {

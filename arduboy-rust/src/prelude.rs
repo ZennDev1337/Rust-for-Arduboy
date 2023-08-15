@@ -1,11 +1,14 @@
 //! This is the important one to use this library effective in your project
-pub use crate::hardware::buttons::*;
-pub use crate::hardware::led::{BLUE_LED, GREEN_LED, RED_LED, RGB_OFF, RGB_ON};
-pub use crate::library::arduboy2::{Arduboy2, Color, Point, Rect, FONT_SIZE, HEIGHT, WIDTH};
-pub use crate::library::arduboy_tone::*;
+#[doc(inline)]
+pub use crate::hardware::buttons::{self, *};
+#[doc(inline)]
+pub use crate::hardware::led::{self, *};
+pub use crate::library::arduboy2::{self, *};
+pub use crate::library::arduboy_tone::{self, ArduboyTones};
 pub use crate::library::arduino::*;
 pub use crate::library::c::*;
 pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
+#[doc(hidden)]
 pub use crate::library::progmem::Pstring;
 pub use crate::library::sprites;
 pub use crate::print::*;

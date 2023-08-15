@@ -4,6 +4,7 @@
 //Include the Arduboy Library
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 
 // Progmem data
 

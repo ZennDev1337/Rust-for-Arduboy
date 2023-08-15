@@ -4,6 +4,7 @@
 //Initialize the arduboy object
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 
 // #[link_section = ".progmem.data"]
 

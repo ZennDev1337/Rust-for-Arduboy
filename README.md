@@ -42,7 +42,7 @@ Inside the game folder you will find a lib.rs file which contains the setup and 
 
 You can find the Docs here:
 
--   [arduboy-rust Crate Docs](https://zenndev1337.github.io/Rust-for-Arduboy-Docs/arduboy_rust/index.html)
+-   [arduboy-rust Crate Docs](https://zenndev1337.github.io/Rust-for-Arduboy/)
 
 or you can use the following command to open the arduboy-rust Crate docs locally
 

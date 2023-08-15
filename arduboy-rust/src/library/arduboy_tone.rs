@@ -1,6 +1,6 @@
-//pub use crate::library::arduboy_tone_pitch::*;
+//!This is the Module to interact in a save way with the ArduboyTones C++ library.
+pub use crate::library::arduboy_tone_pitch;
 use core::ffi::{c_uchar, c_uint, c_ulong};
-
 extern "C" {
     #[link_name = "sound_tone"]
     fn sound_tone(frequency: c_uint, duration: c_ulong);
@@ -40,7 +40,7 @@ impl ArduboyTones {
     /// ```
     /// const sound: ArduboyTones = ArduboyTones::new();
     /// ```
-    pub fn new() -> ArduboyTones {
+    pub const fn new() -> ArduboyTones {
         ArduboyTones {}
     }
     ///Play a single tone.

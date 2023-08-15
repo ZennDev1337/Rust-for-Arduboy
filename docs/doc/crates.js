@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["arduboy_rust","panic_halt"];

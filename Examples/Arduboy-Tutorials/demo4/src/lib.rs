@@ -3,6 +3,7 @@
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 //Initialize our counter variable
 
 static mut counter: c_int = 0;

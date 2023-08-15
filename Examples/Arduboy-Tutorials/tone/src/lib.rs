@@ -2,9 +2,12 @@
 #![allow(non_upper_case_globals)]
 //Include the Arduboy Library
 //Initialize the arduboy object
-use arduboy_rust::arduboy_tone_pitch::*;
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
+use arduboy_tone::arduboy_tone_pitch::*;
+const arduboy: Arduboy2 = Arduboy2::new();
+const sound: ArduboyTones = ArduboyTones::new();
+const NDUR: u16 = 100;
 
 progmem!(
     static allNotes: [u16; _] = [

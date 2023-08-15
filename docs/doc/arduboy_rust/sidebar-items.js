@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["FONT_SIZE","HEIGHT","WIDTH"],"enum":["Color"],"macro":["f","get_sprite_addr","get_string_addr","get_tones_addr","progmem"],"mod":["arduboy2","arduboy_tone","c","hardware","prelude","sprites"],"struct":["Arduboy2","ArduboyTones","EEPROM","EEPROMBYTE"]};

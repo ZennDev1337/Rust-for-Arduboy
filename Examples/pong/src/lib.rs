@@ -2,6 +2,7 @@
 #![allow(non_upper_case_globals)]
 
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 enum GameState {

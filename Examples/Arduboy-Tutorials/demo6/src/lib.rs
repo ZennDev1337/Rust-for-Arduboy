@@ -4,6 +4,7 @@
 //Initialize the arduboy object
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 
 #[link_section = ".progmem.data"]
 static background_sprite: [u8; 10] = [8, 8, 0x81, 0x00, 0x12, 0x40, 0x04, 0x11, 0x00, 0x04];

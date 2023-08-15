@@ -1,6 +1,8 @@
 #![no_std]
 #![allow(non_upper_case_globals)]
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
+const sound: ArduboyTones = ArduboyTones::new();
 #[allow(dead_code)]
 #[repr(C)]
 struct Scorebord {

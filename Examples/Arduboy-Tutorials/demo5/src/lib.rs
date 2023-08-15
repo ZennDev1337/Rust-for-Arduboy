@@ -4,6 +4,7 @@
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
+const arduboy: Arduboy2 = Arduboy2::new();
 
 //Initialize variables used in this game
 static mut playerwin: c_int = 0;

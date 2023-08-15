@@ -2,7 +2,7 @@
 //!
 //! All of the functions are safe wrapped inside the struct.
 #![allow(dead_code)]
-use crate::prelude::ButtonSet;
+use crate::hardware::buttons::ButtonSet;
 use crate::print::Printable;
 use core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
 use core::mem;
@@ -66,7 +66,7 @@ impl Arduboy2 {
     /// ```
     /// const arduboy: Arduboy2 = Arduboy2::new();
     /// ```
-    pub fn new() -> Self {
+    pub const fn new() -> Self {
         Arduboy2 {}
     }
     /// Initialize the hardware, display the boot logo, provide boot utilities, etc.
