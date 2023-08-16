@@ -66,7 +66,7 @@ requirements:
 -   The Arduboy must be plugged in
 -   You are in the root directory of this project
 
-All builded `.hex` files are saved inside of `Wrapper-Project/.pio/build/<GAMENAME>.hex` after you uploaded them to the Arduboy.
+All builded `.hex` files are saved inside of `arduboy-rust/Wrapper-Project/build/<GAMENAME>.hex` after you uploaded them to the Arduboy.
 
 To upload your own game to the Arduboy use:
 
@@ -158,6 +158,7 @@ Linux:
 ./run demo5
 ./run demo6
 ./run eeprom
+./run eeprom-byte
 ./run progmem
 ./run tone
 ```
@@ -171,6 +172,7 @@ Windows:
 .\run.bat demo5
 .\run.bat demo6
 .\run.bat eeprom
+.\run.bat eeprom-byte
 .\run.bat progmem
 .\run.bat tone
 ```

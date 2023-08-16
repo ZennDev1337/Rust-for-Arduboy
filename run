@@ -19,10 +19,10 @@ then
     cargo build -p tone --release && cp ./target/arduboy/release/libtone.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/tone.hex && pio run -t clean && rm lib/libgame.a && cd ..
 elif [ "$option" = "eeprom" ] 
 then
-    cargo build -p eeprom-demo --release && cp ./target/arduboy/release/libeeprom_demo.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    cargo build -p eeprom --release && cp ./target/arduboy/release/libeeprom.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom.hex && pio run -t clean && rm lib/libgame.a && cd ..
 elif [ "$option" = "eeprom-byte" ] 
 then
-    cargo build -p eeprom-byte-demo --release && cp ./target/arduboy/release/libeeprom_byte_demo.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom-byte.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    cargo build -p eeprom-byte --release && cp ./target/arduboy/release/libeeprom_byte.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom-byte.hex && pio run -t clean && rm lib/libgame.a && cd ..
 elif [ "$option" = "progmem" ] 
 then
     cargo build -p progmem --release && cp ./target/arduboy/release/libprogmem.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/progmem.hex && pio run -t clean && rm lib/libgame.a && cd ..

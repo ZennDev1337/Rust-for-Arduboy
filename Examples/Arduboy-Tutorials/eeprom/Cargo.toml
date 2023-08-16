@@ -1,5 +1,5 @@
 [package]
-name = "eeprom-demo"
+name = "eeprom"
 version = "0.1.0"
 authors = ["ZennDev <zenndev@protonmail.com>"]
 license = "MIT OR Apache-2.0"

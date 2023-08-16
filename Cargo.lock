@@ -45,14 +45,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "eeprom-byte-demo"
+name = "eeprom"
 version = "0.1.0"
 dependencies = [
  "arduboy-rust",
 ]
 
 [[package]]
-name = "eeprom-demo"
+name = "eeprom-byte"
 version = "0.1.0"
 dependencies = [
  "arduboy-rust",

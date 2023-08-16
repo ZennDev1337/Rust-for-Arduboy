@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../import_config.h"
+#include "../../../import_config.h"
 
 #if defined(Arduboy2_Library)
 #include <Arduboy2.h>
