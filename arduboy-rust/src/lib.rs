@@ -8,11 +8,20 @@
 //! ```
 //! use arduboy_rust::prelude::*;
 //! ```
-//! Inside the Wrapper-Project folder is a folder named src.
-//! You can disable C++ libraries in the main.h file.
+//! ### Disable C++ libraries
+//! Inside the root directory is a file named `import_config.h`
+//!
+//! You can disable C++ libraries in the `import_config.h` file.
 //! Just comment the unused library definition out.
 //!
-//! To get an idea, the ArduboyTones Library needs 2-3% of the flash memory.
+//! Be careful with disabling libraries because:
+//! - The only error you get is something like this if you try to use a function that relies on the library you disabled.
+//! ```text
+//! game.90c69b91e57f285-cgu.0:(.text.loop+0x290): undefined reference to `sound_tone'
+//! ```
+//! - the benefit of disabling will be important in the feature when I add support for the ArduboyG library etc.
+//!
+//! To get an idea, the ArduboyTones Library needs additional 2-3% of the flash memory.
 //!
 //! [Here is the link to the GitHub Repo](https://github.com/zenndev1337/rust-for-arduboy)
 

@@ -1,6 +1,9 @@
 #![no_std]
 #![allow(non_upper_case_globals)]
 
+#[no_mangle]
+pub static ArduboyTones_Library: u8 = 1;
+
 //Include the Arduboy Library
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
