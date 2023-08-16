@@ -4,7 +4,10 @@ option=$1
 
 if [ -z "$option" ]
 then
-    cargo build -p game --release && cp ./target/arduboy/release/libgame.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/game.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    cargo doc -p arduboy-rust && rm -r ./docs/doc/ && cp -r ./target/arduboy/doc ./docs/
+elif [ "$option" = "doc" ] 
+then
+    cargo build -p snake --release && cp ./target/arduboy/release/libsnake.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/snake.hex && pio run -t clean && rm lib/libgame.a && cd ..
 elif [ "$option" = "snake" ] 
 then
     cargo build -p snake --release && cp ./target/arduboy/release/libsnake.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/snake.hex && pio run -t clean && rm lib/libgame.a && cd ..

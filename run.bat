@@ -9,6 +9,9 @@ if [%option%]==[] (
 
 if %option%==snake (
    goto :run
+) else if %option%==doc (
+   powershell -Command "cargo doc -p arduboy-rust; rm -r ./docs/doc/; cp -r ./target/arduboy/doc ./docs/"
+   goto :eof
 ) else if %option%==pong (
    goto :run
 ) else if %option%==rustacean (
