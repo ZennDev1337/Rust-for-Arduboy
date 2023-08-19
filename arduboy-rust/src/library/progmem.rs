@@ -16,6 +16,11 @@
 /// progmem!(
 ///     static image: [u8; _] = [8, 8, 0x81, 0x00, 0x12, 0x40, 0x04, 0x11, 0x00, 0x04];
 /// );
+///
+/// // for a Vector
+/// progmem!(
+///     static mut walls: Vec<Player, 100> = Vec::new();
+/// );
 /// ```
 #[macro_export]
 macro_rules! progmem {
@@ -39,6 +44,30 @@ macro_rules! progmem {
         $( #[$attr] )*
         #[link_section = ".progmem.data"]
         $v $id mut $name: [$ty; $value.len()] = $value;
+        $crate::progmem!{
+			$($rest)*
+		}
+    };
+    (
+        $( #[$attr:meta] )*
+        $v:vis $id:ident $name:ident: $ty:ty = $value:expr;
+        $($rest:tt)*
+    ) => {
+        $( #[$attr] )*
+        #[link_section = ".progmem.data"]
+        $v $id $name: $ty = $value;
+        $crate::progmem!{
+			$($rest)*
+		}
+    };
+    (
+        $( #[$attr:meta] )*
+        $v:vis $id:ident mut $name:ident: $ty:ty = $value:expr;
+        $($rest:tt)*
+    ) => {
+        $( #[$attr] )*
+        #[link_section = ".progmem.data"]
+        $v $id mut $name: $ty = $value;
         $crate::progmem!{
 			$($rest)*
 		}

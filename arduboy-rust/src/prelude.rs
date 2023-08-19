@@ -8,6 +8,7 @@
 pub use crate::hardware::buttons::{self, *};
 #[doc(inline)]
 pub use crate::hardware::led::{self, *};
+pub use crate::heapless::{LinearMap, String, Vec};
 pub use crate::library::arduboy2::{self, *};
 pub use crate::library::arduboy_tone::{self, ArduboyTones};
 pub use crate::library::arduino::*;

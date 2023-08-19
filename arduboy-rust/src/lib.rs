@@ -30,6 +30,8 @@ pub mod hardware;
 mod library;
 pub mod prelude;
 mod print;
+#[doc(inline)]
+pub extern crate heapless;
 pub use crate::library::arduboy2::{self, Arduboy2, Color, FONT_SIZE, HEIGHT, WIDTH};
 pub use crate::library::arduboy_tone::{self, ArduboyTones};
 pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};

@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["arduboy_rust","panic_halt"];
+window.ALL_CRATES = ["arduboy_rust","atomic_polyfill","byteorder","critical_section","hash32","heapless","panic_halt","stable_deref_trait"];

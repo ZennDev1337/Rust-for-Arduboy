@@ -26,6 +26,7 @@ progmem!(
     ];
 );
 // dynamic ram variables
+#[derive(Debug)]
 struct Player {
     bitmap: *const u8,
     bitmap_frame: u8,
@@ -39,6 +40,11 @@ static mut p: Player = Player {
     x: 0,
     y: 0,
 };
+progmem!(
+    static mut walls: Vec<Player, 100> = Vec::new();
+);
+
+unsafe impl Sync for Player {}
 
 // The setup() function runs once when you turn your Arduboy on
 #[no_mangle]
@@ -58,6 +64,9 @@ pub unsafe extern "C" fn loop_() {
     }
     arduboy.clear();
     sprites::draw_override(p.x, p.y, p.bitmap, p.bitmap_frame);
+    walls.iter().for_each(|f| {
+        sprites::draw_override(f.x, f.y, f.bitmap, f.bitmap_frame);
+    });
     arduboy.poll_buttons();
     if arduboy.pressed(UP) {
         p.y -= 1;
@@ -76,6 +85,16 @@ pub unsafe extern "C" fn loop_() {
         if p.bitmap_frame > 2 {
             p.bitmap_frame = 0
         }
+    }
+    if arduboy.just_pressed(B) {
+        walls
+            .push(Player {
+                bitmap: get_sprite_addr!(pills),
+                bitmap_frame: 2,
+                x: random_between(10, 64) as i16,
+                y: random_between(10, 64) as i16,
+            })
+            .unwrap();
     }
 
     arduboy.display();

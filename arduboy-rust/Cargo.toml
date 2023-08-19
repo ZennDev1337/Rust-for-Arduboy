@@ -13,4 +13,5 @@ categories = ["game-engines", "games", "api-bindings"]
 
 
 [dependencies]
+heapless = "0.7.16"
 panic-halt = "0.2.0"
