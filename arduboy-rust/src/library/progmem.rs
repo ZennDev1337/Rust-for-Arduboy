@@ -31,6 +31,18 @@ macro_rules! progmem {
 			$($rest)*
 		}
     };
+    (
+        $( #[$attr:meta] )*
+        $v:vis $id:ident mut $name:ident: [$ty:ty; _] = $value:expr;
+        $($rest:tt)*
+    ) => {
+        $( #[$attr] )*
+        #[link_section = ".progmem.data"]
+        $v $id mut $name: [$ty; $value.len()] = $value;
+        $crate::progmem!{
+			$($rest)*
+		}
+    };
     () => ()
 }
 

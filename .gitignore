@@ -1,6 +1,6 @@
 /target
 /.vscode
-
+localcommands.txt
 arduboy-rust/Wrapper-Project/.pio
 arduboy-rust/Wrapper-Project/lib/*.a
 arduboy-rust/Wrapper-Project/build/*.hex

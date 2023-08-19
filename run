@@ -55,4 +55,3 @@ else
     echo Usage: for uploading your game \|./run.sh
     echo Usage: for uploading an example game \| ./run.sh \<Example Game\>
 fi
-
