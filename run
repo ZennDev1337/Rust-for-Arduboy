@@ -2,49 +2,57 @@
 
 option=$1
 
+upload(){
+    cargo build -p $option --release && cp ./target/arduboy/release/lib$option.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/$option.hex && pio run -t clean && rm lib/libgame.a && cd ../../
+}
+
 if [ -z "$option" ]
 then
-    cargo doc -p arduboy-rust && rm -r ./docs/doc/ && cp -r ./target/arduboy/doc ./docs/
+    cargo build -p game --release && cp ./target/arduboy/release/libgame.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/game.hex && pio run -t clean && rm lib/libgame.a && cd ../../
 elif [ "$option" = "doc" ] 
 then
-    cargo build -p snake --release && cp ./target/arduboy/release/libsnake.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/snake.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    cargo doc -p arduboy-rust && rm -r ./docs/doc/ && cp -r ./target/arduboy/doc ./docs/
 elif [ "$option" = "snake" ] 
 then
-    cargo build -p snake --release && cp ./target/arduboy/release/libsnake.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/snake.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "pong" ] 
 then
-    cargo build -p pong --release && cp ./target/arduboy/release/libpong.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/pong.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
+elif [ "$option" = "drboy" ] 
+then
+    upload
 elif [ "$option" = "rustacean" ] 
 then
-    cargo build -p rustacean --release && cp ./target/arduboy/release/librustacean.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/rustacean.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "tone" ] 
 then
-    cargo build -p tone --release && cp ./target/arduboy/release/libtone.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/tone.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "eeprom" ] 
 then
-    cargo build -p eeprom --release && cp ./target/arduboy/release/libeeprom.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "eeprom-byte" ] 
 then
-    cargo build -p eeprom-byte --release && cp ./target/arduboy/release/libeeprom_byte.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/eeprom-byte.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    cargo build -p eeprom-byte --release && cp ./target/arduboy/release/libeeprom_byte.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/eeprom-byte.hex && pio run -t clean && rm lib/libgame.a && cd ../../
 elif [ "$option" = "progmem" ] 
 then
-    cargo build -p progmem --release && cp ./target/arduboy/release/libprogmem.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/progmem.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "demo2" ] 
 then
-    cargo build -p demo2 --release && cp ./target/arduboy/release/libdemo2.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/demo2.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "demo3" ] 
 then
-    cargo build -p demo3 --release && cp ./target/arduboy/release/libdemo3.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/demo3.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "demo4" ] 
 then
-    cargo build -p demo4 --release && cp ./target/arduboy/release/libdemo4.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/demo4.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "demo5" ] 
 then
-    cargo build -p demo5 --release && cp ./target/arduboy/release/libdemo5.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/demo5.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 elif [ "$option" = "demo6" ] 
 then
-    cargo build -p demo6 --release && cp ./target/arduboy/release/libdemo6.a ./Wrapper-Project/lib/libgame.a && cd Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./.pio/build/demo6.hex && pio run -t clean && rm lib/libgame.a && cd ..
+    upload
 else
     echo Usage: for uploading your game \|./run.sh
     echo Usage: for uploading an example game \| ./run.sh \<Example Game\>
 fi
+

@@ -11,6 +11,7 @@ members = [
     "Examples/Arduboy-Tutorials/demo5",
     "Examples/Arduboy-Tutorials/demo6",
     "Examples/pong",
+    "Examples/drboy",
     "Examples/rustacean",
     "Examples/snake",
     "Project/game",

@@ -50,7 +50,7 @@ pub unsafe extern "C" fn loop_() {
     arduboy.set_cursor(0, 40);
     arduboy.print(f!(b"eeprom:\0"));
 
-    arduboy.print(eeprom.read() as u16);
+    //arduboy.print(eeprom.read() as u16);
 
     arduboy.display();
 }

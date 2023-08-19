@@ -14,6 +14,8 @@ if %option%==snake (
    goto :eof
 ) else if %option%==pong (
    goto :run
+) else if %option%==drboy (
+   goto :run
 ) else if %option%==rustacean (
    goto :run
 ) else if %option%==tone (
