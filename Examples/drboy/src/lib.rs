@@ -90,7 +90,7 @@ pub unsafe extern "C" fn loop_() {
         walls
             .push(Player {
                 bitmap: get_sprite_addr!(pills),
-                bitmap_frame: 2,
+                bitmap_frame: random_less_than(3) as u8,
                 x: random_between(10, 64) as i16,
                 y: random_between(10, 64) as i16,
             })
