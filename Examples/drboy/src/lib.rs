@@ -33,14 +33,27 @@ struct Player {
     x: i16,
     y: i16,
 }
+#[derive(Debug)]
+struct Enemy {
+    bitmap: *const u8,
+    bitmap_frame: u8,
+    x: i16,
+    y: i16,
+}
+impl Enemy {
+    fn move_down(&mut self) {
+        self.x -= 1;
+    }
+}
 static mut p: Player = Player {
     bitmap: get_sprite_addr!(enemies),
     bitmap_frame: 0,
     x: 10,
     y: 10,
 };
+
 progmem!(
-    static mut walls: Vec<Player, 100> = Vec::new();
+    static mut walls: Vec<Enemy, 100> = Vec::new();
 );
 
 unsafe impl Sync for Player {}
@@ -63,9 +76,22 @@ pub unsafe extern "C" fn loop_() {
     }
     arduboy.clear();
     sprites::draw_override(p.x, p.y, p.bitmap, p.bitmap_frame);
-    walls.iter().for_each(|f| {
+    walls.iter_mut().for_each(|f| {
         sprites::draw_override(f.x * 8, f.y * 8, f.bitmap, f.bitmap_frame);
+        if arduboy.every_x_frames(30) {
+            f.move_down();
+        }
     });
+    if arduboy.every_x_frames(60) {
+        walls
+            .push(Enemy {
+                bitmap: get_sprite_addr!(pills),
+                bitmap_frame: random_less_than(3) as u8,
+                x: random_between(15, 16) as i16,
+                y: random_between(0, 8) as i16,
+            })
+            .unwrap();
+    }
     arduboy.poll_buttons();
     if arduboy.pressed(UP) {
         p.y -= 1;
@@ -87,10 +113,10 @@ pub unsafe extern "C" fn loop_() {
     }
     if arduboy.just_pressed(B) {
         walls
-            .push(Player {
+            .push(Enemy {
                 bitmap: get_sprite_addr!(pills),
                 bitmap_frame: random_less_than(3) as u8,
-                x: random_between(0, 16) as i16,
+                x: random_between(15, 16) as i16,
                 y: random_between(0, 8) as i16,
             })
             .unwrap();
