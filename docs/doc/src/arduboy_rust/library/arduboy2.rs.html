@@ -751,6 +751,7 @@
 <a href="#751" id="751">751</a>
 <a href="#752" id="752">752</a>
 <a href="#753" id="753">753</a>
+<a href="#754" id="754">754</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! This is the Module to interact in a save way with the Arduboy2 C++ library.
 //!
 //! All of the functions are safe wrapped inside the [Arduboy2] struct.
@@ -1099,6 +1100,7 @@
     ///
     /// arduboy.print(b&quot;Hello World\n\0&quot;[..]); // Prints &quot;Hello World&quot; and then sets the
     ///                                        // text cursor to the start of the next line
+    /// arduboy.print(f!(b&quot;Hello World\n&quot;)); // Prints &quot;Hello World&quot; but does not use the 2kb ram
     /// arduboy.print(value); // Prints &quot;42&quot;
     /// arduboy.print(&quot;\n\0&quot;); // Sets the text cursor to the start of the next line
     /// arduboy.print(&quot;hello world&quot;) // Prints normal [&amp;str]

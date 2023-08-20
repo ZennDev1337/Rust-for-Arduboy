@@ -346,6 +346,7 @@ impl Arduboy2 {
     ///
     /// arduboy.print(b"Hello World\n\0"[..]); // Prints "Hello World" and then sets the
     ///                                        // text cursor to the start of the next line
+    /// arduboy.print(f!(b"Hello World\n")); // Prints "Hello World" but does not use the 2kb ram
     /// arduboy.print(value); // Prints "42"
     /// arduboy.print("\n\0"); // Sets the text cursor to the start of the next line
     /// arduboy.print("hello world") // Prints normal [&str]

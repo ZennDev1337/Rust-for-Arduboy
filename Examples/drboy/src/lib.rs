@@ -33,12 +33,11 @@ struct Player {
     x: i16,
     y: i16,
 }
-#[link_section = ".progmem.data"]
 static mut p: Player = Player {
     bitmap: get_sprite_addr!(enemies),
     bitmap_frame: 0,
-    x: 0,
-    y: 0,
+    x: 10,
+    y: 10,
 };
 progmem!(
     static mut walls: Vec<Player, 100> = Vec::new();
@@ -65,7 +64,7 @@ pub unsafe extern "C" fn loop_() {
     arduboy.clear();
     sprites::draw_override(p.x, p.y, p.bitmap, p.bitmap_frame);
     walls.iter().for_each(|f| {
-        sprites::draw_override(f.x, f.y, f.bitmap, f.bitmap_frame);
+        sprites::draw_override(f.x * 8, f.y * 8, f.bitmap, f.bitmap_frame);
     });
     arduboy.poll_buttons();
     if arduboy.pressed(UP) {
@@ -91,8 +90,8 @@ pub unsafe extern "C" fn loop_() {
             .push(Player {
                 bitmap: get_sprite_addr!(pills),
                 bitmap_frame: random_less_than(3) as u8,
-                x: random_between(10, 64) as i16,
-                y: random_between(10, 64) as i16,
+                x: random_between(0, 16) as i16,
+                y: random_between(0, 8) as i16,
             })
             .unwrap();
     }

@@ -102,6 +102,17 @@ impl Printable for &str {
 
     fn default_parameters() -> Self::Parameters {}
 }
+impl<const N: usize> Printable for crate::heapless::String<N> {
+    type Parameters = ();
+
+    fn print_2(self, _params: Self::Parameters) {
+        unsafe {
+            crate::library::arduboy2::print_chars(self.as_bytes() as *const [u8] as *const i8);
+        }
+    }
+
+    fn default_parameters() -> Self::Parameters {}
+}
 
 impl Printable for Pstring {
     type Parameters = ();

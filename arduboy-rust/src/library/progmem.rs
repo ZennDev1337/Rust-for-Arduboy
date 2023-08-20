@@ -110,7 +110,7 @@ pub(super) use get_string_addr;
 /// This automatically saves the given text to the Progmem.
 /// ## Example
 /// ```
-/// arduboy.print(f!(b"Random text to print"))
+/// arduboy.print(f!(b"Random text to print\0"))
 /// ```
 #[macro_export]
 macro_rules! f {
