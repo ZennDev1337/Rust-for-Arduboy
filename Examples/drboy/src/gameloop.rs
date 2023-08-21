@@ -119,7 +119,7 @@ pub unsafe fn gameloop() {
     }
     if p.counter == 30 {
         p.level += 1;
-        p.gamemode = GameMode::NextLevel;
+        p.gamemode = GameMode::Winscreen;
     }
 }
 
