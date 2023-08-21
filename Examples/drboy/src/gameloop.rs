@@ -25,6 +25,7 @@ pub unsafe fn gameloop() {
             p.active = true
         }
     }
+
     vec_enemies.iter_mut().for_each(|f| {
         if f.active {
             sprites::draw_override(f.rect.x * 8, f.rect.y * 8, f.bitmap, f.bitmap_frame);
@@ -58,6 +59,9 @@ pub unsafe fn gameloop() {
         }
     });
     if arduboy.every_x_frames((p.speed * 2) as u8) && enemy_count < 30 {
+        if enemy_count > 8 {
+            let _ = vec_enemies.remove(0);
+        }
         vec_enemies
             .push(Enemy {
                 active: true,
@@ -112,6 +116,10 @@ pub unsafe fn gameloop() {
     if p.counter % 5 == 0 && p.counter != 0 && !p.speed_change {
         p.speed_change = true;
         p.speed -= 1
+    }
+    if p.counter == 30 {
+        p.level += 1;
+        p.gamemode = GameMode::NextLevel;
     }
 }
 

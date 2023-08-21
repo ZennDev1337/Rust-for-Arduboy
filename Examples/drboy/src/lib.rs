@@ -29,6 +29,7 @@ pub struct Player {
     pub immortal_frame_count: u8,
     pub active: bool,
     pub live: u8,
+    pub level: u8,
     pub speed: u8,
     pub speed_change: bool,
     pub counter: u8,
@@ -41,6 +42,7 @@ pub struct Player {
 pub static mut p: Player = Player {
     gamemode: GameMode::Titlescreen,
     live: 3,
+    level: 1,
     immortal: false,
     immortal_frame_count: 0,
     active: true,
@@ -141,7 +143,7 @@ pub unsafe extern "C" fn loop_() {
     arduboy.display();
 }
 pub static mut enemy_count: u8 = 0;
-pub static mut vec_enemies: Vec<Enemy, 30> = Vec::<Enemy, 30>::new();
+pub static mut vec_enemies: Vec<Enemy, 9> = Vec::<Enemy, 9>::new();
 progmem!(
     static text_gameover: [u8; _] = *b"Game Over\0";
     static text_levelwin: [u8; _] = *b"Congrats\0";
