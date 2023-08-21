@@ -80,7 +80,7 @@ pub(super) use progmem;
 #[macro_export]
 macro_rules! get_sprite_addr {
     ( $s:expr ) => {
-        addr_of!($s) as *const u8
+        unsafe { addr_of!($s) as *const u8 }
     };
 }
 pub(super) use get_sprite_addr;
@@ -89,7 +89,7 @@ pub(super) use get_sprite_addr;
 #[macro_export]
 macro_rules! get_tones_addr {
     ( $s:expr ) => {
-        addr_of!($s) as *const u16
+        unsafe { addr_of!($s) as *const u16 }
     };
 }
 pub(super) use get_tones_addr;
@@ -99,7 +99,7 @@ pub(super) use get_tones_addr;
 macro_rules! get_string_addr {
     ( $s:expr ) => {
         Pstring {
-            pointer: addr_of!($s) as *const i8,
+            pointer: unsafe { addr_of!($s) as *const i8 },
         }
     };
 }

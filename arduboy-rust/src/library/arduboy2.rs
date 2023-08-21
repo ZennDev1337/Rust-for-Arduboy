@@ -40,6 +40,7 @@ impl Not for Color {
     }
 }
 /// This struct is used by a few Arduboy functions.
+#[derive(Debug, Clone, Copy)]
 pub struct Rect {
     /// Position X
     pub x: i16,
@@ -51,6 +52,7 @@ pub struct Rect {
     pub height: u8,
 }
 /// This struct is used by a few Arduboy functions.
+#[derive(Debug, Clone, Copy)]
 pub struct Point {
     /// Position X
     pub x: i16,
