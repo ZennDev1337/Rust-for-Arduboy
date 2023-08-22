@@ -1,4 +1,181 @@
-<meta
-    http-equiv="refresh"
-    content="0; url=https://ZennDev1337.github.io/Rust-for-Arduboy/doc/arduboy_rust/index.html"
-/>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link
+            rel="icon"
+            href="https://upload.wikimedia.org/wikipedia/commons/0/0f/Original_Ferris.svg"
+            type="image/svg+xml"
+        />
+        <title>ZennDev1337 Sprite Converter</title>
+    </head>
+
+    <body onload="setup(this);">
+        <style>
+            html,
+            body {
+                margin: 0;
+                background-color: black;
+                color: azure;
+            }
+            body {
+                font-family: Courier New;
+                text-align: center;
+                font-size: xx-large;
+                font-weight: 700;
+            }
+            .wrapper {
+                min-height: calc(100vh - 50px);
+            }
+            .footer {
+                font-family: Courier New;
+                text-align: center;
+                font-size: large;
+                font-weight: 600;
+                height: 50px;
+
+                color: #e7e7e7;
+            }
+            .footer > p {
+                font-family: Courier New;
+                text-align: center;
+                font-size: large;
+                font-weight: 700;
+                margin: 0;
+            }
+            .sticky {
+                bottom: 0;
+                height: 50px;
+            }
+            textarea {
+                background-color: #281c1c;
+                color: azure;
+                border: dotted 2px #ce422b;
+                width: 670px;
+                height: 300px;
+                resize: none;
+            }
+            .title > p {
+                padding-left: 20px;
+                margin: 0;
+                padding-right: 20px;
+                color: #e7e7e7;
+                font-size: xx-large;
+            }
+            .title {
+                padding-top: 50px;
+            }
+            .separator {
+                border-top: solid #281c1c;
+                border-bottom: none;
+                border-left: none;
+                border-right: none;
+                margin-top: 40px;
+                width: clamp(700px, 70vw, 1200px);
+            }
+            .image-container {
+                margin-top: 40px;
+                min-height: 80px;
+            }
+            p {
+                font-size: medium;
+            }
+            .txtHead {
+                margin-bottom: 5px;
+            }
+            .topnav {
+                background-color: #000000;
+                overflow: hidden;
+                height: 47px;
+            }
+            .topnav a {
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+            .topnav a.active {
+                background-color: #281c1c;
+                color: white;
+            }
+            .topnav .icon {
+                display: none;
+            }
+            @media screen and (max-width: 800px) {
+                .topnav a:not(:first-child) {
+                    display: none;
+                }
+                .topnav a.icon {
+                    float: right;
+                    display: block;
+                }
+            }
+            @media screen and (max-width: 800px) {
+                .topnav.responsive {
+                    position: relative;
+                    height: 188px;
+                }
+                .topnav.responsive a.icon {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+                .topnav.responsive a {
+                    float: none;
+                    display: block;
+                    text-align: left;
+                }
+            }
+            iframe{
+                width: 100vw;
+                border: none;
+                height: calc(100vh - 110px);
+            }
+        </style>
+        <div class="wrapper">
+            <div class="topnav" id="myTopnav">
+                <a href="/index.html" class="active">Rust for Arduboy</a>
+                <a href="/image-converter.html">Image Converter</a>
+                <a href="/tile-converter.html">Tile Converter</a>
+                <a href="/sprite-converter.html">Sprite Converter</a>
+                <a
+                    href="javascript:void(0);"
+                    class="icon"
+                    onclick="myFunction()"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-list"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                        />
+                    </svg>
+                </a>
+            </div>
+
+            <iframe src="https://ZennDev1337.github.io/Rust-for-Arduboy/doc/arduboy_rust/index.html" title="Rust for Arduboy Docs"></iframe> 
+        <footer class="footer sticky">
+            <p>By ZennDev1337</p>
+        </footer>
+        <script language="JavaScript">
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+        </script>
+    </body>
+</html>
