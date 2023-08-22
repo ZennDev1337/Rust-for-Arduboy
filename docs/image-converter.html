@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link
+            rel="icon"
+            href="https://upload.wikimedia.org/wikipedia/commons/0/0f/Original_Ferris.svg"
+            type="image/svg+xml"
+        />
+        <title>ZennDev1337 Image Converter</title>
+    </head>
+
+    <body onload="setup(this);">
+        <style>
+            html,
+            body {
+                margin: 0;
+                background-color: black;
+                color: azure;
+            }
+            body {
+                font-family: Courier New;
+                text-align: center;
+                font-size: xx-large;
+                font-weight: 700;
+            }
+            .wrapper {
+                min-height: calc(100vh - 50px);
+            }
+            .footer {
+                font-family: Courier New;
+                text-align: center;
+                font-size: large;
+                font-weight: 600;
+                height: 50px;
+
+                color: #e7e7e7;
+            }
+            .footer > p {
+                font-family: Courier New;
+                text-align: center;
+                font-size: large;
+                font-weight: 700;
+                margin: 0;
+            }
+            .sticky {
+                bottom: 0;
+                height: 50px;
+            }
+            textarea {
+                background-color: #281c1c;
+                color: azure;
+                border: dotted 2px #ce422b;
+                width: 670px;
+                height: 300px;
+                resize: none;
+            }
+            .title > p {
+                padding-left: 20px;
+                margin: 0;
+                padding-right: 20px;
+                color: #e7e7e7;
+                font-size: xx-large;
+            }
+            .title {
+                padding-top: 50px;
+            }
+            .separator {
+                border-top: solid #281c1c;
+                border-bottom: none;
+                border-left: none;
+                border-right: none;
+                margin-top: 40px;
+                width: clamp(700px, 70vw, 1200px);
+            }
+            .image-container {
+                margin-top: 40px;
+                min-height: 80px;
+            }
+            p {
+                font-size: medium;
+            }
+            .txtHead {
+                margin-bottom: 5px;
+            }
+        </style>
+        <div class="wrapper">
+            <div class="title">
+                <p>Drop your image here</p>
+            </div>
+            <hr class="separator" />
+            <div class="image-container">
+                <div id="image-container"></div>
+            </div>
+            <hr class="separator" />
+        </div>
+
+        <footer class="footer">By ZennDev1337</footer>
+        <script language="JavaScript">
+            function swapImage(t, e) {
+                var r = t.getAttribute("data-srcnm");
+                t.removeAttribute("srcset"),
+                    r || t.setAttribute("data-srcnm", t.src),
+                    (t.src = e);
+            }
+            function setOriginal(t) {
+                var e = "",
+                    r = "";
+                (r = t.getAttribute("data-srcmd")),
+                    (e = t.getAttribute("data-srcnm")),
+                    r
+                        ? ((t.src = r), t.removeAttribute("data-srcmd"))
+                        : ((t.src = e), t.removeAttribute("data-srcnm"));
+            }
+            function swapImageMD(t, e) {
+                t.setAttribute("data-srcmd", t.src), (t.src = e);
+            }
+            function jsready(t) {
+                /in/.test(document.readyState)
+                    ? setTimeout("jsready(" + t + ")", 9)
+                    : t();
+            }
+            jsready(function () {
+                var t = window.devicePixelRatio ? window.devicePixelRatio : 1;
+                if (t > 1)
+                    for (
+                        var e = document.getElementsByTagName("img"), r = 0;
+                        r < e.length;
+                        r++
+                    )
+                        e[r].getAttribute("data-src2x") &&
+                            (e[r].setAttribute(
+                                "data-src-orig",
+                                e[r].getAttribute("src")
+                            ),
+                            e[r].setAttribute(
+                                "src",
+                                e[r].getAttribute("data-src2x")
+                            ));
+            });
+
+            function setup(body) {
+                body.ondragover = function () {
+                    return false;
+                };
+                body.ondragend = function () {
+                    return false;
+                };
+                body.ondrop = function (e) {
+                    // Prevent the browser from showing the dropped file
+                    e.preventDefault();
+                    // Get the image data
+                    var imageData = getImageData(e);
+
+                    // If there is some data, add it to the page
+                    if (imageData !== null) {
+                        addDroppedElement(imageData);
+                    }
+                };
+            }
+            function getImageData(event) {
+                var file = event.dataTransfer.files[0];
+                if (file.type.indexOf("image") === 0) {
+                    return file;
+                }
+            }
+            function addDroppedElement(imageData) {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    event.preventDefault;
+
+                    // Create image element
+                    var droppedImage = new Image();
+                    droppedImage.src = event.target.result;
+                    // add delay so the image can be loaded properly before accessing it
+                    setTimeout(function () {
+                        // Create canvas for image
+                        var droppedImageCanvas =
+                            document.createElement("canvas");
+                        droppedImageCanvas.width = droppedImage.naturalWidth;
+                        droppedImageCanvas.height = droppedImage.naturalHeight;
+
+                        // Create code container
+                        var droppedImageCode =
+                            document.createElement("textarea");
+                        droppedImageCode.className = "code";
+
+                        droppedImageCode.style.width = "698px";
+                        droppedImageCode.rows = "20";
+
+                        // Create div container
+                        var droppedImageDiv = document.createElement("div");
+                        droppedImageDiv.className = "image-view";
+                        droppedImageDiv.appendChild(droppedImageCanvas);
+
+                        var imageContainer =
+                            document.getElementById("image-container");
+                        imageContainer.innerHTML = "";
+                        imageContainer.appendChild(droppedImageDiv);
+                        imageContainer.appendChild(
+                            document.createElement("br")
+                        );
+                        imageContainer.appendChild(droppedImageCode);
+
+                        // Create context for drawing
+                        var droppedImageContext =
+                            droppedImageCanvas.getContext("2d");
+
+                        // Draw the image
+                        droppedImageContext.drawImage(droppedImage, 0, 0);
+
+                        // Generate the sprite string
+                        var spriteString =
+                            "static " +
+                            imageData.name.split(/_|\./)[0] +
+                            ": [u8;_] = " +
+                            "[\n" +
+                            droppedImage.naturalWidth +
+                            ", " +
+                            droppedImage.naturalHeight +
+                            ", // width, height,\n";
+
+                        var pageCount = Math.ceil(
+                            droppedImage.naturalHeight / 8
+                        );
+                        var columnCount = droppedImage.naturalWidth;
+                        var currentByte = 0;
+
+                        // Read the sprite page-by-page
+                        for (var page = 0; page < pageCount; page++) {
+                            // Read the page column-by-column
+                            for (
+                                var column = 0;
+                                column < columnCount;
+                                column++
+                            ) {
+                                // Read the column into a byte
+                                var spriteByte = 0;
+                                for (var yPixel = 0; yPixel < 8; yPixel++) {
+                                    // If the color of the pixel is not black, count it as white
+                                    var pixelColor =
+                                        droppedImageContext.getImageData(
+                                            column,
+                                            page * 8 + yPixel,
+                                            1,
+                                            1
+                                        ).data;
+                                    if (
+                                        pixelColor[0] > 0 ||
+                                        pixelColor[1] > 0 ||
+                                        pixelColor[2] > 0
+                                    ) {
+                                        spriteByte |= 1 << yPixel;
+                                    }
+                                }
+
+                                // Print the column in hex notation, add a comma for formatting
+                                var digitStr = spriteByte.toString(16);
+                                if (digitStr.length == 1) {
+                                    digitStr = "0" + digitStr;
+                                }
+                                spriteString += "0x" + digitStr + ", ";
+                                if (
+                                    currentByte % droppedImage.naturalWidth ==
+                                    droppedImage.naturalWidth - 1
+                                ) {
+                                    spriteString += "\n";
+                                }
+                                currentByte++;
+                            }
+                        }
+                        // Terminate the array
+                        spriteString += "];";
+                        // Create an invisible element containing the string
+                        droppedImageCode.innerHTML = spriteString;
+
+                        // Resize canvas to show 2x scaled image
+                        droppedImageCanvas.width =
+                            droppedImage.naturalWidth * 2;
+                        droppedImageCanvas.height =
+                            droppedImage.naturalHeight * 2;
+                        droppedImageContext =
+                            droppedImageCanvas.getContext("2d");
+                        droppedImageContext.imageSmoothingEnabled = false;
+                        droppedImageContext.drawImage(
+                            droppedImage,
+                            0,
+                            0,
+                            droppedImage.naturalWidth * 2,
+                            droppedImage.naturalHeight * 2
+                        );
+                    }, 50);
+                };
+                reader.readAsDataURL(imageData);
+            }
+        </script>
+    </body>
+</html>
