@@ -81,7 +81,7 @@ pub struct Player {
     pub bitmap_frame: i8,
     pub rect: Rect,
     pub gameover_height: i16,
-    pub sound: bool,
+    //pub sound: bool,
 }
 
 pub static mut p: Player = Player {
@@ -103,7 +103,7 @@ pub static mut p: Player = Player {
         height: 8,
     },
     gameover_height: -30,
-    sound: true,
+    //sound: true,
 };
 
 unsafe impl Sync for Player {}
@@ -190,7 +190,7 @@ pub unsafe extern "C" fn loop_() {
             }
         }
         GameMode::Reset => {
-            vec_enemies = Vec::<Enemy, 9>::new();
+            vec_enemies.iter_mut().for_each(|f| f.active = false);
             p = Player {
                 gamemode: GameMode::Titlescreen,
                 live: 3,
@@ -210,7 +210,7 @@ pub unsafe extern "C" fn loop_() {
                     height: 8,
                 },
                 gameover_height: -30,
-                sound: p.sound,
+                //sound: p.sound,
             };
         }
     }
