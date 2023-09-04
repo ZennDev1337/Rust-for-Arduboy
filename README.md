@@ -82,7 +82,23 @@ Windows:
 .\run.bat
 ```
 
-## Play the examples
+## Play ZennDev1337 Games
+
+### Dr. Boy
+
+To upload snake to the Arduboy use:
+
+Linux:
+
+```bash
+./run drboy
+```
+
+Windows:
+
+```ps1
+.\run.bat drboy
+```
 
 ### Snake
 
@@ -100,6 +116,8 @@ Windows:
 .\run.bat snake
 ```
 
+## Play Rust Games
+
 ### I'm now a Rustacean <3
 
 To upload rustacean to the Arduboy use:
@@ -115,6 +133,8 @@ Windows:
 ```ps1
 .\run.bat rustacean
 ```
+
+## Play Demo Games
 
 ### The demo games / tutorials from the official Arduboy forum [Rewritten in Rust]
 
