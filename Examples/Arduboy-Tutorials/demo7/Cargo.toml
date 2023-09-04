@@ -1,5 +1,5 @@
 [package]
-name = "pong"
+name = "demo7"
 version = "0.1.0"
 authors = ["Brian Bowman <seeker14491@gmail.com>"]
 license = "MIT OR Apache-2.0"
@@ -9,4 +9,4 @@ edition = "2021"
 crate-type = ["staticlib"]
 
 [dependencies]
-arduboy-rust = { path = "../../arduboy-rust" }
+arduboy-rust = { path = "../../../arduboy-rust" }

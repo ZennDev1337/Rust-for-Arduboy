@@ -10,7 +10,7 @@ members = [
     "Examples/Arduboy-Tutorials/demo4",
     "Examples/Arduboy-Tutorials/demo5",
     "Examples/Arduboy-Tutorials/demo6",
-    "Examples/pong",
+    "Examples/Arduboy-Tutorials/demo7",
     "Examples/drboy",
     "Examples/rustacean",
     "Examples/snake",

@@ -100,22 +100,6 @@ Windows:
 .\run.bat snake
 ```
 
-### Pong
-
-To upload pong to the Arduboy use:
-
-Linux:
-
-```bash
-./run pong
-```
-
-Windows:
-
-```ps1
-.\run.bat pong
-```
-
 ### I'm now a Rustacean <3
 
 To upload rustacean to the Arduboy use:
@@ -141,7 +125,7 @@ Windows:
 -   [demo5] [Make Your Own Arduboy Game: Part 5 - Your First Game!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-5-your-first-game/7928)
 -   [demo6] [Make Your Own Arduboy Game: Part 6 - Graphics!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-6-graphics/7929)
     Link for the [arduboy-tile-converter](https://github.com/Team-ARG-Museum/arduboy-tile-converter)
--   not done [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
+-   [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
 -   not done [demo8] [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
 -   [eeprom] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
 -   [progmem] Usage of the big 28'000 Bytes flash memory for Bitmaps Sound sequeces and Text.
@@ -157,6 +141,7 @@ Linux:
 ./run demo4
 ./run demo5
 ./run demo6
+./run demo7
 ./run eeprom
 ./run eeprom-byte
 ./run progmem
@@ -171,6 +156,7 @@ Windows:
 .\run.bat demo4
 .\run.bat demo5
 .\run.bat demo6
+.\run.bat demo7
 .\run.bat eeprom
 .\run.bat eeprom-byte
 .\run.bat progmem

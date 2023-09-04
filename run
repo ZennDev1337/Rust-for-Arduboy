@@ -15,9 +15,6 @@ then
 elif [ "$option" = "snake" ] 
 then
     upload
-elif [ "$option" = "pong" ] 
-then
-    upload
 elif [ "$option" = "drboy" ] 
 then
     upload
@@ -49,6 +46,9 @@ elif [ "$option" = "demo5" ]
 then
     upload
 elif [ "$option" = "demo6" ] 
+then
+    upload
+elif [ "$option" = "demo7" ] 
 then
     upload
 else

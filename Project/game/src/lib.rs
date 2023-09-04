@@ -15,6 +15,10 @@ const arduboy: Arduboy2 = Arduboy2::new();
 #[no_mangle]
 pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
+    arduboy.begin();
+    arduboy.init_random_seed();
+    arduboy.set_frame_rate(60);
+    arduboy.clear();
 }
 
 // The loop() function repeats forever after setup() is done
@@ -22,4 +26,10 @@ pub unsafe extern "C" fn setup() {
 #[export_name = "loop"]
 pub unsafe extern "C" fn loop_() {
     // put your main code here, to run repeatedly:
+    if !arduboy.next_frame() {
+        return;
+    }
+    arduboy.clear();
+
+    arduboy.display();
 }

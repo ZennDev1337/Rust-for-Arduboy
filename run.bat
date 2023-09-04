@@ -37,6 +37,8 @@ goto :eof
    goto :run
 ) else if %option%==demo6 (
    goto :run
+) else if %option%==demo7 (
+   goto :run
 ) else (
     goto :help
 )
