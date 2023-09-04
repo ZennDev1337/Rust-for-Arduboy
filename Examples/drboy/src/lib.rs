@@ -4,11 +4,54 @@
 //Include the Arduboy Library
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
+use arduboy_tone::arduboy_tone_pitch::*;
 mod gameloop;
 
 #[allow(dead_code)]
 pub const arduboy: Arduboy2 = Arduboy2::new();
+pub const sound: ArduboyTones = ArduboyTones::new();
 
+pub static eeprom: EEPROM = EEPROM::new(200);
+pub static mut scorebord: Scoreboard = Scoreboard {
+    player1: 0,
+    player2: 0,
+    player3: 0,
+};
+pub struct Scoreboard {
+    pub player1: u16,
+    pub player2: u16,
+    pub player3: u16,
+}
+impl Scoreboard {
+    pub fn check_score(&self, score: u16) -> u8 {
+        match score {
+            s if s > self.player1 => 1,
+            s if s == self.player1 => 2,
+            s if s > self.player2 => 2,
+            s if s == self.player1 => 3,
+            s if s > self.player3 => 3,
+            _ => 0,
+        }
+    }
+    pub fn update_score(&mut self, score: u16) {
+        let place = self.check_score(score);
+        match place {
+            1 => {
+                self.player3 = self.player2;
+                self.player2 = self.player1;
+                self.player1 = score;
+            }
+            2 => {
+                self.player3 = self.player2;
+                self.player2 = score;
+            }
+            3 => {
+                self.player3 = score;
+            }
+            _ => (),
+        }
+    }
+}
 // dynamic ram variables
 #[derive(Debug)]
 pub struct Enemy {
@@ -32,11 +75,12 @@ pub struct Player {
     pub level: u8,
     pub speed: u8,
     pub speed_change: bool,
-    pub counter: u8,
+    pub counter: u16,
     pub bitmap: *const u8,
     pub bitmap_frame: i8,
     pub rect: Rect,
     pub gameover_height: i16,
+    pub sound: bool,
 }
 
 pub static mut p: Player = Player {
@@ -47,7 +91,7 @@ pub static mut p: Player = Player {
     immortal_frame_count: 0,
     active: true,
     counter: 0,
-    speed: 30,
+    speed: 60,
     speed_change: false,
     bitmap: get_sprite_addr!(player),
     bitmap_frame: 0,
@@ -58,6 +102,7 @@ pub static mut p: Player = Player {
         height: 8,
     },
     gameover_height: -30,
+    sound: true,
 };
 
 unsafe impl Sync for Player {}
@@ -65,11 +110,9 @@ unsafe impl Sync for Player {}
 pub enum GameMode {
     Titlescreen,
     GameLoop,
-    Winscreen,
     Losescreen,
     Scoreboard,
     Reset,
-    NextLevel,
 }
 
 // The setup() function runs once when you turn your Arduboy on
@@ -77,7 +120,9 @@ pub enum GameMode {
 pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
     arduboy.begin();
-    arduboy.set_frame_rate(30);
+    eeprom.init(&mut scorebord);
+    arduboy.set_frame_rate(60);
+    sound.tones(get_tones_addr!(music));
 }
 
 // The loop() function repeats forever after setup() is done
@@ -89,12 +134,19 @@ pub unsafe extern "C" fn loop_() {
         return;
     }
     arduboy.clear();
+    arduboy.poll_buttons();
 
     match p.gamemode {
         GameMode::Titlescreen => {
             sprites::draw_override(0, 0, get_sprite_addr!(titlescreen), 0);
-            if arduboy.pressed(A) {
+            if arduboy.just_pressed(A) {
                 p.gamemode = GameMode::GameLoop;
+            }
+            if arduboy.just_pressed(B) {
+                p.gamemode = GameMode::Scoreboard;
+            }
+            if arduboy.just_pressed(DOWN) {
+                arduboy.audio_toggle();
             }
         }
         GameMode::GameLoop => {
@@ -114,29 +166,51 @@ pub unsafe extern "C" fn loop_() {
                 arduboy.print(get_string_addr!(text_gameover_score));
                 arduboy.print(p.counter as i16);
             }
-        }
-        GameMode::Winscreen => {
-            arduboy.set_text_size(2);
-            arduboy.set_cursor(13, p.gameover_height);
-            arduboy.print(get_string_addr!(text_levelwin));
-            if arduboy.every_x_frames(2) && p.gameover_height < 15 {
-                p.gameover_height += 1
-            }
-            if p.gameover_height == 15 {
-                arduboy.set_text_size(1);
-                arduboy.set_cursor(13, 35);
-                arduboy.print(get_string_addr!(text_gameover_score));
-                arduboy.print(p.counter as i16);
+            if arduboy.just_pressed(A) || arduboy.just_pressed(B) {
+                p.gamemode = GameMode::Reset;
             }
         }
         GameMode::Scoreboard => {
-            //todo
+            arduboy.set_text_size(2);
+            arduboy.set_cursor(0, 0);
+            arduboy.print(f!(b"Scoreboard\0"));
+            arduboy.set_text_size(1);
+            arduboy.print(f!(b"\n\n\n\0"));
+            arduboy.print(f!(b"Player 1: \0"));
+            arduboy.print(scorebord.player1);
+            arduboy.print(f!(b"\n\0"));
+            arduboy.print(f!(b"Player 2: \0"));
+            arduboy.print(scorebord.player2);
+            arduboy.print(f!(b"\n\0"));
+            arduboy.print(f!(b"Player 3: \0"));
+            arduboy.print(scorebord.player3);
+            if arduboy.just_pressed(A) || arduboy.just_pressed(B) {
+                p.gamemode = GameMode::Reset
+            }
         }
         GameMode::Reset => {
-            //todo
-        }
-        GameMode::NextLevel => {
-            //todo
+            vec_enemies = Vec::<Enemy, 9>::new();
+            p = Player {
+                gamemode: GameMode::Titlescreen,
+                live: 3,
+                level: 1,
+                immortal: false,
+                immortal_frame_count: 0,
+                active: true,
+                counter: 0,
+                speed: 60,
+                speed_change: false,
+                bitmap: get_sprite_addr!(player),
+                bitmap_frame: 0,
+                rect: Rect {
+                    x: 0,
+                    y: 8,
+                    width: 8,
+                    height: 8,
+                },
+                gameover_height: -30,
+                sound: p.sound,
+            };
         }
     }
 
@@ -258,5 +332,290 @@ progmem!(
         0x0c, 0x1e, 0x3f, 0x7e, 0xfc, 0x7e, 0x3f, 0x1e, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00,
+    ];
+    static music: [u16; _] = [
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        236,
+        NOTE_REST,
+        13,
+        NOTE_A2,
+        1186,
+        NOTE_REST,
+        63,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_E2,
+        711,
+        NOTE_REST,
+        38,
+        NOTE_F2,
+        236,
+        NOTE_REST,
+        13,
+        NOTE_E2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        1423,
+        NOTE_REST,
+        576,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_C3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D3,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_C3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_B2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_G2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        1423,
+        NOTE_REST,
+        1076,
+        NOTE_D3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D3,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_D3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_C3,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_G2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_F2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_E2,
+        1423,
+        NOTE_REST,
+        1576,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_F2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_G2,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_F2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_E2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_C2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        1423,
+        NOTE_REST,
+        1576,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_E2,
+        711,
+        NOTE_REST,
+        38,
+        NOTE_F2,
+        236,
+        NOTE_REST,
+        13,
+        NOTE_E2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        1423,
+        NOTE_REST,
+        576,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_C3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D3,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_C3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_B2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_G2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        1423,
+        NOTE_REST,
+        1076,
+        NOTE_D3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D3,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_D3,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_C3,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_A2,
+        498,
+        NOTE_REST,
+        1,
+        NOTE_G2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_F2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_E2,
+        1423,
+        NOTE_REST,
+        1576,
+        NOTE_D2,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_A2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_G2,
+        948,
+        NOTE_REST,
+        51,
+        NOTE_F2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_E2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_C2,
+        473,
+        NOTE_REST,
+        26,
+        NOTE_D2,
+        1423,
+        NOTE_REST,
+        1576,
+        NOTE_F2,
+        1423,
+        TONES_REPEAT,
     ];
 );

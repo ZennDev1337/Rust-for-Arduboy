@@ -58,7 +58,7 @@ pub unsafe fn gameloop() {
             }
         }
     });
-    if arduboy.every_x_frames((p.speed * 2) as u8) && enemy_count < 30 {
+    if arduboy.every_x_frames((p.speed * 2) as u8) {
         if enemy_count > 8 {
             let _ = vec_enemies.remove(0);
         }
@@ -78,9 +78,12 @@ pub unsafe fn gameloop() {
         enemy_count += 1
     }
     if p.live == 0 {
+        let score = scorebord.check_score(p.counter);
+        if score > 0 {
+            scorebord.update_score(p.counter)
+        }
         p.gamemode = GameMode::Losescreen;
     }
-    arduboy.poll_buttons();
     if arduboy.pressed(UP) {
         if p.rect.y > 7 {
             p.rect.y -= 1;
@@ -117,10 +120,10 @@ pub unsafe fn gameloop() {
         p.speed_change = true;
         p.speed -= 1
     }
-    if p.counter == 30 {
-        p.level += 1;
-        p.gamemode = GameMode::Winscreen;
-    }
+    // if p.counter == 30 {
+    //     p.level += 1;
+    //     p.gamemode = GameMode::Winscreen;
+    // }
 }
 
 progmem!();
