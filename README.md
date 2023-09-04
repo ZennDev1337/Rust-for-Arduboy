@@ -144,7 +144,7 @@ Windows:
 -   [demo4] [Make Your Own Arduboy Game: Part 4 - Questions & Button Input](https://community.arduboy.com/t/make-your-own-arduboy-game-part-4-questions-button-input/7927)
 -   [demo5] [Make Your Own Arduboy Game: Part 5 - Your First Game!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-5-your-first-game/7928)
 -   [demo6] [Make Your Own Arduboy Game: Part 6 - Graphics!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-6-graphics/7929)
-    Link for the [arduboy-tile-converter](https://github.com/Team-ARG-Museum/arduboy-tile-converter)
+    Link for the [ZennDev1337 Tile Converter](https://zenndev1337.github.io/Rust-for-Arduboy/tile-converter.html)
 -   [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
 -   not done [demo8] [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
 -   [eeprom] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
