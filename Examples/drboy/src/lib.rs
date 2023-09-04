@@ -33,7 +33,7 @@ impl Scoreboard {
             _ => 0,
         }
     }
-    pub fn update_score(&mut self, score: u16) {
+    pub fn update_score(&mut self, score: u16, e: &EEPROM) {
         let place = self.check_score(score);
         match place {
             1 => {
@@ -50,6 +50,7 @@ impl Scoreboard {
             }
             _ => (),
         }
+        e.put(self)
     }
 }
 // dynamic ram variables

@@ -2,6 +2,7 @@ use crate::*;
 
 pub unsafe fn gameloop() {
     arduboy.set_cursor(70, 0);
+    arduboy.set_text_size(1);
     arduboy.print(get_string_addr!(overlay_score));
     arduboy.print(p.counter as i16);
     match p.live {
@@ -80,7 +81,7 @@ pub unsafe fn gameloop() {
     if p.live == 0 {
         let score = scorebord.check_score(p.counter);
         if score > 0 {
-            scorebord.update_score(p.counter)
+            scorebord.update_score(p.counter, &eeprom)
         }
         p.gamemode = GameMode::Losescreen;
     }
