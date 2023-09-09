@@ -138,3 +138,28 @@ impl EEPROMBYTE {
         unsafe { arduboy_eeprom_write_raw(self.idx, val) }
     }
 }
+
+pub struct EEPROMBYTECHECKLESS {
+    idx: i16,
+}
+impl EEPROMBYTECHECKLESS {
+    pub const fn new(mut idx: i16) -> EEPROMBYTECHECKLESS {
+        if idx > 1010 {
+            idx = 0
+        }
+        EEPROMBYTECHECKLESS {
+            idx: EEPROM_STORAGE_SPACE_START + idx,
+        }
+    }
+    pub fn init(&self) {
+    }
+    pub fn read(&self) -> u8 {
+        unsafe { arduboy_eeprom_read_raw(self.idx) }
+    }
+    pub fn update(&self, val: u8) {
+        unsafe { arduboy_eeprom_update_raw(self.idx, val) }
+    }
+    pub fn write(&self, val: u8) {
+        unsafe { arduboy_eeprom_write_raw(self.idx, val) }
+    }
+}
