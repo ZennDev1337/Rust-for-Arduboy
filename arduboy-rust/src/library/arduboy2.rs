@@ -501,6 +501,10 @@ impl Arduboy2 {
     pub fn digital_write_rgb(&self, red: u8, green: u8, blue: u8) {
         unsafe { digital_write_rgb(red, green, blue) }
     }
+
+    pub fn set_rgb_led(&self, red: u8, green: u8, blue: u8) {
+        unsafe { set_rgb_led(red, green, blue) }
+    }
     ///Indicate if the specified number of frames has elapsed.
     ///
     ///Parameters
@@ -753,4 +757,7 @@ extern "C" {
 
     #[link_name = "arduboy_digital_write_rgb"]
     fn digital_write_rgb(red: c_uchar, green: c_uchar, blue: c_uchar);
+    
+    #[link_name = "arduboy_set_rgb_led"]
+    fn set_rgb_led(red: c_uchar, green: c_uchar, blue: c_uchar);
 }
