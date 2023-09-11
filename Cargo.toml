@@ -15,5 +15,6 @@ members = [
     "Examples/rustacean",
     "Examples/snake",
     "Project/game",
+    "Project/cracker",
 ]
 resolver = "2"
