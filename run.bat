@@ -40,7 +40,7 @@ goto :eof
 ) else if %option%==demo7 (
    goto :run
 ) else (
-    goto :help
+    goto :run
 )
 
 :run

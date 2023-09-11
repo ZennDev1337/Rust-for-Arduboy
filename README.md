@@ -183,6 +183,80 @@ Windows:
 .\run.bat tone
 ```
 
+# Create a new project
+
+In the root of the repo use the command:
+
+(Don't use "-" in the name because of a cargo feature that takes the "-" and mixes sometimes with a "\_". You will have some weird behavior with the run tool.)
+
+```bash
+cargo new --lib ./Project/newproject
+```
+
+Then open the Cargo.toml in your new project and add the following dependencies and settings:
+
+```toml
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+
+arduboy-rust = { path = "../../arduboy-rust" }
+```
+
+Next jump in your lib.rs file and add the following:
+
+```rust
+#![no_std]
+#![allow(non_upper_case_globals)]
+
+//Include the Arduboy Library
+#[allow(unused_imports)]
+use arduboy_rust::prelude::*;
+#[allow(dead_code)]
+const arduboy: Arduboy2 = Arduboy2::new();
+
+// Progmem data
+
+// dynamic ram variables
+
+// The setup() function runs once when you turn your Arduboy on
+#[no_mangle]
+pub unsafe extern "C" fn setup() {
+    // put your setup code here, to run once:
+}
+
+// The loop() function repeats forever after setup() is done
+#[no_mangle]
+#[export_name = "loop"]
+pub unsafe extern "C" fn loop_() {
+    // put your main code here, to run repeatedly:
+}
+```
+
+Now the last step. Go in the Cargo.toml in the root directory and add your project:
+
+```toml
+[workspace]
+members = [
+    {All other Projects...}
+    "Project/newproject",
+]
+resolver = "2"
+```
+
+To run and upload your game use the run tool
+
+```bash
+# Linux
+./run newproject
+```
+
+```ps1
+# Windows
+.\run.bat newproject
+```
+
 ## Creating and building an Arduboy crate [Outdated]
 
 You can find instructions on how all build steps work in detail here [ArduboyRust creating and building an arduboy crate](https://github.com/Seeker14491/ArduboyRust#creating-and-building-an-arduboy-crate)
