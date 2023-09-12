@@ -1,4 +1,5 @@
 //! This is the Module to interact in a save way with the ArdVoice C++ library.
+//!
 //! You will need to uncomment the ArdVoice_Library in the import_config.h file.
 
 use core::ffi::{c_float, c_uchar, c_ulong};
@@ -19,6 +20,7 @@ extern "C" {
     fn ardvoice_is_voice_playing_raw() -> bool;
 }
 ///This is the struct to interact in a save way with the ArdVoice C++ library.
+///
 ///You will need to uncomment the ArdVoice_Library in the import_config.h file.
 pub struct ArdVoice {}
 impl ArdVoice {

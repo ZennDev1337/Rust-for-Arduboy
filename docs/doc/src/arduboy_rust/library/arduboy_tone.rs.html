@@ -148,7 +148,10 @@
 <a href="#148" id="148">148</a>
 <a href="#149" id="149">149</a>
 <a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//!This is the Module to interact in a save way with the ArduboyTones C++ library.
+//!
 //! You will need to uncomment the ArduboyTones_Library in the import_config.h file.
 </span><span class="kw">pub use </span><span class="kw">crate</span>::library::arduboy_tone_pitch;
 <span class="kw">use </span>core::ffi::{c_uchar, c_uint, c_ulong};
@@ -184,6 +187,7 @@
 
 }
 <span class="doccomment">///This is the struct to interact in a save way with the ArduboyTones C++ library.
+///
 /// You will need to uncomment the ArduboyTones_Library in the import_config.h file.
 </span><span class="kw">pub struct </span>ArduboyTones {}
 <span class="kw">impl </span>ArduboyTones {
