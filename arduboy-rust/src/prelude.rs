@@ -12,6 +12,7 @@ pub use crate::heapless::{LinearMap, String, Vec};
 pub use crate::library::arduboy2::{self, *};
 pub use crate::library::arduboy_tone::{self, ArduboyTones};
 pub use crate::library::arduino::*;
+pub use crate::library::ardvoice::*;
 pub use crate::library::c::*;
 pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
 #[doc(hidden)]

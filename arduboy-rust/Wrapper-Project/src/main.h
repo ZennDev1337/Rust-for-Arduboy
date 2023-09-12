@@ -13,6 +13,11 @@ Arduboy2 arduboy;
 #include <ArduboyTones.h>
 #include "./library/arduboy/arduboy_tones_export.h"
 #endif
+#if defined(ArdVoice_Library)
+#include <ArdVoice.h>
+ArdVoice ardvoice;
+#include "./library/ardvoice/ardvoice.h"
+#endif
 
 #if defined(Arduino_Library)
 #include "./library/arduino/arduino_export.h"
