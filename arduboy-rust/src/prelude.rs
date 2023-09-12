@@ -19,7 +19,9 @@ pub use crate::library::eeprom::{EEPROM, EEPROMBYTE, EEPROMBYTECHECKLESS};
 pub use crate::library::progmem::Pstring;
 pub use crate::library::sprites;
 pub use crate::print::*;
-pub use crate::{f, get_sprite_addr, get_string_addr, get_tones_addr, progmem};
+pub use crate::{
+    f, get_ardvoice_tone_addr, get_sprite_addr, get_string_addr, get_tones_addr, progmem,
+};
 use core::cmp;
 pub use core::ffi::{
     c_char, c_double, c_float, c_int, c_long, c_longlong, c_size_t, c_uchar, c_uint, c_ulong,

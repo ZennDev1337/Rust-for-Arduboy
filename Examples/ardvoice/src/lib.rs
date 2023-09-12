@@ -18,7 +18,7 @@ pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
     arduboy.begin();
     arduboy.set_frame_rate(30);
-    ardvoice.play_voice(get_sprite_addr!(song))
+    ardvoice.play_voice(get_ardvoice_tone_addr!(song))
 }
 
 // The loop() function repeats forever after setup() is done
@@ -30,7 +30,7 @@ pub unsafe extern "C" fn loop_() {
         return;
     }
     if arduboy.pressed(B) {
-        ardvoice.play_voice(get_sprite_addr!(song))
+        ardvoice.play_voice(get_ardvoice_tone_addr!(song))
     }
     if arduboy.pressed(A) {
         ardvoice.stop_voice()

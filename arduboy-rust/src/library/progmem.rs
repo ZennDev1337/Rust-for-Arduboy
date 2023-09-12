@@ -85,6 +85,14 @@ macro_rules! get_sprite_addr {
 }
 pub(super) use get_sprite_addr;
 
+///Create a `const` raw pointer to a ardvoice tone as u8, without creating an intermediate reference.
+#[macro_export]
+macro_rules! get_ardvoice_tone_addr {
+    ( $s:expr ) => {
+        unsafe { addr_of!($s) as *const u8 }
+    };
+}
+pub(super) use get_ardvoice_tone_addr;
 ///Create a `const` raw pointer to a sprite as u16, without creating an intermediate reference.
 #[macro_export]
 macro_rules! get_tones_addr {
