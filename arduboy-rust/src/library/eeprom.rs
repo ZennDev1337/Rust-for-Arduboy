@@ -139,6 +139,8 @@ impl EEPROMBYTE {
     }
 }
 
+///Use this struct to store and read single bytes to/from eeprom memory without using a check digit.
+///Unlike the other eeprom structs, this does not need to be initialised.
 pub struct EEPROMBYTECHECKLESS {
     idx: i16,
 }
@@ -150,8 +152,6 @@ impl EEPROMBYTECHECKLESS {
         EEPROMBYTECHECKLESS {
             idx: EEPROM_STORAGE_SPACE_START + idx,
         }
-    }
-    pub fn init(&self) {
     }
     pub fn read(&self) -> u8 {
         unsafe { arduboy_eeprom_read_raw(self.idx) }
