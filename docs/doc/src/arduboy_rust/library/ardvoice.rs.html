@@ -34,7 +34,14 @@
 <a href="#34" id="34">34</a>
 <a href="#35" id="35">35</a>
 <a href="#36" id="36">36</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span>core::ffi::{c_float, c_uchar, c_ulong};
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
+<a href="#39" id="39">39</a>
+<a href="#40" id="40">40</a>
+</pre></div><pre class="rust"><code><span class="doccomment">//! This is the Module to interact in a save way with the ArdVoice C++ library.
+//! You will need to uncomment the ArdVoice_Library in the import_config.h file.
+
+</span><span class="kw">use </span>core::ffi::{c_float, c_uchar, c_ulong};
 
 <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
     <span class="attr">#[link_name = <span class="string">&quot;ardvoice_play_voice&quot;</span>]
@@ -51,8 +58,9 @@
     <span class="attr">#[link_name = <span class="string">&quot;ardvoice_is_voice_playing&quot;</span>]
     </span><span class="kw">fn </span>ardvoice_is_voice_playing_raw() -&gt; bool;
 }
-
-<span class="kw">pub struct </span>ArdVoice {}
+<span class="doccomment">///This is the struct to interact in a save way with the ArdVoice C++ library.
+///You will need to uncomment the ArdVoice_Library in the import_config.h file.
+</span><span class="kw">pub struct </span>ArdVoice {}
 <span class="kw">impl </span>ArdVoice {
     <span class="kw">pub const fn </span>new() -&gt; <span class="self">Self </span>{
         ArdVoice {}

@@ -16,7 +16,7 @@
 // the ArduboyTones library if you don't need it.
 
 #define Arduboy2_Library ;
-#define ArduboyTones_Library ;
+// #define ArduboyTones_Library ;
 // #define ArdVoice_Library ;
 #define EEPROM_Library ;
 #define Arduino_Library ;

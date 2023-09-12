@@ -1,4 +1,5 @@
 //!This is the Module to interact in a save way with the ArduboyTones C++ library.
+//! You will need to uncomment the ArduboyTones_Library in the import_config.h file.
 pub use crate::library::arduboy_tone_pitch;
 use core::ffi::{c_uchar, c_uint, c_ulong};
 extern "C" {
@@ -33,6 +34,7 @@ extern "C" {
 
 }
 ///This is the struct to interact in a save way with the ArduboyTones C++ library.
+/// You will need to uncomment the ArduboyTones_Library in the import_config.h file.
 pub struct ArduboyTones {}
 impl ArduboyTones {
     ///Get a new instance of [ArduboyTones]
