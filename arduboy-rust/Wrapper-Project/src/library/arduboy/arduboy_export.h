@@ -192,6 +192,10 @@ extern "C"
     {
         arduboy.digitalWriteRGB(red, green, blue);
     }
+    void arduboy_set_rgb_led_single(uint8_t color, uint8_t val)
+    {
+        arduboy.setRGBled(color, val);
+    }
     void arduboy_set_rgb_led(uint8_t red, uint8_t green, uint8_t blue)
     {
         arduboy.setRGBled(red, green, blue);

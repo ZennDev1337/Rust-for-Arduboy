@@ -501,7 +501,32 @@ impl Arduboy2 {
     pub fn digital_write_rgb(&self, red: u8, green: u8, blue: u8) {
         unsafe { digital_write_rgb(red, green, blue) }
     }
-
+    ///Set the brightness of one of the RGB LEDs without affecting the others.
+    ///
+    ///Parameters
+    ///-    color	The name of the LED to set. The value given should be one of RED_LED, GREEN_LED or BLUE_LED.
+    ///-    val	The brightness value for the LED, from 0 to 255.
+    /// 
+    ///**Note**
+    ///> In order to use this function, the 3 parameter version must first be called at least once, in order to initialize the hardware.
+    /// 
+    ///This 2 parameter version of the function will set the brightness of a single LED within the RGB LED without affecting the current brightness of the other two. See the description of the 3 parameter version of this function for more details on the RGB LED.
+    pub fn set_rgb_led_single(&self, color: u8, val: u8) {
+        unsafe { set_rgb_led_single(color, val) }
+    }
+    /// Set the light output of the RGB LED.
+    ///
+    ///Parameters
+    ///-    red,green,blue	The brightness value for each LED.
+    ///
+    /// The RGB LED is actually individual red, green and blue LEDs placed very close together in a single package. By setting the brightness of each LED, the RGB LED can show various colors and intensities. The brightness of each LED can be set to a value from 0 (fully off) to 255 (fully on).
+    ///
+    ///**Note**
+    ///> Certain libraries that take control of the hardware timers may interfere with the ability of this function to properly control the RGB LED. ArduboyPlaytune is one such library known to do this. The `digital_write_rgb()` function will still work properly in this case.
+    ///
+    ///
+    ///**Note**
+    ///> Many of the Kickstarter Arduboys were accidentally shipped with the RGB LED installed incorrectly. For these units, the green LED cannot be lit. As long as the green led is set to off, setting the red LED will actually control the blue LED and setting the blue LED will actually control the red LED. If the green LED is turned fully on, none of the LEDs will light.
     pub fn set_rgb_led(&self, red: u8, green: u8, blue: u8) {
         unsafe { set_rgb_led(red, green, blue) }
     }
@@ -757,7 +782,10 @@ extern "C" {
 
     #[link_name = "arduboy_digital_write_rgb"]
     fn digital_write_rgb(red: c_uchar, green: c_uchar, blue: c_uchar);
-    
+
+    #[link_name = "arduboy_set_rgb_led_single"]
+    fn set_rgb_led_single(color: c_uchar, val: c_uchar);
+
     #[link_name = "arduboy_set_rgb_led"]
     fn set_rgb_led(red: c_uchar, green: c_uchar, blue: c_uchar);
 }
