@@ -14,7 +14,7 @@ pub use crate::library::arduboy_tone::{self, ArduboyTones};
 pub use crate::library::arduino::*;
 pub use crate::library::ardvoice::*;
 pub use crate::library::c::*;
-pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
+pub use crate::library::eeprom::{EEPROM, EEPROMBYTE, EEPROMBYTECHECKLESS};
 #[doc(hidden)]
 pub use crate::library::progmem::Pstring;
 pub use crate::library::sprites;
