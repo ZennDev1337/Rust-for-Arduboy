@@ -16,6 +16,8 @@ if %option%==snake (
    goto :run
 ) else if %option%==drboy (
    goto :run
+) else if %option%==ardvoice (
+   goto :run
 ) else if %option%==rustacean (
    goto :run
 ) else if %option%==tone (

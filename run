@@ -18,6 +18,9 @@ then
 elif [ "$option" = "drboy" ] 
 then
     upload
+elif [ "$option" = "ardvoice" ] 
+then
+    upload
 elif [ "$option" = "rustacean" ] 
 then
     upload

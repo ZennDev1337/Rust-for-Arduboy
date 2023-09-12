@@ -12,9 +12,9 @@ members = [
     "Examples/Arduboy-Tutorials/demo6",
     "Examples/Arduboy-Tutorials/demo7",
     "Examples/drboy",
+    "Examples/ardvoice",
     "Examples/rustacean",
     "Examples/snake",
     "Project/game",
-    "Project/cracker",
 ]
 resolver = "2"
