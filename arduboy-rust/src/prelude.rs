@@ -21,6 +21,7 @@ pub use crate::library::sprites;
 pub use crate::print::*;
 pub use crate::{
     f, get_ardvoice_tone_addr, get_sprite_addr, get_string_addr, get_tones_addr, progmem,
+    serial_print as serial,
 };
 use core::cmp;
 pub use core::ffi::{
