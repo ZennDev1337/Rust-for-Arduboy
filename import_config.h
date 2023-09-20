@@ -20,3 +20,4 @@
 // #define ArdVoice_Library ;
 #define EEPROM_Library ;
 #define Arduino_Library ;
+// #define Arduino_Serial_Library ;

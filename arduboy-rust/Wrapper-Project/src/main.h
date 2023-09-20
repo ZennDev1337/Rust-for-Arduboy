@@ -27,4 +27,6 @@ ArdVoice ardvoice;
 #include "./library/arduino/eeprom_export.h"
 #endif
 
+#if defined(Arduino_Serial_Library)
 #include "./library/arduino/arduino_serial_export.h"
+#endif

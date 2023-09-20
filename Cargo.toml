@@ -5,6 +5,7 @@ members = [
     "Examples/Arduboy-Tutorials/eeprom-byte",
     "Examples/Arduboy-Tutorials/progmem",
     "Examples/Arduboy-Tutorials/tone",
+    "Examples/Arduboy-Tutorials/serial",
     "Examples/Arduboy-Tutorials/demo2",
     "Examples/Arduboy-Tutorials/demo3",
     "Examples/Arduboy-Tutorials/demo4",
