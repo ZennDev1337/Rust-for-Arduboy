@@ -1,5 +1,5 @@
 var srcIndex = JSON.parse('{\
-"arduboy_rust":["",[["hardware",[],["buttons.rs","led.rs","mod.rs"]],["library",[],["arduboy2.rs","arduboy_tone.rs","arduboy_tone_pitch.rs","arduino.rs","ardvoice.rs","c.rs","eeprom.rs","mod.rs","progmem.rs","sprites.rs"]]],["lib.rs","prelude.rs","print.rs"]],\
+"arduboy_rust":["",[["hardware",[],["buttons.rs","led.rs","mod.rs"]],["library",[],["arduboy2.rs","arduboy_tone.rs","arduboy_tone_pitch.rs","arduino.rs","ardvoice.rs","c.rs","eeprom.rs","mod.rs","progmem.rs","sprites.rs"]]],["lib.rs","prelude.rs","print.rs","serial_print.rs"]],\
 "atomic_polyfill":["",[],["lib.rs"]],\
 "byteorder":["",[],["lib.rs"]],\
 "critical_section":["",[],["lib.rs","mutex.rs"]],\
