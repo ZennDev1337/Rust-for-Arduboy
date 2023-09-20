@@ -2,7 +2,7 @@
 //!
 //! You will need to uncomment the Arduino_Serial_Library in the import_config.h file.
 use crate::prelude::Pstring;
-use core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong, CStr};
+use core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
 
 use crate::print::Base;
 extern "C" {
@@ -14,8 +14,6 @@ extern "C" {
     fn serial_available() -> c_int;
     #[link_name = "arduino_serial_read"]
     fn serial_read() -> c_int;
-    #[link_name = "arduino_serial_read_string"]
-    fn serial_read_string() -> CStr;
 }
 
 ///The Arduino Serial Print class is available for writing text to the screen buffer.
@@ -258,6 +256,7 @@ extern "C" {
     #[doc(hidden)]
     #[link_name = "arduino_serial_println_long"]
     fn println_long(n: c_long, base: c_int) -> c_size_t;
+    #[allow(dead_code)]
     #[doc(hidden)]
     #[link_name = "arduino_serial_println_unsigned_char"]
     fn println_unsigned_char(n: c_uchar, base: c_int) -> c_size_t;
@@ -400,6 +399,7 @@ extern "C" {
     #[doc(hidden)]
     #[link_name = "arduino_serial_print_long"]
     fn print_long(n: c_long, base: c_int) -> c_size_t;
+    #[allow(dead_code)]
     #[doc(hidden)]
     #[link_name = "arduino_serial_print_unsigned_char"]
     fn print_unsigned_char(n: c_uchar, base: c_int) -> c_size_t;
