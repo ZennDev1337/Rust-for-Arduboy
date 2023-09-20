@@ -5,6 +5,14 @@ option=$1
 upload(){
     cargo build -p $option --release && cp ./target/arduboy/release/lib$option.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/$option.hex && pio run -t clean && rm lib/libgame.a && cd ../../
 }
+start(){
+    if upload ; then
+        echo "all fine"
+    else
+        echo Usage: for uploading your game \|./run.sh
+        echo Usage: for uploading an example game \| ./run.sh \<Example Game\>
+    fi
+}
 
 if [ -z "$option" ]
 then
@@ -12,50 +20,11 @@ then
 elif [ "$option" = "doc" ] 
 then
     cargo doc -p arduboy-rust && rm -r ./docs/doc/ && cp -r ./target/arduboy/doc ./docs/
-elif [ "$option" = "snake" ] 
-then
-    upload
-elif [ "$option" = "drboy" ] 
-then
-    upload
-elif [ "$option" = "ardvoice" ] 
-then
-    upload
-elif [ "$option" = "rustacean" ] 
-then
-    upload
-elif [ "$option" = "tone" ] 
-then
-    upload
-elif [ "$option" = "eeprom" ] 
-then
-    upload
 elif [ "$option" = "eeprom-byte" ] 
 then
     cargo build -p eeprom-byte --release && cp ./target/arduboy/release/libeeprom_byte.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/eeprom-byte.hex && pio run -t clean && rm lib/libgame.a && cd ../../
-elif [ "$option" = "progmem" ] 
-then
-    upload
-elif [ "$option" = "demo2" ] 
-then
-    upload
-elif [ "$option" = "demo3" ] 
-then
-    upload
-elif [ "$option" = "demo4" ] 
-then
-    upload
-elif [ "$option" = "demo5" ] 
-then
-    upload
-elif [ "$option" = "demo6" ] 
-then
-    upload
-elif [ "$option" = "demo7" ] 
-then
-    upload
 else
-    upload
+    start
     # echo Usage: for uploading your game \|./run.sh
     # echo Usage: for uploading an example game \| ./run.sh \<Example Game\>
 fi

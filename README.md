@@ -146,7 +146,8 @@ Windows:
 -   [demo6] [Make Your Own Arduboy Game: Part 6 - Graphics!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-6-graphics/7929)
     Link for the [ZennDev1337 Tile Converter](https://zenndev1337.github.io/Rust-for-Arduboy/tile-converter.html)
 -   [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
--   not done [demo8] [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
+-   Prepare for demo9 [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
+-   [demo9] [Make Your Own Arduboy Game: Part 9 - Mapping DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-9-mapping-dinosmasher/7931)
 -   [eeprom] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
 -   [progmem] Usage of the big 28'000 Bytes flash memory for Bitmaps Sound sequeces and Text.
 -   [tone] [ArduboyTonesTest](https://github.com/MLXXXp/ArduboyTones/blob/master/examples/ArduboyTonesTest/ArduboyTonesTest.ino)
@@ -162,6 +163,7 @@ Linux:
 ./run demo5
 ./run demo6
 ./run demo7
+./run demo9
 ./run eeprom
 ./run eeprom-byte
 ./run progmem
