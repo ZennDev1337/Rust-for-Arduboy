@@ -414,7 +414,7 @@
 //!
 //! You will need to uncomment the Arduino_Serial_Library in the import_config.h file.
 </span><span class="kw">use </span><span class="kw">crate</span>::prelude::Pstring;
-<span class="kw">use </span>core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong, CStr};
+<span class="kw">use </span>core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
 
 <span class="kw">use </span><span class="kw">crate</span>::print::Base;
 <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
@@ -426,8 +426,6 @@
     </span><span class="kw">fn </span>serial_available() -&gt; c_int;
     <span class="attr">#[link_name = <span class="string">&quot;arduino_serial_read&quot;</span>]
     </span><span class="kw">fn </span>serial_read() -&gt; c_int;
-    <span class="attr">#[link_name = <span class="string">&quot;arduino_serial_read_string&quot;</span>]
-    </span><span class="kw">fn </span>serial_read_string() -&gt; CStr;
 }
 
 <span class="doccomment">///The Arduino Serial Print class is available for writing text to the screen buffer.
@@ -484,13 +482,13 @@
 <span class="doccomment">/// Reads incoming serial data.
 /// Use only inside of [available()]:
 /// ```
-/// if (Serial::available() &gt; 0) {
+/// if (serial::available() &gt; 0) {
 ///     // read the incoming byte:
-///     let incomingByte: i16 = Serial::read();
+///     let incoming_byte: i16 = Serial::read();
 ///
 ///     // say what you got:
-///     Serial::print(&quot;I received: &quot;);
-///     Serial::println(incomingByte);
+///     serial::print(&quot;I received: &quot;);
+///     serial::println(incoming_byte);
 /// }
 /// ```
 /// ### Returns
@@ -670,7 +668,8 @@
     <span class="attr">#[doc(hidden)]
     #[link_name = <span class="string">&quot;arduino_serial_println_long&quot;</span>]
     </span><span class="kw">fn </span>println_long(n: c_long, base: c_int) -&gt; c_size_t;
-    <span class="attr">#[doc(hidden)]
+    <span class="attr">#[allow(dead_code)]
+    #[doc(hidden)]
     #[link_name = <span class="string">&quot;arduino_serial_println_unsigned_char&quot;</span>]
     </span><span class="kw">fn </span>println_unsigned_char(n: c_uchar, base: c_int) -&gt; c_size_t;
     <span class="attr">#[doc(hidden)]
@@ -812,7 +811,8 @@
     <span class="attr">#[doc(hidden)]
     #[link_name = <span class="string">&quot;arduino_serial_print_long&quot;</span>]
     </span><span class="kw">fn </span>print_long(n: c_long, base: c_int) -&gt; c_size_t;
-    <span class="attr">#[doc(hidden)]
+    <span class="attr">#[allow(dead_code)]
+    #[doc(hidden)]
     #[link_name = <span class="string">&quot;arduino_serial_print_unsigned_char&quot;</span>]
     </span><span class="kw">fn </span>print_unsigned_char(n: c_uchar, base: c_int) -&gt; c_size_t;
     <span class="attr">#[doc(hidden)]
