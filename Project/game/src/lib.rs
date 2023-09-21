@@ -20,7 +20,6 @@ pub unsafe extern "C" fn setup() {
     arduboy.set_frame_rate(30);
     arduboy.clear();
 }
-
 // The loop() function repeats forever after setup() is done
 #[no_mangle]
 #[export_name = "loop"]
