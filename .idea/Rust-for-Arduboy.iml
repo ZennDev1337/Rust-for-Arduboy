@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="EMPTY_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo2/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo3/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo4/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo5/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo6/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo7/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo9/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/eeprom-byte/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/eeprom/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/progmem/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/serial/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/tone/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ardvoice/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/drboy/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/rustacean/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/snake/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project/game/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/arduboy-rust/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
