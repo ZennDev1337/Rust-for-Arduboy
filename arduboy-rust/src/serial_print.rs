@@ -70,13 +70,13 @@ pub fn end() {
 /// Reads incoming serial data.
 /// Use only inside of [available()]:
 /// ```
-/// if (Serial::available() > 0) {
+/// if (serial::available() > 0) {
 ///     // read the incoming byte:
-///     let incomingByte: i16 = Serial::read();
+///     let incoming_byte: i16 = Serial::read();
 ///
 ///     // say what you got:
-///     Serial::print("I received: ");
-///     Serial::println(incomingByte);
+///     serial::print("I received: ");
+///     serial::println(incoming_byte);
 /// }
 /// ```
 /// ### Returns
