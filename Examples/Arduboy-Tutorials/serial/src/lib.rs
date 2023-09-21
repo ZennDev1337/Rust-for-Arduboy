@@ -31,13 +31,13 @@ pub unsafe extern "C" fn loop_() {
         return;
     }
     if serial::available() > 0 {
-        let intcoming_byte = serial::read_as_utf8_str();
+        let incoming_byte = serial::read_as_utf8_str();
         serial::print("I received: \0");
 
-        serial::println(intcoming_byte);
+        serial::println(incoming_byte);
     }
     if arduboy.pressed(A) {
-        serial::println("kekw")
+        serial::println("kekw\0")
     }
 
     arduboy.display();
