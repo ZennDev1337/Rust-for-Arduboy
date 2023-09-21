@@ -19,7 +19,6 @@ pub unsafe extern "C" fn setup() {
     arduboy.begin();
     arduboy.set_frame_rate(30);
     arduboy.clear();
-    // serial::begin(9600)
 }
 
 // The loop() function repeats forever after setup() is done
@@ -30,15 +29,5 @@ pub unsafe extern "C" fn loop_() {
     if !arduboy.next_frame() {
         return;
     }
-    // if serial::available() > 0 {
-    //     let intcoming_byte = serial::read_as_utf8_str();
-    //     serial::print("I received: \0");
-
-    //     serial::println(intcoming_byte);
-    // }
-    if arduboy.pressed(A) {
-        //serial::print("kekw")
-    }
-    //serial_println_chars(b"hallo\0" as *const [u8] as *const i8);
     arduboy.display();
 }
