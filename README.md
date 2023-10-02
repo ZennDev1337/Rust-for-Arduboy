@@ -192,7 +192,7 @@ In the root of the repo use the command:
 (Don't use "-" in the name because of a cargo feature that takes the "-" and mixes sometimes with a "\_". You will have some weird behavior with the run tool.)
 
 ```bash
-cargo new --lib ./Project/newproject
+cargo new --vcs=none --lib ./Project/newproject
 ```
 
 Then open the Cargo.toml in your new project and add the following dependencies and settings:
@@ -241,7 +241,7 @@ Now the last step. Go in the Cargo.toml in the root directory and add your proje
 ```toml
 [workspace]
 members = [
-    {All other Projects...}
+    #{All other Projects...}
     "Project/newproject",
 ]
 resolver = "2"
