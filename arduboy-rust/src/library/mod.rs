@@ -7,3 +7,4 @@ pub mod c;
 pub mod eeprom;
 pub mod progmem;
 pub mod sprites;
+pub mod arduboyfx;
