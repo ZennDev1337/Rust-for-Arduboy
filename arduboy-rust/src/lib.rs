@@ -37,5 +37,6 @@ pub use crate::library::arduboy_tone::{self, ArduboyTones};
 pub use crate::library::ardvoice::{self, ArdVoice};
 pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
 pub use crate::library::{arduino, c, sprites};
+pub use crate::library::arduboyfx;
 pub mod serial_print;
 

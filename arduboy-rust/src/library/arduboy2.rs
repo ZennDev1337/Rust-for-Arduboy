@@ -14,11 +14,11 @@ pub const FONT_SIZE: u8 = 6;
 /// The standard width of the arduboy
 ///
 /// this is to calculate with it.
-pub const WIDTH: u8 = 128;
+pub const WIDTH: i16 = 128;
 /// The standard height of the arduboy
 ///
 /// this is to calculate with it.
-pub const HEIGHT: u8 = 64;
+pub const HEIGHT: i16 = 64;
 
 /// This item is to chose between Black or White
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
