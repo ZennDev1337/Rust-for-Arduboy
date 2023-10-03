@@ -26,4 +26,28 @@ extern "C"
     {
          FX::drawBitmap(x,y,address,frame,mode);
     }
+    void arduboyfx_read_data_array(uint24_t address,uint8_t index,uint8_t offset,uint8_t elementSize,uint8_t * buffer,size_t length )
+    {
+         FX::readDataArray(address,index,offset,elementSize,buffer,length);
+    }
+    void arduboyfx_set_frame(uint24_t frame,uint8_t repeat )
+    {
+         FX::setFrame(frame,repeat);
+    }
+    uint24_t arduboyfx_draw_frame(uint24_t address)
+    {
+         return FX::drawFrame(address);
+    }
+    void arduboyfx_draw_string(uint24_t address)
+    {
+         FX::drawString(address);
+    }
+    void arduboyfx_draw_string_buffer(const uint8_t * buffer )
+    {
+         FX::drawString(buffer);
+    }
+    void arduboyfx_set_cursor(int16_t x,int16_t y)
+    {
+         return FX::setCursor(x,y);
+    }
 }

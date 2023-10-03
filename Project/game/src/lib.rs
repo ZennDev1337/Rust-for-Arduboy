@@ -12,11 +12,12 @@ const arduboy: Arduboy2 = Arduboy2::new();
 // Progmem data
 
 // dynamic ram variables
-const FX_DATA_PAGE: u16 = 0xffff;
-const FX_DATA_BYTES: u32 = 234;
+const FX_DATA_PAGE: u16 = 0xfffe;
+const FX_DATA_BYTES: u32 = 329;
 const FXlogo: u32 = 0x000000;
 const FXlogoWith: i16 = 115;
 const FXlogoHeight: i16 = 16;
+const helloWorld: u32 = 0x0000EA;
 
 static mut x: i16 = (WIDTH - FXlogoWith) / 2;
 static mut y: i16 = 25;
@@ -47,5 +48,7 @@ pub unsafe extern "C" fn loop_() {
     if y == 0 || y == HEIGHT - FXlogoHeight {
         yDir = -yDir;
     }
+    arduboyfx_set_cursor(10, 10);
+    arduboyfx_draw_string(helloWorld);
     arduboyfx_display_clear();
 }
