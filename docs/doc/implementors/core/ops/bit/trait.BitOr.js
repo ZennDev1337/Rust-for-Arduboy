@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"arduboy_rust":[["impl BitOr&lt;<a class=\"struct\" href=\"arduboy_rust/prelude/struct.ButtonSet.html\" title=\"struct arduboy_rust::prelude::ButtonSet\">ButtonSet</a>&gt; for <a class=\"struct\" href=\"arduboy_rust/prelude/struct.ButtonSet.html\" title=\"struct arduboy_rust::prelude::ButtonSet\">ButtonSet</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

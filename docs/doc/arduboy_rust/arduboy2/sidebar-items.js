@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["FONT_SIZE","HEIGHT","WIDTH"],"enum":["Color"],"struct":["Arduboy2","Point","Rect"]};

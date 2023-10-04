@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["A","A_BUTTON","B","B_BUTTON","DOWN","DOWN_BUTTON","LEFT","LEFT_BUTTON","RIGHT","RIGHT_BUTTON","UP","UP_BUTTON"],"struct":["ButtonSet"]};
