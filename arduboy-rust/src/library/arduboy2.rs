@@ -66,6 +66,8 @@ impl Arduboy2 {
     /// gives you a new instance of the [Arduboy2]
     /// ## Example
     /// ```
+    /// #![allow(non_upper_case_globals)]
+    /// use arduboy_rust::prelude::*;
     /// const arduboy: Arduboy2 = Arduboy2::new();
     /// ```
     pub const fn new() -> Self {
@@ -342,8 +344,11 @@ impl Arduboy2 {
     ///- ASCII carriage return (\r, 0x0D, musical eighth note). This character will be ignored.
     ///
     ///
-    ///Example
+    /// ## Example
     /// ```
+    /// #![allow(non_upper_case_globals)]
+    /// use arduboy_rust::prelude::*;
+    /// const arduboy:Arduboy2 =Arduboy2::new();
     /// let value: i16 = 42;
     ///
     /// arduboy.print(b"Hello World\n\0"[..]); // Prints "Hello World" and then sets the
@@ -542,10 +547,14 @@ impl Arduboy2 {
     ///
     ///## Example
     ///If you wanted to fire a shot every 5 frames while the A button is being held down:
-    /// ```
+    ///```
+    /// #![allow(non_upper_case_globals)]
+    /// use arduboy_rust::prelude::*;
+    /// const arduboy:Arduboy2 =Arduboy2::new();
+    ///
     /// if arduboy.everyXFrames(5) {
     ///     if arduboy.pressed(A_BUTTON) {
-    ///         fireShot();
+    ///         //fireShot(); // just some example
     ///     }
     /// }
     /// ```

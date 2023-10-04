@@ -38,7 +38,11 @@ extern "C"
     {
          return FX::drawFrame(address);
     }
-    void arduboyfx_draw_string(uint24_t address)
+    void arduboyfx_set_cursor(int16_t x,int16_t y)
+    {
+         FX::setCursor(x,y);
+    }
+    void arduboyfx_draw_string_fx(uint24_t address)
     {
          FX::drawString(address);
     }
@@ -46,8 +50,52 @@ extern "C"
     {
          FX::drawString(buffer);
     }
-    void arduboyfx_set_cursor(int16_t x,int16_t y)
+
+////
+
+    void arduboyfx_draw_string(const char *str)
     {
-         return FX::setCursor(x,y);
+         FX::drawString(str);
+    }
+////
+    void arduboyfx_set_cursor_x(int16_t x)
+    {
+         FX::setCursorX(x);
+    }
+    void arduboyfx_set_cursor_y(int16_t y)
+    {
+         FX::setCursorY(y);
+    }
+    void arduboyfx_set_font(uint24_t address, uint8_t mode)
+    {
+        FX::setFont(address,mode);
+    }
+    void arduboyfx_set_font_mode(uint8_t mode)
+    {
+        FX::setFontMode(mode);
+    }
+    void arduboyfx_set_cursor_range(int16_t left,int16_t wrap)
+    {
+        FX::setCursorRange(left, wrap);
+    }
+    void arduboyfx_draw_number_i16(int16_t n, int8_t digits)
+    {
+        FX::drawNumber(n);
+    }
+    void arduboyfx_draw_number_i32(int32_t n, int8_t digits)
+    {
+        FX::drawNumber(n);
+    }
+    void arduboyfx_draw_number_u16(uint16_t n, int8_t digits)
+    {
+        FX::drawNumber(n);
+    }
+    void arduboyfx_draw_number_u32(uint32_t n, int8_t digits)
+    {
+        FX::drawNumber(n);
+    }
+    void arduboyfx_draw_char(uint8_t c)
+    {
+        FX::drawChar(c);
     }
 }

@@ -4,7 +4,7 @@
 //Include the Arduboy Library
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
-use arduboy_tone::arduboy_tone_pitch::*;
+use arduboy_tones::tones_pitch::*;
 mod gameloop;
 
 #[allow(dead_code)]

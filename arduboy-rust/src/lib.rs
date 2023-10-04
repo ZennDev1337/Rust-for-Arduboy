@@ -33,10 +33,9 @@ mod print;
 #[doc(inline)]
 pub extern crate heapless;
 pub use crate::library::arduboy2::{self, Arduboy2, Color, FONT_SIZE, HEIGHT, WIDTH};
-pub use crate::library::arduboy_tone::{self, ArduboyTones};
+pub use crate::library::arduboy_tones::{self, ArduboyTones};
 pub use crate::library::ardvoice::{self, ArdVoice};
 pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
 pub use crate::library::{arduino, c, sprites};
-pub use crate::library::arduboyfx;
+pub use crate::library::arduboyfx::{self};
 pub mod serial_print;
-

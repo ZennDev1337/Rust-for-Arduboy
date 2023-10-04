@@ -1,6 +1,5 @@
 pub mod arduboy2;
-pub mod arduboy_tone;
-pub mod arduboy_tone_pitch;
+pub mod arduboy_tones;
 pub mod arduino;
 pub mod ardvoice;
 pub mod c;

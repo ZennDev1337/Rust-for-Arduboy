@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["BLUE_LED","GREEN_LED","RED_LED","RGB_OFF","RGB_ON"]};

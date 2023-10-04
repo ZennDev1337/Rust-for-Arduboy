@@ -1,0 +1,11 @@
+[package]
+name = "fxloadgamestate"
+version = "0.1.0"
+authors = ["ZennDev <zenndev@protonmail.com>"]
+edition = "2021"
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+arduboy-rust = { path = "../../../arduboy-rust" }

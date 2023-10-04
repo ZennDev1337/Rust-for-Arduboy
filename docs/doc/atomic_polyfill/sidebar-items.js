@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["ATOMIC_BOOL_INIT"],"enum":["Ordering"],"fn":["compiler_fence","fence","spin_loop_hint"],"struct":["AtomicBool","AtomicI8","AtomicU8"]};

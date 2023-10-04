@@ -115,6 +115,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "fxbasicexample"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
+name = "fxchompies"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
+name = "fxdrawballs"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
+name = "fxdrawframes"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
+name = "fxhelloworld"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
+name = "fxloadgamestate"
+version = "0.1.0"
+dependencies = [
+ "arduboy-rust",
+]
+
+[[package]]
 name = "game"
 version = "0.1.0"
 dependencies = [
