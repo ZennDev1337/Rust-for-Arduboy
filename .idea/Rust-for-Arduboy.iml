@@ -20,6 +20,12 @@
       <sourceFolder url="file://$MODULE_DIR$/Examples/snake/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project/game/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/arduboy-rust/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxbasicexample/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxchompies/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxdrawballs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxdrawframes/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxhelloworld/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxloadgamestate/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

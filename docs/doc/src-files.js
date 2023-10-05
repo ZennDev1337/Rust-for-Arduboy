@@ -14,6 +14,12 @@ var srcIndex = JSON.parse('{\
 "drboy":["",[],["gameloop.rs","lib.rs"]],\
 "eeprom":["",[],["lib.rs"]],\
 "eeprom_byte":["",[],["lib.rs"]],\
+"fxbasicexample":["",[],["lib.rs"]],\
+"fxchompies":["",[],["lib.rs"]],\
+"fxdrawballs":["",[],["lib.rs"]],\
+"fxdrawframes":["",[],["lib.rs"]],\
+"fxhelloworld":["",[],["lib.rs"]],\
+"fxloadgamestate":["",[],["lib.rs"]],\
 "game":["",[],["lib.rs"]],\
 "hash32":["",[],["fnv.rs","lib.rs","murmur3.rs"]],\
 "heapless":["",[],["binary_heap.rs","deque.rs","histbuf.rs","indexmap.rs","indexset.rs","lib.rs","linear_map.rs","sealed.rs","sorted_linked_list.rs","string.rs","vec.rs"]],\
