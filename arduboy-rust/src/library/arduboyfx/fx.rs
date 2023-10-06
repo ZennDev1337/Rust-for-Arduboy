@@ -4,16 +4,15 @@
 //! ```
 //! use arduboy_rust::prelude::*;
 //!
-//! fn setup(){
+//! fn setup() {
 //!     FX::begin()
 //! }
-//!
 //! ```
 //! You will need to uncomment the ArduboyFX_Library in the import_config.h file.
 #![allow(non_upper_case_globals)]
 use super::drawable_number::DrawableNumber;
 use super::drawable_string::DrawableString;
-use core::ffi::{c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
+use core::ffi::{c_int, c_size_t, c_uchar, c_uint, c_ulong};
 pub fn begin() {
     unsafe { arduboyfx_begin() }
 }
@@ -66,11 +65,14 @@ pub fn set_cursor_x(x: i16) {
 pub fn set_cursor_y(y: i16) {
     unsafe { arduboyfx_set_cursor_y(y) }
 }
-pub fn set_cursor_range(left: i32, wrap: i32) {
+pub fn set_cursor_range(left: i16, wrap: i16) {
     unsafe { arduboyfx_set_cursor_range(left, wrap) }
 }
 pub fn set_font(address: u32, mode: u8) {
     unsafe { arduboyfx_set_font(address, mode) }
+}
+pub fn set_font_mode(mode: u8) {
+    unsafe { arduboyfx_set_font_mode(mode) };
 }
 
 extern "C" {
@@ -107,8 +109,10 @@ extern "C" {
     fn arduboyfx_set_cursor_y(y: c_int);
     #[link_name = "arduboyfx_set_font"]
     fn arduboyfx_set_font(address: c_ulong, mode: c_uchar);
+    #[link_name = "arduboyfx_set_font_mode"]
+    fn arduboyfx_set_font_mode(mode: c_uchar);
     #[link_name = "arduboyfx_set_cursor_range"]
-    fn arduboyfx_set_cursor_range(left: c_long, wrap: c_long);
+    fn arduboyfx_set_cursor_range(left: c_int, wrap: c_int);
     #[link_name = "arduboyfx_draw_char"]
     fn arduboyfx_draw_char(c: c_uchar);
 

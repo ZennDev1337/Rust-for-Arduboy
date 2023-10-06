@@ -7,7 +7,6 @@ use arduboy_rust::prelude::*;
 use arduboy_tones::tones_pitch::*;
 mod gameloop;
 
-
 #[allow(dead_code)]
 pub const arduboy: Arduboy2 = Arduboy2::new();
 pub const sound: ArduboyTones = ArduboyTones::new();
@@ -155,7 +154,6 @@ pub unsafe extern "C" fn loop_() {
             gameloop::gameloop();
         }
         GameMode::Losescreen => {
-            //todo
             arduboy.set_text_size(2);
             arduboy.set_cursor(13, p.gameover_height);
             arduboy.print(get_string_addr!(text_gameover));

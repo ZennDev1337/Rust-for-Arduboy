@@ -3,11 +3,15 @@
 set option=%1
 set optionpath=%2
 set folderpath=
+if [%optionpath%]==[] (
+    set optionpath=""
+)
+
+
 if [%option%]==[] (
     powershell -Command "cargo build -p game --release; cp ./target/arduboy/release/libgame.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/game.hex; pio run -t clean; rm lib/libgame.a; cd ../../"
     goto :eof
 )
-
 if %option%==fxbuild (
     for /d /r "./Examples/" %%a in (*) do if /i %%~nxa==%optionpath% (
         set folderpath=%%a
@@ -19,6 +23,7 @@ if %option%==fxbuild (
     )
     goto :help
 ) else if %option%==fxupload (
+      set optionpath=%2
       for /d /r "./Examples/" %%a in (*) do if /i %%~nxa==%optionpath% (
           set folderpath=%%a
           goto :fxupload
@@ -29,6 +34,7 @@ if %option%==fxbuild (
       )
       goto :help
 ) else if %option%==fxall (
+      set optionpath=%2
       for /d /r "./Examples/" %%a in (*) do if /i %%~nxa==%optionpath% (
           set folderpath=%%a
           goto :fxall

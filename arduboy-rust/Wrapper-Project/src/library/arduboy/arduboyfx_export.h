@@ -50,14 +50,10 @@ extern "C"
     {
          FX::drawString(buffer);
     }
-
-////
-
     void arduboyfx_draw_string(const char *str)
     {
          FX::drawString(str);
     }
-////
     void arduboyfx_set_cursor_x(int16_t x)
     {
          FX::setCursorX(x);
@@ -80,19 +76,19 @@ extern "C"
     }
     void arduboyfx_draw_number_i16(int16_t n, int8_t digits)
     {
-        FX::drawNumber(n);
+        FX::drawNumber(n,digits);
     }
     void arduboyfx_draw_number_i32(int32_t n, int8_t digits)
     {
-        FX::drawNumber(n);
+        FX::drawNumber(n,digits);
     }
     void arduboyfx_draw_number_u16(uint16_t n, int8_t digits)
     {
-        FX::drawNumber(n);
+        FX::drawNumber(n,digits);
     }
     void arduboyfx_draw_number_u32(uint32_t n, int8_t digits)
     {
-        FX::drawNumber(n);
+        FX::drawNumber(n,digits);
     }
     void arduboyfx_draw_char(uint8_t c)
     {

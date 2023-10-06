@@ -23,6 +23,10 @@ pub const A: ButtonSet = ButtonSet {
 pub const B: ButtonSet = ButtonSet {
     flag_set: 0b00000100,
 };
+/// Just a `const` for the any
+pub const ANY_BUTTON: ButtonSet = ButtonSet {
+    flag_set: 0b11111111,
+};
 /// Just a `const` for the UP button
 pub const UP_BUTTON: ButtonSet = UP;
 /// Just a `const` for the RIGHT button
