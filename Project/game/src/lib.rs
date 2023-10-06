@@ -12,6 +12,7 @@ const arduboy: Arduboy2 = Arduboy2::new();
 
 // dynamic ram variables
 const FX_DATA_PAGE: u16 = 0xffff;
+#[allow(dead_code)]
 const FX_DATA_BYTES: u32 = 234;
 const FXlogo: u32 = 0x000000;
 const FXlogoWith: i16 = 115;
