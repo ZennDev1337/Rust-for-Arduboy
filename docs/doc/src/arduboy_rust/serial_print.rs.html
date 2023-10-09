@@ -410,6 +410,12 @@
 <a href="#410" id="410">410</a>
 <a href="#411" id="411">411</a>
 <a href="#412" id="412">412</a>
+<a href="#413" id="413">413</a>
+<a href="#414" id="414">414</a>
+<a href="#415" id="415">415</a>
+<a href="#416" id="416">416</a>
+<a href="#417" id="417">417</a>
+<a href="#418" id="418">418</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! This is the Module to interact in a save way with the Arduino Serial C++ library.
 //!
 //! You will need to uncomment the Arduino_Serial_Library in the import_config.h file.
@@ -435,6 +441,7 @@
 ///
 ///Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// let value: i16 = 42;
 ///
 /// serial::print(b&quot;Hello World\n\0&quot;[..]); // Prints &quot;Hello World&quot; and then sets the
@@ -454,6 +461,7 @@
 ///
 ///Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// let value: i16 = 42;
 ///
 /// serial::print(b&quot;Hello World\n\0&quot;[..]); // Prints &quot;Hello World&quot; and then sets the
@@ -470,6 +478,7 @@
 ///
 /// ### Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// serial::begin(9600)
 /// ```
 </span><span class="kw">pub fn </span>begin(baud_rates: u32) {
@@ -481,10 +490,11 @@
 }
 <span class="doccomment">/// Reads incoming serial data.
 /// Use only inside of [available()]:
-/// ```
-/// if (serial::available() &gt; 0) {
+///```
+/// use arduboy_rust::prelude::*;
+/// if serial::available() &gt; 0 {
 ///     // read the incoming byte:
-///     let incoming_byte: i16 = Serial::read();
+///     let incoming_byte: i16 = serial::read();
 ///
 ///     // say what you got:
 ///     serial::print(&quot;I received: &quot;);
@@ -501,23 +511,24 @@
 ///
 /// Use only inside of [available()]:
 /// ```
-/// if (Serial::available() &gt; 0) {
+/// use arduboy_rust::prelude::*;
+/// if serial::available() &gt; 0 {
 ///     // read the incoming byte:
-///     let incomingByte: &amp;str = Serial::read_as_utf8_str();
+///     let incoming_byte: &amp;str = serial::read_as_utf8_str();
 ///
 ///     // say what you got:
-///     Serial::print(&quot;I received: &quot;);
-///     Serial::println(incomingByte);
+///     serial::print(&quot;I received: &quot;);
+///     serial::println(incoming_byte);
 /// }
 /// ```
 /// ### Returns
 ///
 ///The first byte of incoming serial data available (or -1 if no data is available). Data type: &amp;str.
 </span><span class="kw">pub fn </span>read_as_utf8_str() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
-    <span class="kw">let </span>intcoming_byte = <span class="kw">unsafe </span>{ serial_read() };
+    <span class="kw">let </span>incoming_byte = <span class="kw">unsafe </span>{ serial_read() };
     <span class="kw">static </span><span class="kw-2">mut </span>L: [u8; <span class="number">2</span>] = [<span class="number">0</span>, <span class="number">0</span>];
     <span class="kw">unsafe </span>{
-        L[<span class="number">0</span>] = intcoming_byte <span class="kw">as </span>u8;
+        L[<span class="number">0</span>] = incoming_byte <span class="kw">as </span>u8;
     }
     <span class="kw">unsafe </span>{ core::str::from_utf8(<span class="kw-2">&amp;</span>L).unwrap() }
 }
@@ -525,13 +536,14 @@
 <span class="doccomment">/// Get the number of bytes (characters) available for reading from the serial port. This is data that’s already arrived and stored in the serial receive buffer (which holds 64 bytes).
 /// ### Example
 /// ```
-/// if (Serial::available() &gt; 0) {
+/// use arduboy_rust::prelude::*;
+/// if serial::available() &gt; 0 {
 ///     // read the incoming byte:
-///     incomingByte = Serial::read();
+///     let incoming_byte = serial::read();
 ///
 ///     // say what you got:
-///     Serial::print(&quot;I received: &quot;);
-///     Serial::println(incomingByte);
+///     serial::print(&quot;I received: &quot;);
+///     serial::println(incoming_byte);
 /// }
 /// ```
 </span><span class="kw">pub fn </span>available() -&gt; i16 {
@@ -630,7 +642,7 @@
 
     <span class="kw">fn </span>default_parameters() -&gt; <span class="self">Self</span>::Parameters {}
 }
-<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; Serialprintlnable <span class="kw">for </span><span class="kw">crate</span>::heapless::String&lt;N&gt; {
+<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; Serialprintlnable <span class="kw">for </span>heapless::String&lt;N&gt; {
     <span class="kw">type </span>Parameters = ();
 
     <span class="kw">fn </span>println_2(<span class="self">self</span>, _params: <span class="self">Self</span>::Parameters) {
@@ -773,7 +785,7 @@
 
     <span class="kw">fn </span>default_parameters() -&gt; <span class="self">Self</span>::Parameters {}
 }
-<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; Serialprintable <span class="kw">for </span><span class="kw">crate</span>::heapless::String&lt;N&gt; {
+<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; Serialprintable <span class="kw">for </span>heapless::String&lt;N&gt; {
     <span class="kw">type </span>Parameters = ();
 
     <span class="kw">fn </span>print_2(<span class="self">self</span>, _params: <span class="self">Self</span>::Parameters) {

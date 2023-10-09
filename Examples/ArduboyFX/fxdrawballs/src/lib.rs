@@ -1,5 +1,7 @@
 #![no_std]
 #![allow(non_upper_case_globals)]
+
+use arduboy_rust::arduboyfx::fx_consts::{dbmMasked, dbmNormal};
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
@@ -119,10 +121,10 @@ static mut circle_points: [Point; CIRCLE_POINTS as usize] = [
 static mut camera: Point = Point { x: 0, y: 0 };
 static mut map_location: Point = Point { x: 16, y: 16 };
 struct Ball {
-    x: i8,
-    y: i8,
-    xspeed: i8,
-    yspeed: i8,
+    x: i16,
+    y: i16,
+    xspeed: i16,
+    yspeed: i16,
 }
 
 static mut ball: [Ball; MAX_BALLS as usize] = [
@@ -469,8 +471,8 @@ pub unsafe extern "C" fn setup() {
     arduboy.set_frame_rate(FRAME_RATE);
     fx::begin_data(FX_DATA_PAGE);
     ball.iter_mut().for_each(|b| {
-        b.x = random_less_than(113) as i8;
-        b.y = random_less_than(49) as i8;
+        b.x = random_less_than(113) as i16;
+        b.y = random_less_than(49) as i16;
         b.xspeed = 1;
         if random_less_than(100) > 49 {
             b.xspeed = -b.xspeed
@@ -505,10 +507,75 @@ pub unsafe extern "C" fn loop_() {
     if arduboy.pressed(LEFT) && map_location.x > 16 {
         map_location.x -= 1;
     }
-    if arduboy.pressed(RIGHT) && map_location.x > 112 {
+    if arduboy.pressed(RIGHT) && map_location.x < 112 {
         map_location.x += 1;
     }
 
     camera.x = map_location.x + circle_points[pos as usize].x;
     camera.y = map_location.y + circle_points[pos as usize].y;
+
+    // Draw tilemap
+    for y in 0..VISABLE_TILES_PER_COLUMN as i16 {
+        fx::read_data_array(
+            FX_DATA_TILEMAP,
+            (y + camera.y / tileHeight as i16) as u8,
+            (camera.x / tileWidth as i16) as u8,
+            tileWidth,
+            tilemap_buffer.as_ptr(),
+            VISABLE_TILES_PER_ROW as usize,
+        );
+
+        for x in 0..VISABLE_TILES_PER_ROW as i16 {
+            fx::draw_bitmap(
+                x * tileWidth as i16 - camera.x % tileWidth as i16,
+                y * tileHeight as i16 - camera.y % tileHeight as i16,
+                FX_DATA_TILES,
+                tilemap_buffer[x as usize],
+                dbmNormal,
+            )
+        }
+    }
+    if !arduboy.not_pressed(UP)
+        && !arduboy.not_pressed(DOWN)
+        && !arduboy.not_pressed(LEFT)
+        && !arduboy.not_pressed(RIGHT)
+    {
+        pos += 1 % CIRCLE_POINTS;
+        if pos > 80 {
+            pos = 0
+        }
+    }
+    for i in 0..balls_visible as usize {
+        fx::draw_bitmap(ball[i].x, ball[i].y, FX_DATA_BALLS, 0, dbmMasked);
+    }
+    for i in 0..balls_visible as usize {
+        if ball[i].xspeed > 0 {
+            ball[i].x += ball[i].xspeed;
+            if ball[i].x > WIDTH - ballWidth as i16 {
+                ball[i].x = WIDTH - ballWidth as i16;
+                ball[i].xspeed = -ball[i].xspeed;
+            }
+        } else {
+            ball[i].x += ball[i].xspeed;
+            if ball[i].x < 0 {
+                ball[i].x = 0;
+                ball[i].xspeed = -ball[i].xspeed;
+            }
+        }
+
+        if ball[i].yspeed > 0 {
+            ball[i].y += ball[i].yspeed;
+            if ball[i].y > HEIGHT - ballHeight as i16 {
+                ball[i].y = HEIGHT - ballHeight as i16;
+                ball[i].yspeed = -ball[i].yspeed;
+            }
+        } else {
+            ball[i].y += ball[i].yspeed;
+            if ball[i].y < 0 {
+                ball[i].y = 0;
+                ball[i].yspeed = -ball[i].yspeed;
+            }
+        }
+    }
+    fx::display_clear();
 }
