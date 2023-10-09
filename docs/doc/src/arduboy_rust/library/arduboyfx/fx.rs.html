@@ -134,6 +134,11 @@
 <a href="#134" id="134">134</a>
 <a href="#135" id="135">135</a>
 <a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Functions given by the ArduboyFX library.
 //!
 //! You can use the &#39;FX::&#39; module to access the functions after the import of the prelude
@@ -178,6 +183,9 @@
 }
 <span class="kw">pub fn </span>draw_frame(address: u32) -&gt; u32 {
     <span class="kw">unsafe </span>{ arduboyfx_draw_frame(address) }
+}
+<span class="kw">pub fn </span>draw_loaded_frame() -&gt; u8 {
+    <span class="kw">unsafe </span>{ arduboyfx_draw_loaded_frame() }
 }
 <span class="kw">pub fn </span>set_frame(frame: u32, repeat: u8) {
     <span class="kw">unsafe </span>{ arduboyfx_set_frame(frame, repeat) }
@@ -250,6 +258,8 @@
     </span><span class="kw">fn </span>arduboyfx_set_frame(frame: c_ulong, repeat: c_uchar);
     <span class="attr">#[link_name = <span class="string">&quot;arduboyfx_draw_frame&quot;</span>]
     </span><span class="kw">fn </span>arduboyfx_draw_frame(address: c_ulong) -&gt; c_ulong;
+    <span class="attr">#[link_name = <span class="string">&quot;arduboyfx_draw_loaded_frame&quot;</span>]
+    </span><span class="kw">fn </span>arduboyfx_draw_loaded_frame() -&gt; c_uchar;
     <span class="attr">#[link_name = <span class="string">&quot;arduboyfx_set_cursor&quot;</span>]
     </span><span class="kw">fn </span>arduboyfx_set_cursor(x: c_int, y: c_int);
     <span class="attr">#[link_name = <span class="string">&quot;arduboyfx_set_cursor_x&quot;</span>]
