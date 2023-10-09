@@ -11,7 +11,6 @@ pub use crate::hardware::led::{self, *};
 pub use crate::heapless::{LinearMap, String, Vec};
 pub use crate::library::arduboy2::{self, *};
 pub use crate::library::arduboy_tones::{self, ArduboyTones};
-#[doc(hidden)]
 pub use crate::library::arduboyfx::{self, fx};
 pub use crate::library::arduino::*;
 pub use crate::library::ardvoice::{self, ArdVoice};

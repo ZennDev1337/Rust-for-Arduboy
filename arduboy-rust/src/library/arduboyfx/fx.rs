@@ -74,7 +74,20 @@ pub fn set_font(address: u32, mode: u8) {
 pub fn set_font_mode(mode: u8) {
     unsafe { arduboyfx_set_font_mode(mode) };
 }
+pub fn load_game_state<T>(your_struct: &mut T) -> u8 {
+    let pointer = your_struct as *mut T;
+    let object_pointer = pointer as *mut u8;
+    let object_size = core::mem::size_of::<T>();
 
+    unsafe { arduboyfx_load_game_state(object_pointer, object_size) }
+}
+pub fn save_game_state<T>(your_struct: &T) {
+    let pointer = your_struct as *const T;
+    let object_pointer = pointer as *const u8;
+    let object_size = core::mem::size_of::<T>();
+
+    unsafe { arduboyfx_save_game_state(object_pointer, object_size) }
+}
 extern "C" {
     #[link_name = "arduboyfx_begin"]
     fn arduboyfx_begin();
@@ -115,5 +128,9 @@ extern "C" {
     fn arduboyfx_set_cursor_range(left: c_int, wrap: c_int);
     #[link_name = "arduboyfx_draw_char"]
     fn arduboyfx_draw_char(c: c_uchar);
+    #[link_name = "arduboyfx_load_game_state"]
+    fn arduboyfx_load_game_state(object: *mut u8, size: usize) -> u8;
+    #[link_name = "arduboyfx_save_game_state"]
+    fn arduboyfx_save_game_state(object: *const u8, size: usize);
 
 }

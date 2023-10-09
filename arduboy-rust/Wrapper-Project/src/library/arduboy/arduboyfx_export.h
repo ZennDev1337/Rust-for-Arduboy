@@ -94,4 +94,12 @@ extern "C"
     {
         FX::drawChar(c);
     }
+    uint8_t arduboyfx_load_game_state(uint8_t *gameState,size_t size)
+    {
+        return FX::loadGameState(gameState, size);
+    }
+    void arduboyfx_save_game_state(uint8_t *gameState,size_t size)
+    {
+        FX::saveGameState(gameState, size);
+    }
 }
