@@ -43,6 +43,9 @@ pub fn draw_bitmap(x: i16, y: i16, address: u32, frame: u8, mode: u8) {
 pub fn draw_frame(address: u32) -> u32 {
     unsafe { arduboyfx_draw_frame(address) }
 }
+pub fn draw_loaded_frame() -> u8 {
+    unsafe { arduboyfx_draw_loaded_frame() }
+}
 pub fn set_frame(frame: u32, repeat: u8) {
     unsafe { arduboyfx_set_frame(frame, repeat) }
 }
@@ -114,6 +117,8 @@ extern "C" {
     fn arduboyfx_set_frame(frame: c_ulong, repeat: c_uchar);
     #[link_name = "arduboyfx_draw_frame"]
     fn arduboyfx_draw_frame(address: c_ulong) -> c_ulong;
+    #[link_name = "arduboyfx_draw_loaded_frame"]
+    fn arduboyfx_draw_loaded_frame() -> c_uchar;
     #[link_name = "arduboyfx_set_cursor"]
     fn arduboyfx_set_cursor(x: c_int, y: c_int);
     #[link_name = "arduboyfx_set_cursor_x"]
