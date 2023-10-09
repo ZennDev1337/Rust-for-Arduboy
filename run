@@ -1,30 +1,93 @@
 #!/bin/bash
 
 option=$1
-
+optionpath=$2
 upload(){
     cargo build -p $option --release && cp ./target/arduboy/release/lib$option.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/$option.hex && pio run -t clean && rm lib/libgame.a && cd ../../
+}
+help(){
+    echo "Usage build and upload Project:"
+    echo "  ./run                              For uploading /Project/game"
+    echo "  ./run <Project-Name>               For uploading a game"
+    echo ""
+    echo "Usage FX-Data build and upload:"
+    echo "  ./run fxbuild <Project-Name>       Build your fxdata"
+    echo "  ./run fxupload <Project-Name>      Upload your fxdata"
+    echo "  ./run fxall <Project-Name>         Build and Upload your fxdata"
+    echo "                                     and the game in one step"
+
 }
 start(){
     if upload ; then
         echo "all fine"
     else
-        echo Usage: for uploading your game \|./run.sh
-        echo Usage: for uploading an example game \| ./run.sh \<Example Game\>
+      help
     fi
+}
+
+FOLDER=()
+load_all_FOLDER_recurse() {
+    for i in "$1"/*;do
+        if [ -d "$i" ];then
+          dir=[]
+            IFS='/' read -ra dir <<< "$i"
+            if [ "${dir[-1]}" = "$optionpath" ];then
+              FOLDER+=("$i")
+            fi
+            load_all_FOLDER_recurse "$i"
+        fi
+    done
+}
+
+fxbuild(){
+  load_all_FOLDER_recurse "./Examples"
+  load_all_FOLDER_recurse "./Project"
+  python3 ./Tools/Arduboy-Python-Utilities/fxdata-build.py $FOLDER/fxdata/fxdata.txt
+}
+
+fxupload(){
+  load_all_FOLDER_recurse "./Examples"
+  load_all_FOLDER_recurse "./Project"
+  python3 ./Tools/Arduboy-Python-Utilities/fxdata-upload $FOLDER/fxdata/fxdata.bin
 }
 
 if [ -z "$option" ]
 then
     cargo build -p game --release && cp ./target/arduboy/release/libgame.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/game.hex && pio run -t clean && rm lib/libgame.a && cd ../../
-elif [ "$option" = "doc" ] 
+elif [ "$option" = "fxbuild" ]
+then
+    if fxbuild ; then
+        echo "Build complete"
+    else
+      help
+    fi
+elif [ "$option" = "fxupload" ]
+then
+    if fxupload ; then
+        echo "Upload finished"
+    else
+      help
+    fi
+elif [ "$option" = "fxall" ]
+then
+    if fxbuild ; then
+        echo "Build complete"
+    else
+      help
+    fi
+    if fxupload ; then
+        echo "Upload finished"
+    else
+      help
+    fi
+    option=$optionpath
+    start
+elif [ "$option" = "doc" ]
 then
     cargo doc -p arduboy-rust && rm -r ./docs/doc/ && cp -r ./target/arduboy/doc ./docs/
-elif [ "$option" = "eeprom-byte" ] 
+elif [ "$option" = "eeprom-byte" ]
 then
     cargo build -p eeprom-byte --release && cp ./target/arduboy/release/libeeprom_byte.a ./arduboy-rust/Wrapper-Project/lib/libgame.a && cd arduboy-rust/Wrapper-Project/ && pio run -v -t upload && cp ./.pio/build/arduboy/firmware.hex ./build/eeprom-byte.hex && pio run -t clean && rm lib/libgame.a && cd ../../
 else
     start
-    # echo Usage: for uploading your game \|./run.sh
-    # echo Usage: for uploading an example game \| ./run.sh \<Example Game\>
 fi

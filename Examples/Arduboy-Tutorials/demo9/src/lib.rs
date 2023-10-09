@@ -12,7 +12,7 @@ const WORLD_HEIGHT: usize = 7;
 const PLAYER_SIZE: i16 = 16;
 const PLAYER_X_OFFSET: i16 = WIDTH as i16 / 2 - PLAYER_SIZE / 2;
 const PLAYER_Y_OFFSET: i16 = HEIGHT as i16 / 2 - PLAYER_SIZE / 2;
-const TILE_SIZE: u8 = 16;
+const TILE_SIZE: i16 = 16;
 const GRASS: u8 = 0;
 const WATER: u8 = 1;
 const TREES: u8 = 2;
@@ -119,20 +119,20 @@ unsafe fn draw_player() {
 }
 
 unsafe fn draw_world() {
-    let tileswide: u8 = WIDTH / TILE_SIZE + 1;
-    let tilestall: u8 = HEIGHT / TILE_SIZE + 1;
-    for y in 0..tilestall as i16 {
-        for x in 0..tileswide as i16 {
-            let tilesx: i16 = x - mapx / TILE_SIZE as i16;
-            let tilesy: i16 = y - mapy / TILE_SIZE as i16;
+    let tileswide: i16 = WIDTH / TILE_SIZE + 1;
+    let tilestall: i16 = HEIGHT / TILE_SIZE + 1;
+    for y in 0..tilestall {
+        for x in 0..tileswide {
+            let tilesx: i16 = x - mapx / TILE_SIZE;
+            let tilesy: i16 = y - mapy / TILE_SIZE;
             if tilesx >= 0
                 && tilesy >= 0
                 && tilesx < WORLD_WIDTH as i16
                 && tilesy < WORLD_HEIGHT as i16
             {
                 sprites::draw_override(
-                    x * TILE_SIZE as i16 + mapx % TILE_SIZE as i16,
-                    y * TILE_SIZE as i16 + mapy % TILE_SIZE as i16,
+                    x * TILE_SIZE + mapx % TILE_SIZE,
+                    y * TILE_SIZE + mapy % TILE_SIZE,
                     get_sprite_addr!(tiles),
                     world[tilesy as usize][tilesx as usize],
                 )
@@ -141,9 +141,9 @@ unsafe fn draw_world() {
     }
     arduboy.fill_rect(0, 0, 48, 8, Color::Black);
     arduboy.set_cursor(0, 0);
-    arduboy.print(0 - mapx / TILE_SIZE as i16);
+    arduboy.print(0 - mapx / TILE_SIZE);
     arduboy.print(f!(b",\0"));
-    arduboy.print(0 - mapy / TILE_SIZE as i16)
+    arduboy.print(0 - mapy / TILE_SIZE)
 }
 fn titlescreen() {
     arduboy.set_cursor(0, 0);

@@ -17,6 +17,7 @@
 
 #define Arduboy2_Library ;
 // #define ArduboyTones_Library ;
+// #define ArduboyFX_Library ;
 // #define ArdVoice_Library ;
 #define EEPROM_Library ;
 #define Arduino_Library ;

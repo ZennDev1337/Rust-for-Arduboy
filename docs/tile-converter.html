@@ -1,489 +1,523 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            href="https://upload.wikimedia.org/wikipedia/commons/0/0f/Original_Ferris.svg"
+            type="image/svg+xml"
+        />
+        <title>ZennDev1337 Tile Converter</title>
+    </head>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/0f/Original_Ferris.svg"
-        type="image/svg+xml" />
-    <title>ZennDev1337 Tile Converter</title>
-</head>
-
-<body onload="setup(this);">
-    <style>
-        html,
-        body {
-            margin: 0;
-            background-color: black;
-            color: azure;
-        }
-
-        body {
-            font-family: Courier New;
-            text-align: center;
-            font-size: xx-large;
-            font-weight: 700;
-        }
-
-        .wrapper {
-            min-height: calc(100vh - 50px);
-        }
-
-        .footer {
-            font-family: Courier New;
-            text-align: center;
-            font-size: large;
-            font-weight: 600;
-            height: 50px;
-
-            color: #e7e7e7;
-        }
-
-        .footer>a {
-            font-family: Courier New;
-            text-align: center;
-            font-size: large;
-            font-weight: 700;
-            margin: 0;
-            color: #e7e7e7;
-            text-decoration: none;
-        }
-
-        .sticky {
-            bottom: 0;
-            height: 50px;
-        }
-
-        textarea {
-            background-color: #281c1c;
-            color: azure;
-            border: dotted 2px #ce422b;
-            width: 670px;
-            height: 300px;
-            resize: none;
-        }
-
-        .title>p {
-            padding-left: 20px;
-            margin: 0;
-            padding-right: 20px;
-            color: #e7e7e7;
-            font-size: xx-large;
-        }
-
-        .title {
-            padding-top: 50px;
-        }
-
-        .separator {
-            border-top: solid #281c1c;
-            border-bottom: none;
-            border-left: none;
-            border-right: none;
-            margin-top: 40px;
-            width: clamp(700px, 70vw, 1200px);
-        }
-
-        .image-container {
-            margin-top: 40px;
-            min-height: 80px;
-        }
-
-        p {
-            font-size: medium;
-        }
-
-        .txtHead {
-            margin-bottom: 5px;
-        }
-
-        .topnav {
-            background-color: #000000;
-            overflow: hidden;
-            height: 47px;
-        }
-
-        .topnav a {
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .topnav a.active {
-            background-color: #281c1c;
-            color: white;
-        }
-
-        .topnav .icon {
-            display: none;
-        }
-
-        @media screen and (max-width: 1049px) {
-            .topnav a:not(:first-child) {
-                display: none;
+    <body onload="setup(this);">
+        <style>
+            html,
+            body {
+                margin: 0;
+                background-color: black;
+                color: azure;
+                overflow: hidden;
             }
 
-            .topnav a.icon {
-                float: right;
-                display: block;
+            body {
+                font-family: Courier New;
+                text-align: center;
+                align-items: center;
+                font-size: xx-large;
+                font-weight: 700;
             }
-        }
 
-        @media screen and (max-width: 1049px) {
-            .topnav.responsive {
-                position: relative;
-                height: 247px;
+            .wrapper {
+                min-height: calc(100vh - 50px);
+            }
+
+            .footer {
+                font-family: Courier New;
+                text-align: center;
+                font-size: large;
+                font-weight: 600;
+                height: 50px;
+
+                color: #e7e7e7;
+            }
+
+            .footer > a {
+                font-family: Courier New;
+                text-align: center;
+                font-size: large;
+                font-weight: 700;
+                margin: 0;
+                color: #e7e7e7;
+                text-decoration: none;
+            }
+
+            .sticky {
+                bottom: 0;
+                height: 50px;
+            }
+
+            textarea {
+                background-color: #281c1c;
+                color: azure;
+                border: dotted 2px #ce422b;
+                width: 670px;
+                height: 300px;
+                resize: none;
+            }
+
+            .title > p {
+                padding-left: 20px;
+                margin: 0;
+                padding-right: 20px;
+                color: #e7e7e7;
+                font-size: xx-large;
+            }
+
+            .title {
+                padding-top: 50px;
+            }
+
+            .separator {
+                border-top: solid #281c1c;
+                border-bottom: none;
+                border-left: none;
+                border-right: none;
+                margin-top: 40px;
+                width: clamp(700px, 70vw, 1200px);
+            }
+
+            .image-container {
+                margin-top: 40px;
+                min-height: 80px;
+            }
+
+            p {
+                font-size: medium;
+            }
+
+            .txtHead {
+                margin-bottom: 5px;
             }
 
             .topnav {
-                text-align: left;
+                background-color: #000000;
+                height: 47px;
             }
 
-            .topnav.responsive a.icon {
-                position: absolute;
-                right: 0;
-                top: 0;
+            .topnav a {
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
             }
 
-            .topnav.responsive a {
-                float: none;
-                display: block;
-                text-align: left;
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
             }
-        }
-    </style>
-    <div class="wrapper">
-        <div class="topnav" id="myTopnav">
-            <a href="https://zenndev1337.github.io/Rust-for-Arduboy/index.html">Rust for Arduboy</a>
-            <a href="https://zenndev1337.github.io/Rust-for-Arduboy/image-converter.html">Image Converter</a>
-            <a href="https://zenndev1337.github.io/Rust-for-Arduboy/tile-converter.html" class="active">Tile
-                Converter</a>
-            <a href="https://zenndev1337.github.io/Rust-for-Arduboy/sprite-converter.html">Sprite Converter</a>
-            <a href="https://zenndev1337.github.io/Rust-for-Arduboy/arduboy-file-converter.html">.arduboy
-                Generator</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
-                    viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                </svg>
-            </a>
-        </div>
-        <div class="title">
-            <p>Drop your tile sheet here</p>
-        </div>
-        <hr class="separator" />
-        <div class="image-container">
-            <div id="image-container"></div>
-        </div>
-        <hr class="separator" />
-    </div>
 
-    <footer class="footer">
-        <a href="https://github.com/ZennDev1337/" target="_blank">By ZennDev1337</a>
-    </footer>
-    <script language="JavaScript">
-        function myFunction() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
+            .topnav a.active {
+                background-color: #281c1c;
+                color: white;
             }
-        }
-    </script>
-    <script language="JavaScript">
-        function swapImage(t, e) {
-            var r = t.getAttribute("data-srcnm");
-            t.removeAttribute("srcset"),
-                r || t.setAttribute("data-srcnm", t.src),
-                (t.src = e);
-        }
-        function setOriginal(t) {
-            var e = "",
-                r = "";
-            (r = t.getAttribute("data-srcmd")),
-                (e = t.getAttribute("data-srcnm")),
-                r
-                    ? ((t.src = r), t.removeAttribute("data-srcmd"))
-                    : ((t.src = e), t.removeAttribute("data-srcnm"));
-        }
-        function swapImageMD(t, e) {
-            t.setAttribute("data-srcmd", t.src), (t.src = e);
-        }
-        function jsready(t) {
-            /in/.test(document.readyState)
-                ? setTimeout("jsready(" + t + ")", 9)
-                : t();
-        }
-        jsready(function () {
-            var t = window.devicePixelRatio ? window.devicePixelRatio : 1;
-            if (t > 1)
-                for (
-                    var e = document.getElementsByTagName("img"), r = 0;
-                    r < e.length;
-                    r++
-                )
-                    e[r].getAttribute("data-src2x") &&
-                        (e[r].setAttribute(
-                            "data-src-orig",
-                            e[r].getAttribute("src")
-                        ),
+
+            .topnav .icon {
+                display: none;
+            }
+
+            @media screen and (max-width: 800px) {
+                .topnav a:not(:first-child) {
+                    display: none;
+                }
+
+                .topnav a.icon {
+                    float: right;
+                    display: block;
+                }
+            }
+
+            @media screen and (max-width: 800px) {
+                .topnav.responsive {
+                    position: relative;
+                    height: auto;
+                }
+
+                .topnav {
+                    text-align: left;
+                }
+
+                .topnav.responsive a.icon {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+
+                .topnav.responsive a {
+                    float: none;
+                    display: block;
+                    text-align: left;
+                }
+            }
+        </style>
+        <div class="wrapper">
+            <div class="topnav" id="myTopnav">
+                <a
+                    href="https://zenndev1337.github.io/Rust-for-Arduboy/index.html"
+                    ><nobr>Rust for Arduboy</nobr></a
+                >
+                <a
+                    href="https://zenndev1337.github.io/Rust-for-Arduboy/image-converter.html"
+                    ><nobr>Image Converter</nobr></a
+                >
+                <a
+                    href="https://zenndev1337.github.io/Rust-for-Arduboy/tile-converter.html"
+                    class="active"
+                    ><nobr>Tile Converter</nobr></a
+                >
+                <a
+                    href="https://zenndev1337.github.io/Rust-for-Arduboy/sprite-converter.html"
+                    ><nobr>Sprite Converter</nobr></a
+                >
+                <a
+                    href="https://zenndev1337.github.io/Rust-for-Arduboy/arduboy-file-converter.html"
+                    ><nobr>.arduboy Generator</nobr></a
+                >
+                <a
+                    href="https://zenndev1337.github.io/Rust-for-Arduboy/fxdata-converter.html"
+                    ><nobr>fxdata.h Converter</nobr></a
+                >
+                <a
+                    href="javascript:void(0);"
+                    class="icon"
+                    onclick="myFunction()"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-list"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <div class="title">
+                <p>Drop your tile sheet here</p>
+            </div>
+            <hr class="separator" />
+            <div class="image-container">
+                <div id="image-container"></div>
+            </div>
+            <hr class="separator" />
+        </div>
+
+        <footer class="footer">
+            <a href="https://github.com/ZennDev1337/" target="_blank"
+                >By ZennDev1337</a
+            >
+        </footer>
+        <script language="JavaScript">
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+        </script>
+        <script language="JavaScript">
+            function swapImage(t, e) {
+                var r = t.getAttribute("data-srcnm");
+                t.removeAttribute("srcset"),
+                    r || t.setAttribute("data-srcnm", t.src),
+                    (t.src = e);
+            }
+            function setOriginal(t) {
+                var e = "",
+                    r = "";
+                (r = t.getAttribute("data-srcmd")),
+                    (e = t.getAttribute("data-srcnm")),
+                    r
+                        ? ((t.src = r), t.removeAttribute("data-srcmd"))
+                        : ((t.src = e), t.removeAttribute("data-srcnm"));
+            }
+            function swapImageMD(t, e) {
+                t.setAttribute("data-srcmd", t.src), (t.src = e);
+            }
+            function jsready(t) {
+                /in/.test(document.readyState)
+                    ? setTimeout("jsready(" + t + ")", 9)
+                    : t();
+            }
+            jsready(function () {
+                var t = window.devicePixelRatio ? window.devicePixelRatio : 1;
+                if (t > 1)
+                    for (
+                        var e = document.getElementsByTagName("img"), r = 0;
+                        r < e.length;
+                        r++
+                    )
+                        e[r].getAttribute("data-src2x") &&
+                            (e[r].setAttribute(
+                                "data-src-orig",
+                                e[r].getAttribute("src")
+                            ),
                             e[r].setAttribute(
                                 "src",
                                 e[r].getAttribute("data-src2x")
                             ));
-        });
+            });
 
-        function setup(body) {
-            body.ondragover = function () {
-                return false;
-            };
-            body.ondragend = function () {
-                return false;
-            };
-            body.ondrop = function (e) {
-                // Prevent the browser from showing the dropped file
-                e.preventDefault();
-                // Get the image data
-                var imageData = getImageData(e);
-                // If there is some data, add it to the page
-                if (imageData !== null) {
-                    addDroppedElement(imageData);
-                }
-            };
-        }
-        function getImageData(event) {
-            var file = event.dataTransfer.files[0];
-            if (file.type.indexOf("image") === 0) {
-                return file;
+            function setup(body) {
+                body.ondragover = function () {
+                    return false;
+                };
+                body.ondragend = function () {
+                    return false;
+                };
+                body.ondrop = function (e) {
+                    // Prevent the browser from showing the dropped file
+                    e.preventDefault();
+                    // Get the image data
+                    var imageData = getImageData(e);
+                    // If there is some data, add it to the page
+                    if (imageData !== null) {
+                        addDroppedElement(imageData);
+                    }
+                };
             }
-        }
-        function addDroppedElement(imageData) {
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                event.preventDefault;
-                // Create image element
-                var droppedImage = new Image();
-                droppedImage.src = event.target.result;
-                // add delay so the image can be loaded properly before accessing it
-                setTimeout(function () {
-                    var imgNW = droppedImage.naturalWidth;
-                    var imgNH = droppedImage.naturalHeight;
-                    var zoom = 1;
-                    switch (imgNW) {
-                        case 8:
-                            zoom = 4;
-                            break;
-                        case 16:
-                            zoom = 2;
-                            break;
-                        case 24:
-                            zoom = 4 / 3;
-                            break;
-                        case 24:
-                            zoom = 1;
-                            break;
-                    }
-                    var tileW = imgNW * zoom;
-                    var tileH = tileW;
-                    // Create canvas for tiles
-                    var droppedImageCanvas =
-                        document.createElement("canvas");
-                    var canvasWidth =
-                        Math.floor(700 / (tileW + 2)) * (tileW + 2) - 2;
-                    var canvasHeight =
-                        Math.ceil(
-                            imgNH / imgNW / Math.floor(700 / (tileW + 2))
-                        ) *
-                        (tileH + 2) -
-                        2;
-                    droppedImageCanvas.width = canvasWidth;
-                    droppedImageCanvas.height = canvasHeight;
-                    // Create invisible canvas for original image
-                    var invisImageCanvas = document.createElement("canvas");
-                    invisImageCanvas.width = imgNW;
-                    invisImageCanvas.height = imgNH;
-                    invisImageCanvas.style.display = "none";
-                    // Create code container
-                    var droppedImageCode =
-                        document.createElement("textarea");
-                    droppedImageCode.className = "code";
-                    droppedImageCode.style.width = "698px";
-                    droppedImageCode.rows = "20";
-                    // Create div container
-                    var droppedImageDiv = document.createElement("div");
-                    droppedImageDiv.className = "image-view";
-                    droppedImageDiv.appendChild(droppedImageCanvas);
-                    droppedImageDiv.appendChild(invisImageCanvas);
-                    var imageContainer =
-                        document.getElementById("image-container");
-                    imageContainer.innerHTML = "";
-                    imageContainer.appendChild(droppedImageDiv);
-                    imageContainer.appendChild(
-                        document.createElement("br")
-                    );
-                    imageContainer.appendChild(droppedImageCode);
-                    // Create context for drawing
-                    var droppedImageContext =
-                        droppedImageCanvas.getContext("2d");
-                    droppedImageContext.imageSmoothingEnabled = false;
-                    var invisImageContext =
-                        invisImageCanvas.getContext("2d");
-                    // Draw the image on an invisible canvas to generate the code
-                    invisImageContext.drawImage(droppedImage, 0, 0);
-                    // Clip the image and draw individual tiles on the canvas with 2px spacing inbetween
-                    for (
-                        var i = 0, x = 0, y = 0, tile;
-                        i < imgNH / imgNW;
-                        i++
-                    ) {
-                        if (x + tileW + 2 <= canvasWidth) {
-                            x += tileW + 2;
-                        } else {
-                            x = 0;
-                            y += tileH + 2;
+            function getImageData(event) {
+                var file = event.dataTransfer.files[0];
+                if (file.type.indexOf("image") === 0) {
+                    return file;
+                }
+            }
+            function addDroppedElement(imageData) {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    event.preventDefault;
+                    // Create image element
+                    var droppedImage = new Image();
+                    droppedImage.src = event.target.result;
+                    // add delay so the image can be loaded properly before accessing it
+                    setTimeout(function () {
+                        var imgNW = droppedImage.naturalWidth;
+                        var imgNH = droppedImage.naturalHeight;
+                        var zoom = 1;
+                        switch (imgNW) {
+                            case 8:
+                                zoom = 4;
+                                break;
+                            case 16:
+                                zoom = 2;
+                                break;
+                            case 24:
+                                zoom = 4 / 3;
+                                break;
+                            case 24:
+                                zoom = 1;
+                                break;
                         }
-                        if (i === 0) {
-                            x = 0;
-                        }
-                        droppedImageContext.drawImage(
-                            droppedImage,
-                            0,
-                            i * imgNW,
-                            imgNW,
-                            imgNW,
-                            x,
-                            y,
-                            tileW,
-                            tileH
+                        var tileW = imgNW * zoom;
+                        var tileH = tileW;
+                        // Create canvas for tiles
+                        var droppedImageCanvas =
+                            document.createElement("canvas");
+                        var canvasWidth =
+                            Math.floor(700 / (tileW + 2)) * (tileW + 2) - 2;
+                        var canvasHeight =
+                            Math.ceil(
+                                imgNH / imgNW / Math.floor(700 / (tileW + 2))
+                            ) *
+                                (tileH + 2) -
+                            2;
+                        droppedImageCanvas.width = canvasWidth;
+                        droppedImageCanvas.height = canvasHeight;
+                        // Create invisible canvas for original image
+                        var invisImageCanvas = document.createElement("canvas");
+                        invisImageCanvas.width = imgNW;
+                        invisImageCanvas.height = imgNH;
+                        invisImageCanvas.style.display = "none";
+                        // Create code container
+                        var droppedImageCode =
+                            document.createElement("textarea");
+                        droppedImageCode.className = "code";
+                        droppedImageCode.style.width = "698px";
+                        droppedImageCode.rows = "20";
+                        // Create div container
+                        var droppedImageDiv = document.createElement("div");
+                        droppedImageDiv.className = "image-view";
+                        droppedImageDiv.appendChild(droppedImageCanvas);
+                        droppedImageDiv.appendChild(invisImageCanvas);
+                        var imageContainer =
+                            document.getElementById("image-container");
+                        imageContainer.innerHTML = "";
+                        imageContainer.appendChild(droppedImageDiv);
+                        imageContainer.appendChild(
+                            document.createElement("br")
                         );
-                    }
-                    // Draw raster between tiles on the canvas
-                    droppedImageContext.beginPath();
-                    for (
-                        var j = 1;
-                        j <= Math.floor(700 / (tileW + 2));
-                        j++
-                    ) {
-                        droppedImageContext.moveTo(
-                            j * tileW + 1 + (j - 1) * 2,
-                            0
-                        );
-                        droppedImageContext.lineTo(
-                            j * tileW + 1 + (j - 1) * 2,
-                            canvasHeight
-                        );
-                    }
-                    for (
-                        var k = 1;
-                        k <=
-                        Math.ceil(
-                            imgNH / imgNW / Math.floor(700 / tileW + 2)
-                        );
-                        k++
-                    ) {
-                        droppedImageContext.moveTo(
-                            0,
-                            k * tileW + 1 + (k - 1) * 2
-                        );
-                        droppedImageContext.lineTo(
-                            canvasWidth,
-                            k * tileW + 1 + (k - 1) * 2
-                        );
-                    }
-                    droppedImageContext.strokeStyle = "#281c1c";
-                    droppedImageContext.lineWidth = 2;
-                    droppedImageContext.stroke();
-                    let sep =
-                        window.document.getElementsByClassName("separator");
-                    for (let item of sep) {
-                        item.style.borderColor = "#ce422b";
-                    }
-                    // Generate the sprite string
-                    var spriteString =
-                        "static " +
-                        imageData.name.split("_")[0] +
-                        ": [u8;_] = " +
-                        "[\n" +
-                        imgNW +
-                        ", " +
-                        imgNW +
-                        ", // width, height,\n" +
-                        "// TILE 00\n";
-                    var pageCount = Math.ceil(imgNH / 8);
-                    var columnCount = imgNW;
-                    var currentByte = 0;
-                    var rowCounter = 0;
-                    var tileCounter = 0;
-                    // Read the sprite page-by-page
-                    for (var page = 0; page < pageCount; page++) {
-                        // Read the page column-by-column
+                        imageContainer.appendChild(droppedImageCode);
+                        // Create context for drawing
+                        var droppedImageContext =
+                            droppedImageCanvas.getContext("2d");
+                        droppedImageContext.imageSmoothingEnabled = false;
+                        var invisImageContext =
+                            invisImageCanvas.getContext("2d");
+                        // Draw the image on an invisible canvas to generate the code
+                        invisImageContext.drawImage(droppedImage, 0, 0);
+                        // Clip the image and draw individual tiles on the canvas with 2px spacing inbetween
                         for (
-                            var column = 0;
-                            column < columnCount;
-                            column++
+                            var i = 0, x = 0, y = 0, tile;
+                            i < imgNH / imgNW;
+                            i++
                         ) {
-                            // Read the column into a byte
-                            var spriteByte = 0;
-                            for (var yPixel = 0; yPixel < 8; yPixel++) {
-                                // If the color of the pixel is not black, count it as white
-                                var pixelColor =
-                                    invisImageContext.getImageData(
-                                        column,
-                                        page * 8 + yPixel,
-                                        1,
-                                        1
-                                    ).data;
-                                if (
-                                    pixelColor[0] > 0 ||
-                                    pixelColor[1] > 0 ||
-                                    pixelColor[2] > 0
-                                ) {
-                                    spriteByte |= 1 << yPixel;
-                                }
+                            if (x + tileW + 2 <= canvasWidth) {
+                                x += tileW + 2;
+                            } else {
+                                x = 0;
+                                y += tileH + 2;
                             }
-                            // Print the column in hex notation, add a comma for formatting
-                            var digitStr = spriteByte.toString(16);
-                            if (digitStr.length == 1) {
-                                digitStr = "0" + digitStr;
+                            if (i === 0) {
+                                x = 0;
                             }
-                            spriteString += "0x" + digitStr + ", ";
-                            if (currentByte % imgNW == imgNW - 1) {
-                                spriteString += "\n";
-                                rowCounter++;
-                                if (
-                                    rowCounter == imgNW / 8 &&
-                                    tileCounter < imgNH / imgNW - 1
-                                ) {
-                                    tileCounter++;
-                                    var tileNumber =
-                                        tileCounter.toString().length === 1
-                                            ? "0" + tileCounter.toString()
-                                            : tileCounter.toString();
-                                    spriteString +=
-                                        "// TILE " + tileNumber + "\n";
-                                    rowCounter = 0;
-                                }
-                            }
-                            currentByte++;
+                            droppedImageContext.drawImage(
+                                droppedImage,
+                                0,
+                                i * imgNW,
+                                imgNW,
+                                imgNW,
+                                x,
+                                y,
+                                tileW,
+                                tileH
+                            );
                         }
-                    }
-                    // Terminate the array
-                    spriteString += "];";
-                    // Create an invisible element containing the string
-                    droppedImageCode.innerHTML = spriteString;
-                }, 50);
-            };
-            reader.readAsDataURL(imageData);
-        }
-    </script>
-</body>
-
+                        // Draw raster between tiles on the canvas
+                        droppedImageContext.beginPath();
+                        for (
+                            var j = 1;
+                            j <= Math.floor(700 / (tileW + 2));
+                            j++
+                        ) {
+                            droppedImageContext.moveTo(
+                                j * tileW + 1 + (j - 1) * 2,
+                                0
+                            );
+                            droppedImageContext.lineTo(
+                                j * tileW + 1 + (j - 1) * 2,
+                                canvasHeight
+                            );
+                        }
+                        for (
+                            var k = 1;
+                            k <=
+                            Math.ceil(
+                                imgNH / imgNW / Math.floor(700 / tileW + 2)
+                            );
+                            k++
+                        ) {
+                            droppedImageContext.moveTo(
+                                0,
+                                k * tileW + 1 + (k - 1) * 2
+                            );
+                            droppedImageContext.lineTo(
+                                canvasWidth,
+                                k * tileW + 1 + (k - 1) * 2
+                            );
+                        }
+                        droppedImageContext.strokeStyle = "#281c1c";
+                        droppedImageContext.lineWidth = 2;
+                        droppedImageContext.stroke();
+                        let sep =
+                            window.document.getElementsByClassName("separator");
+                        for (let item of sep) {
+                            item.style.borderColor = "#ce422b";
+                        }
+                        // Generate the sprite string
+                        var spriteString =
+                            "static " +
+                            imageData.name.split("_")[0] +
+                            ": [u8;_] = " +
+                            "[\n" +
+                            imgNW +
+                            ", " +
+                            imgNW +
+                            ", // width, height,\n" +
+                            "// TILE 00\n";
+                        var pageCount = Math.ceil(imgNH / 8);
+                        var columnCount = imgNW;
+                        var currentByte = 0;
+                        var rowCounter = 0;
+                        var tileCounter = 0;
+                        // Read the sprite page-by-page
+                        for (var page = 0; page < pageCount; page++) {
+                            // Read the page column-by-column
+                            for (
+                                var column = 0;
+                                column < columnCount;
+                                column++
+                            ) {
+                                // Read the column into a byte
+                                var spriteByte = 0;
+                                for (var yPixel = 0; yPixel < 8; yPixel++) {
+                                    // If the color of the pixel is not black, count it as white
+                                    var pixelColor =
+                                        invisImageContext.getImageData(
+                                            column,
+                                            page * 8 + yPixel,
+                                            1,
+                                            1
+                                        ).data;
+                                    if (
+                                        pixelColor[0] > 0 ||
+                                        pixelColor[1] > 0 ||
+                                        pixelColor[2] > 0
+                                    ) {
+                                        spriteByte |= 1 << yPixel;
+                                    }
+                                }
+                                // Print the column in hex notation, add a comma for formatting
+                                var digitStr = spriteByte.toString(16);
+                                if (digitStr.length == 1) {
+                                    digitStr = "0" + digitStr;
+                                }
+                                spriteString += "0x" + digitStr + ", ";
+                                if (currentByte % imgNW == imgNW - 1) {
+                                    spriteString += "\n";
+                                    rowCounter++;
+                                    if (
+                                        rowCounter == imgNW / 8 &&
+                                        tileCounter < imgNH / imgNW - 1
+                                    ) {
+                                        tileCounter++;
+                                        var tileNumber =
+                                            tileCounter.toString().length === 1
+                                                ? "0" + tileCounter.toString()
+                                                : tileCounter.toString();
+                                        spriteString +=
+                                            "// TILE " + tileNumber + "\n";
+                                        rowCounter = 0;
+                                    }
+                                }
+                                currentByte++;
+                            }
+                        }
+                        // Terminate the array
+                        spriteString += "];";
+                        // Create an invisible element containing the string
+                        droppedImageCode.innerHTML = spriteString;
+                    }, 50);
+                };
+                reader.readAsDataURL(imageData);
+            }
+        </script>
+    </body>
 </html>

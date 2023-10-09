@@ -2,11 +2,13 @@
 //!
 //! All of the functions are safe wrapped inside the [Arduboy2] struct.
 #![allow(dead_code)]
+
 use crate::hardware::buttons::ButtonSet;
 use crate::print::Printable;
 use core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
 use core::mem;
 use core::ops::Not;
+
 /// The standard font size of the arduboy
 ///
 /// this is to calculate with it.
@@ -14,11 +16,11 @@ pub const FONT_SIZE: u8 = 6;
 /// The standard width of the arduboy
 ///
 /// this is to calculate with it.
-pub const WIDTH: u8 = 128;
+pub const WIDTH: i16 = 128;
 /// The standard height of the arduboy
 ///
 /// this is to calculate with it.
-pub const HEIGHT: u8 = 64;
+pub const HEIGHT: i16 = 64;
 
 /// This item is to chose between Black or White
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
@@ -29,6 +31,7 @@ pub enum Color {
     /// Led is on
     White,
 }
+
 impl Not for Color {
     type Output = Self;
 
@@ -39,6 +42,7 @@ impl Not for Color {
         }
     }
 }
+
 /// This struct is used by a few Arduboy functions.
 #[derive(Debug, Clone, Copy)]
 pub struct Rect {
@@ -51,6 +55,7 @@ pub struct Rect {
     /// Rect height
     pub height: u8,
 }
+
 /// This struct is used by a few Arduboy functions.
 #[derive(Debug, Clone, Copy)]
 pub struct Point {
@@ -62,10 +67,13 @@ pub struct Point {
 
 /// This is the struct to interact in a save way with the Arduboy2 C++ library.
 pub struct Arduboy2 {}
+
 impl Arduboy2 {
     /// gives you a new instance of the [Arduboy2]
     /// ## Example
     /// ```
+    /// #![allow(non_upper_case_globals)]
+    /// use arduboy_rust::prelude::*;
     /// const arduboy: Arduboy2 = Arduboy2::new();
     /// ```
     pub const fn new() -> Self {
@@ -342,8 +350,11 @@ impl Arduboy2 {
     ///- ASCII carriage return (\r, 0x0D, musical eighth note). This character will be ignored.
     ///
     ///
-    ///Example
+    /// ## Example
     /// ```
+    /// #![allow(non_upper_case_globals)]
+    /// use arduboy_rust::prelude::*;
+    /// const arduboy: Arduboy2 = Arduboy2::new();
     /// let value: i16 = 42;
     ///
     /// arduboy.print(b"Hello World\n\0"[..]); // Prints "Hello World" and then sets the
@@ -506,10 +517,10 @@ impl Arduboy2 {
     ///Parameters
     ///-    color	The name of the LED to set. The value given should be one of RED_LED, GREEN_LED or BLUE_LED.
     ///-    val	The brightness value for the LED, from 0 to 255.
-    /// 
+    ///
     ///**Note**
     ///> In order to use this function, the 3 parameter version must first be called at least once, in order to initialize the hardware.
-    /// 
+    ///
     ///This 2 parameter version of the function will set the brightness of a single LED within the RGB LED without affecting the current brightness of the other two. See the description of the 3 parameter version of this function for more details on the RGB LED.
     pub fn set_rgb_led_single(&self, color: u8, val: u8) {
         unsafe { set_rgb_led_single(color, val) }
@@ -542,10 +553,14 @@ impl Arduboy2 {
     ///
     ///## Example
     ///If you wanted to fire a shot every 5 frames while the A button is being held down:
-    /// ```
+    ///```
+    /// #![allow(non_upper_case_globals)]
+    /// use arduboy_rust::prelude::*;
+    /// const arduboy: Arduboy2 = Arduboy2::new();
+    ///
     /// if arduboy.everyXFrames(5) {
     ///     if arduboy.pressed(A_BUTTON) {
-    ///         fireShot();
+    ///         //fireShot(); // just some example
     ///     }
     /// }
     /// ```
@@ -627,10 +642,30 @@ impl Arduboy2 {
     pub fn idle(&self) {
         unsafe { idle() }
     }
+    ///Get the current state of all buttons as a bitmask.
+    ///
+    ///### Returns
+    ///A bitmask of the state of all the buttons.
+    ///
+    ///The returned mask contains a bit for each button. For any pressed button, its bit will be 1. For released buttons their associated bits will be 0.
+    ///
+    ///The following defined mask values should be used for the buttons:
+    /// LEFT_BUTTON, RIGHT_BUTTON, UP_BUTTON, DOWN_BUTTON, A_BUTTON, B_BUTTON 
+    pub fn buttons_state(&self) -> u8 {
+        unsafe { arduboy_buttons_state() }
+    }
+    ///Exit the sketch and start the bootloader.
+    ///
+    ///The sketch will exit and the bootloader will be started in command mode. The effect will be similar to pressing the reset button.
+    ///
+    ///This function is intended to be used to allow uploading a new sketch, when the USB code has been removed to gain more code space. Ideally, the sketch would present a "New Sketch Upload" menu or prompt telling the user to "Press and hold the DOWN button when the procedure to upload a new sketch has been initiated". 
+    ///The sketch would then wait for the DOWN button to be pressed and then call this function.
+    pub fn exit_to_bootloader(&self) {
+        unsafe { arduboy_exit_to_bootloader() }
+    }
 }
 
 extern "C" {
-
     #[link_name = "arduboy_begin"]
     fn begin();
 
@@ -788,4 +823,10 @@ extern "C" {
 
     #[link_name = "arduboy_set_rgb_led"]
     fn set_rgb_led(red: c_uchar, green: c_uchar, blue: c_uchar);
+
+    #[link_name = "arduboy_buttons_state"]
+    fn arduboy_buttons_state() -> u8;
+
+    #[link_name = "arduboy_exit_to_bootloader"]
+    fn arduboy_exit_to_bootloader();
 }

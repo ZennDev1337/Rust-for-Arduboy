@@ -223,8 +223,8 @@ unsafe fn gameplay() {
     arduboy.set_cursor(101, 2);
     arduboy.print(G.ai_score as u16);
 
-    arduboy.draw_fast_hline(0, 0, WIDTH, Color::White);
-    arduboy.draw_fast_hline(0, (HEIGHT - 1) as i16, WIDTH, Color::White);
+    arduboy.draw_fast_hline(0, 0, WIDTH as u8, Color::White);
+    arduboy.draw_fast_hline(0, (HEIGHT - 1) as i16, WIDTH as u8, Color::White);
 
     G.player.draw();
     G.ai.draw();

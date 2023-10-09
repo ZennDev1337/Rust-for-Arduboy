@@ -200,4 +200,12 @@ extern "C"
     {
         arduboy.setRGBled(red, green, blue);
     }
+    uint8_t arduboy_buttons_state()
+    {
+        return arduboy.buttonsState();
+    }
+    void arduboy_exit_to_bootloader()
+    {
+        arduboy.exitToBootloader();
+    }
 }

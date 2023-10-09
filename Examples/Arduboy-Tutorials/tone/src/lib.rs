@@ -4,7 +4,7 @@
 //Initialize the arduboy object
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
-use arduboy_tone::arduboy_tone_pitch::*;
+use arduboy_tones::tones_pitch::*;
 const arduboy: Arduboy2 = Arduboy2::new();
 const sound: ArduboyTones = ArduboyTones::new();
 const NDUR: u16 = 100;

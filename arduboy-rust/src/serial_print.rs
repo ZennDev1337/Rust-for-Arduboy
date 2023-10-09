@@ -23,6 +23,7 @@ extern "C" {
 ///
 ///Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// let value: i16 = 42;
 ///
 /// serial::print(b"Hello World\n\0"[..]); // Prints "Hello World" and then sets the
@@ -42,6 +43,7 @@ pub fn print(x: impl Serialprintable) {
 ///
 ///Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// let value: i16 = 42;
 ///
 /// serial::print(b"Hello World\n\0"[..]); // Prints "Hello World" and then sets the
@@ -58,6 +60,7 @@ pub fn println(x: impl Serialprintlnable) {
 ///
 /// ### Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// serial::begin(9600)
 /// ```
 pub fn begin(baud_rates: u32) {
@@ -69,10 +72,11 @@ pub fn end() {
 }
 /// Reads incoming serial data.
 /// Use only inside of [available()]:
-/// ```
-/// if (serial::available() > 0) {
+///```
+/// use arduboy_rust::prelude::*;
+/// if serial::available() > 0 {
 ///     // read the incoming byte:
-///     let incoming_byte: i16 = Serial::read();
+///     let incoming_byte: i16 = serial::read();
 ///
 ///     // say what you got:
 ///     serial::print("I received: ");
@@ -89,23 +93,24 @@ pub fn read() -> i16 {
 ///
 /// Use only inside of [available()]:
 /// ```
-/// if (Serial::available() > 0) {
+/// use arduboy_rust::prelude::*;
+/// if serial::available() > 0 {
 ///     // read the incoming byte:
-///     let incomingByte: &str = Serial::read_as_utf8_str();
+///     let incoming_byte: &str = serial::read_as_utf8_str();
 ///
 ///     // say what you got:
-///     Serial::print("I received: ");
-///     Serial::println(incomingByte);
+///     serial::print("I received: ");
+///     serial::println(incoming_byte);
 /// }
 /// ```
 /// ### Returns
 ///
 ///The first byte of incoming serial data available (or -1 if no data is available). Data type: &str.
 pub fn read_as_utf8_str() -> &'static str {
-    let intcoming_byte = unsafe { serial_read() };
+    let incoming_byte = unsafe { serial_read() };
     static mut L: [u8; 2] = [0, 0];
     unsafe {
-        L[0] = intcoming_byte as u8;
+        L[0] = incoming_byte as u8;
     }
     unsafe { core::str::from_utf8(&L).unwrap() }
 }
@@ -113,13 +118,14 @@ pub fn read_as_utf8_str() -> &'static str {
 /// Get the number of bytes (characters) available for reading from the serial port. This is data that’s already arrived and stored in the serial receive buffer (which holds 64 bytes).
 /// ### Example
 /// ```
-/// if (Serial::available() > 0) {
+/// use arduboy_rust::prelude::*;
+/// if serial::available() > 0 {
 ///     // read the incoming byte:
-///     incomingByte = Serial::read();
+///     let incoming_byte = serial::read();
 ///
 ///     // say what you got:
-///     Serial::print("I received: ");
-///     Serial::println(incomingByte);
+///     serial::print("I received: ");
+///     serial::println(incoming_byte);
 /// }
 /// ```
 pub fn available() -> i16 {
@@ -218,7 +224,7 @@ impl Serialprintlnable for &str {
 
     fn default_parameters() -> Self::Parameters {}
 }
-impl<const N: usize> Serialprintlnable for crate::heapless::String<N> {
+impl<const N: usize> Serialprintlnable for heapless::String<N> {
     type Parameters = ();
 
     fn println_2(self, _params: Self::Parameters) {
@@ -361,7 +367,7 @@ impl Serialprintable for &str {
 
     fn default_parameters() -> Self::Parameters {}
 }
-impl<const N: usize> Serialprintable for crate::heapless::String<N> {
+impl<const N: usize> Serialprintable for heapless::String<N> {
     type Parameters = ();
 
     fn print_2(self, _params: Self::Parameters) {
