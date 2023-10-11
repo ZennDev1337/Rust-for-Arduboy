@@ -1,0 +1,9 @@
+Libraries = [
+    "Arduboy2",
+    # "ArduboyTones",
+    "ArduboyFX",
+    # "ArdVoice",
+    # "Serial",
+    "EEPROM",
+    "Arduino",
+]

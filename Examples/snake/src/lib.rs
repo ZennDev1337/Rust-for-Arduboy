@@ -257,11 +257,8 @@ pub unsafe extern "C" fn loop_() {
         State::Win => (),
         State::Pause => {
             let msg = "[ Break ]\0";
-            let l = msg.len() as u8 * FONT_SIZE / 2;
-            arduboy.set_cursor(
-                ((WIDTH / 2) as u16 - l as u16).try_into().unwrap(),
-                ((HEIGHT / 2) as u16).try_into().unwrap(),
-            );
+            let l = msg.len() as i16 * FONT_WIDTH / 2;
+            arduboy.set_cursor(WIDTH / 2 - l, HEIGHT / 2);
             snake.render();
             snake.boarder();
             arduboy.print(msg);

@@ -24,7 +24,7 @@ static mut s: Scorebord = Scorebord {
 pub unsafe extern "C" fn setup() {
     // put your setup code here, to run once:
     arduboy.begin();
-    arduboy.set_frame_rate(1);
+    arduboy.set_frame_rate(30);
     arduboy.clear();
     e.init(&mut s);
 }
@@ -54,11 +54,9 @@ pub unsafe extern "C" fn loop_() {
     if s.player1 == 5 {
         arduboy.print(f!(b"lolxd\0"));
         s.text = "it works!!!\0";
-        e.put(&s)
     } else {
         arduboy.print(f!(b"nope\0"));
         s.text = "lol\0";
-        e.put(&s)
     }
 
     //e.get(&mut s);

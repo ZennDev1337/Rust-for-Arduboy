@@ -25,7 +25,7 @@ git clone https://github.com/ZennDev1337/Rust-for-Arduboy
 
 Install [PlatformIO Core](https://docs.platformio.org/en/latest/core/installation/methods/pypi.html) on your system.
 I recommend the pip install if you don't want to configure a new path variable for pio.
-Otherwise you will know how to do that.
+Otherwise, you will know how to do that.
 
 The rust-analyzer will complain about a missing test crate to fix this
 add the following rule to the lsp settings :
@@ -64,10 +64,11 @@ I will from time to time also upload my projects to the Example folder so you ha
 
 ## Usage of the run tool
 
-**Both run scripts** (only works if you use the given folder structure)
+**The run script** only work if you use the given folder structure!
 
 requirements:
 
+- Python3.11 or higher
 - [PlatformIO Core](https://docs.platformio.org/en/latest/core/installation/methods/pypi.html) must be installed
 - The Arduboy must be plugged in
 - You are in the root directory of this project
@@ -80,13 +81,28 @@ To upload your own game to the Arduboy use:
 Linux:
 
 ```bash
-./run <Project_Name>
+python ./run.py <Project_Name>
 ```
 
 Windows:
 
 ```ps1
-.\run.bat <Project_Name>
+python .\run.py <Project_Name>
+```
+
+All commands:
+
+```
+Usage build and upload Project:
+  run.py list                     Get a list of all Projects
+  run.py new <Project-Name>       Create a new game in the Project folder
+  run.py <Project-Name>           For uploading a game
+
+Usage FX-Data build and upload:
+  run.py fxbuild <Project-Name>   Build your fxdata
+  run.py fxupload <Project-Name>  Upload your fxdata
+  run.py fxall <Project-Name>     Build and Upload your fxdata
+                                  and the game in one step
 ```
 
 ## List of all the Example Games:
@@ -135,6 +151,7 @@ run Commands:
 ```
 |Project_Dir
 ->fxdata
+  ->fxdata.txt
 ->src
   ->lib.rs
 >cargo.toml
@@ -157,17 +174,17 @@ run Commands:
 Linux:
 
 ```bash
-./run fxbuild <Project_Name>
-./run fxupload <Project_Name>
-./run fxall <Project_Name>
+python ./run.py fxbuild <Project_Name>
+python ./run.py fxupload <Project_Name>
+python ./run.py fxall <Project_Name>
 ```
 
 Windows:
 
 ```ps1
-.\run.bat fxbuild <Project_Name>
-.\run.bat fxupload <Project_Name>
-.\run.bat fxall <Project_Name>
+python .\run.py fxbuild <Project_Name>
+python .\run.py fxupload <Project_Name>
+python .\run.py fxall <Project_Name>
 ```
 
 ### Convert the fxdata.h file to Rust
@@ -178,76 +195,20 @@ Windows:
 
 In the root of the repo use the command:
 
-(Don't use "-" in the name because of a cargo feature that takes the "-" and mixes sometimes with a "\_". You will have
-some weird behavior with the run tool.)
-
 ```bash
-cargo new --vcs=none --lib ./Project/newproject
-```
-
-Then open the Cargo.toml in your new project and add the following dependencies and settings:
-
-```toml
-[lib]
-crate-type = ["staticlib"]
-
-[dependencies]
-
-arduboy-rust = { path = "../../arduboy-rust" }
-```
-
-Next jump in your lib.rs file and add the following:
-
-```rust
-#![no_std]
-#![allow(non_upper_case_globals)]
-
-//Include the Arduboy Library
-#[allow(unused_imports)]
-use arduboy_rust::prelude::*;
-
-#[allow(dead_code)]
-const arduboy: Arduboy2 = Arduboy2::new();
-
-// Progmem data
-
-// dynamic ram variables
-
-// The setup() function runs once when you turn your Arduboy on
-#[no_mangle]
-pub unsafe extern "C" fn setup() {
-    // put your setup code here, to run once:
-}
-
-// The loop() function repeats forever after setup() is done
-#[no_mangle]
-#[export_name = "loop"]
-pub unsafe extern "C" fn loop_() {
-    // put your main code here, to run repeatedly:
-}
-```
-
-Now the last step. Go in the Cargo.toml in the root directory and add your project:
-
-```toml
-[workspace]
-members = [
-    #{All other Projects...}
-    "Project/newproject",
-]
-resolver = "2"
+python ./run.py new <Project-Name>
 ```
 
 To run and upload your game use the run tool
 
 ```bash
 # Linux
-./run newproject
+python ./run.py <Project-Name>
 ```
 
 ```ps1
 # Windows
-.\run.bat newproject
+python .\run.py <Project-Name>
 ```
 
 ## Creating and building an Arduboy crate [Outdated]

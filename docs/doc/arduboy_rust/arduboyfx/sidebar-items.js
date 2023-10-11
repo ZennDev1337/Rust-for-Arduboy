@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["fx","fx_consts"],"trait":["DrawableNumber","DrawableString"]};

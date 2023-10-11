@@ -4,7 +4,7 @@
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
-use arduboyfx::fx_consts::*;
+use fx_consts::*;
 const arduboy: Arduboy2 = Arduboy2::new();
 
 //FX Data

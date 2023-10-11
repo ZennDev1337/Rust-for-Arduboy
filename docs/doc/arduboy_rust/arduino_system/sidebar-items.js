@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["arduino","c","eeprom","progmem","serial_print"]};

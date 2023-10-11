@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"macro":["f","get_ardvoice_tone_addr","get_sprite_addr","get_string_addr","get_tones_addr","progmem"],"struct":["Pstring"]};
