@@ -108,7 +108,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "eeprom-byte"
+name = "eeprom_byte"
 version = "0.1.0"
 dependencies = [
  "arduboy-rust",

@@ -1,8 +1,9 @@
+
 [workspace]
 members = [
     "arduboy-rust",
     "Examples/Arduboy-Tutorials/eeprom",
-    "Examples/Arduboy-Tutorials/eeprom-byte",
+    "Examples/Arduboy-Tutorials/eeprom_byte",
     "Examples/Arduboy-Tutorials/progmem",
     "Examples/Arduboy-Tutorials/tone",
     "Examples/Arduboy-Tutorials/serial",

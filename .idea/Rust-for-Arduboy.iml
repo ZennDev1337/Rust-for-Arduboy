@@ -9,7 +9,6 @@
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo6/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo7/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/demo9/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/eeprom-byte/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/eeprom/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/progmem/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/serial/src" isTestSource="false" />
@@ -26,6 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxdrawframes/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxhelloworld/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxloadgamestate/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/eeprom_byte/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

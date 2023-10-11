@@ -1,4 +1,4 @@
-use crate::prelude::Pstring;
+use crate::arduino_system::progmem::Pstring;
 use core::ffi::c_int;
 
 #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
@@ -28,7 +28,7 @@ impl Printable for i16 {
 
     fn print_2(self, params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_int(self, params as c_int);
+            super::binding::print_int(self, params as c_int);
         }
     }
 
@@ -42,7 +42,7 @@ impl Printable for u16 {
 
     fn print_2(self, params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_unsigned_int(self, params as c_int);
+            super::binding::print_unsigned_int(self, params as c_int);
         }
     }
 
@@ -56,7 +56,7 @@ impl Printable for i32 {
 
     fn print_2(self, params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_long(self, params as c_int);
+            super::binding::print_long(self, params as c_int);
         }
     }
 
@@ -70,7 +70,7 @@ impl Printable for u32 {
 
     fn print_2(self, params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_unsigned_long(self, params as c_int);
+            super::binding::print_unsigned_long(self, params as c_int);
         }
     }
 
@@ -84,7 +84,7 @@ impl Printable for &[u8] {
 
     fn print_2(self, _params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_chars(self as *const [u8] as *const i8);
+            super::binding::print_chars(self as *const [u8] as *const i8);
         }
     }
 
@@ -96,7 +96,7 @@ impl Printable for &str {
 
     fn print_2(self, _params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_chars(self.as_bytes() as *const [u8] as *const i8);
+            super::binding::print_chars(self.as_bytes() as *const [u8] as *const i8);
         }
     }
 
@@ -107,7 +107,7 @@ impl<const N: usize> Printable for crate::heapless::String<N> {
 
     fn print_2(self, _params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_chars(self.as_bytes() as *const [u8] as *const i8);
+            super::binding::print_chars(self.as_bytes() as *const [u8] as *const i8);
         }
     }
 
@@ -119,7 +119,7 @@ impl Printable for Pstring {
 
     fn print_2(self, _params: Self::Parameters) {
         unsafe {
-            crate::library::arduboy2::print_chars_progmem(self.pointer);
+            super::binding::print_chars_progmem(self.pointer);
         }
     }
 

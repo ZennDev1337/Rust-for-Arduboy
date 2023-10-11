@@ -1,5 +1,5 @@
+use crate::libraries::arduino_system::progmem::Pstring;
 use core::ffi::{c_char, c_uchar, c_ulong};
-use crate::library::progmem::Pstring;
 
 pub trait DrawableString
 where

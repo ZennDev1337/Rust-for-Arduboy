@@ -1,13 +1,9 @@
-//!This is the Module to interact in a save way with the ArduboyTones C++ library.
-//!
-//! You will need to uncomment the ArduboyTones_Library in the import_config.h file.
-pub mod tones_pitch;
-
 use core::ffi::{c_uchar, c_uint, c_ulong};
 
 ///This is the struct to interact in a save way with the ArduboyTones C++ library.
 ///
 /// You will need to uncomment the ArduboyTones_Library in the import_config.h file.
+
 pub struct ArduboyTones {}
 impl ArduboyTones {
     ///Get a new instance of [ArduboyTones]
@@ -71,9 +67,9 @@ impl ArduboyTones {
     /// Example:
     /// ```
     /// use arduboy_rust::prelude::*;
-    /// const sound:ArduboyTones=ArduboyTones::new();
+    /// const sound: ArduboyTones = ArduboyTones::new();
     /// progmem!(
-    ///     static sound1:[u8;_]=[220,1000, 0,250, 440,500, 880,2000,TONES_END];
+    ///     static sound1: [u8; _] = [220, 1000, 0, 250, 440, 500, 880, 2000, TONES_END];
     /// );
     ///
     /// sound.tones(get_tones_addr!(sound1));

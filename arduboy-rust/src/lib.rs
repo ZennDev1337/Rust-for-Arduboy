@@ -27,15 +27,11 @@
 
 extern crate panic_halt;
 pub mod hardware;
-mod library;
+mod libraries;
 pub mod prelude;
-mod print;
+
 #[doc(inline)]
 pub extern crate heapless;
-pub use crate::library::arduboy2::{self, Arduboy2, Color, FONT_SIZE, HEIGHT, WIDTH};
-pub use crate::library::arduboy_tones::{self, ArduboyTones};
-pub use crate::library::ardvoice::{self, ArdVoice};
-pub use crate::library::eeprom::{EEPROM, EEPROMBYTE};
-pub use crate::library::{arduino, c, sprites};
-pub use crate::library::arduboyfx::{self};
-pub mod serial_print;
+pub use crate::libraries::{
+    arduboy2_library, arduboy_tones_library, arduboyfx_library, arduino_system, ardvoice_library,
+};

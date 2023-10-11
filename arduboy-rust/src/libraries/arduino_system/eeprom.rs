@@ -1,3 +1,4 @@
+//!This is the module to interact with the eeprom memory
 use core::ffi::{c_int, c_uchar};
 
 pub const EEPROM_STORAGE_SPACE_START: i16 = 16;

@@ -1,3 +1,4 @@
+//!This is the module to interact with the progmem memory
 #![allow(unused_imports)]
 /// Create a space for Progmem variable
 /// ## Example

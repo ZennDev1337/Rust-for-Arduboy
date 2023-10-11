@@ -5,23 +5,19 @@
 //! use arduboy_rust::prelude::*;
 //! ```
 #[doc(inline)]
-pub use crate::hardware::buttons::{self, *};
+pub use crate::hardware::buttons::*;
 #[doc(inline)]
-pub use crate::hardware::led::{self, *};
+pub use crate::hardware::led::*;
 pub use crate::heapless::{LinearMap, String, Vec};
-pub use crate::library::arduboy2::{self, *};
-pub use crate::library::arduboy_tones::{self, ArduboyTones};
-pub use crate::library::arduboyfx::{self, fx};
-pub use crate::library::arduino::*;
-pub use crate::library::ardvoice::{self, ArdVoice};
-pub use crate::library::c::*;
-pub use crate::library::eeprom::{EEPROM, EEPROMBYTE, EEPROMBYTECHECKLESS};
-#[doc(hidden)]
-pub use crate::library::progmem::Pstring;
-pub use crate::library::sprites;
-pub use crate::print::*;
-#[doc(inline)]
-pub use crate::serial_print as serial;
+pub use crate::libraries::arduboy2_library::*;
+pub use crate::libraries::arduboy_tones_library::*;
+pub use crate::libraries::arduboyfx_library::*;
+pub use crate::libraries::arduino_system::arduino::*;
+pub use crate::libraries::arduino_system::c::*;
+pub use crate::libraries::arduino_system::eeprom::*;
+pub use crate::libraries::arduino_system::progmem::*;
+pub use crate::libraries::arduino_system::serial_print as serial;
+pub use crate::libraries::ardvoice_library::ArdVoice;
 pub use crate::{
     f, get_ardvoice_tone_addr, get_sprite_addr, get_string_addr, get_tones_addr, progmem,
 };

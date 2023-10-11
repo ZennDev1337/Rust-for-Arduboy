@@ -4,7 +4,7 @@
 //Initialize the arduboy object
 #[allow(unused_imports)]
 use arduboy_rust::prelude::*;
-use arduboy_tones::tones_pitch::*;
+use tones_pitch::*;
 const arduboy: Arduboy2 = Arduboy2::new();
 const sound: ArduboyTones = ArduboyTones::new();
 const NDUR: u16 = 100;
@@ -346,7 +346,9 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tone(1000, 0);
     arduboy.clear();
-    arduboy.print(f!(b"tone(1000)\n\nB: no_tone()\n   delay(1000)\n   break\0"));
+    arduboy.print(f!(
+        b"tone(1000)\n\nB: no_tone()\n   delay(1000)\n   break\0"
+    ));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B_BUTTON) {
@@ -381,7 +383,9 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tone3(NOTE_C7H, 500, NOTE_REST, 1000, NOTE_C6, 5000);
     arduboy.clear();
-    arduboy.print(f!(b"tone(C7H,500,\n     REST,1000,\n     C6,6000)\n\nB: no_tone(), break\0"));
+    arduboy.print(f!(
+        b"tone(C7H,500,\n     REST,1000,\n     C6,6000)\n\nB: no_tone(), break\0"
+    ));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B_BUTTON) {
@@ -393,7 +397,9 @@ pub unsafe extern "C" fn loop_() {
 
     sound.tones(get_tones_addr!(allNotes));
     arduboy.clear();
-    arduboy.print(f!(b"tones(allNotes)\n\nA: no_tone(), again\nUP: again\nB: break\0"));
+    arduboy.print(f!(
+        b"tones(allNotes)\n\nA: no_tone(), again\nUP: again\nB: break\0"
+    ));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(A_BUTTON) {
@@ -446,7 +452,9 @@ pub unsafe extern "C" fn loop_() {
     sound.volume_mode(VOLUME_ALWAYS_NORMAL);
     sound.tones(get_tones_addr!(sound1));
     arduboy.clear();
-    arduboy.print(f!(b"volume_mode(NORMAL)\ntones(sound1)\n\nB: no_tone(), break\0"));
+    arduboy.print(f!(
+        b"volume_mode(NORMAL)\ntones(sound1)\n\nB: no_tone(), break\0"
+    ));
     while sound.playing() {
         move_circle();
         if arduboy.pressed(B) {

@@ -11,7 +11,8 @@ const arduboy: Arduboy2 = Arduboy2::new();
 // Setup eeprom memory
 static mut eeprom: EEPROMBYTE = EEPROMBYTE::new(10);
 
-static mut count: u8 = 0;
+static mut count_in_ram: u8 = 0;
+static mut count_in_eeprom: u8 = 0;
 
 // The setup() function runs once when you turn your Arduboy on
 #[no_mangle]
@@ -33,24 +34,23 @@ pub unsafe extern "C" fn loop_() {
     arduboy.clear();
     arduboy.poll_buttons();
     if arduboy.just_pressed(UP) {
-        count += 1;
+        count_in_ram += 1;
     }
     if arduboy.just_pressed(DOWN) {
-        count -= 1;
+        count_in_ram -= 1;
     }
     if arduboy.just_pressed(A) {
-        eeprom.update(count)
+        eeprom.update(count_in_ram);
+        count_in_eeprom = eeprom.read()
     }
     arduboy.set_cursor(0, 0);
-    arduboy.print(count as u16);
+    arduboy.print(f!(b"Up/Down: Edit InRam\n\nA: Save to EEPROM\0"));
 
-    arduboy.set_cursor(0, 30);
-    arduboy.print(f!(b"Counter:\0"));
-    arduboy.print(count as u16);
-    arduboy.set_cursor(0, 40);
-    arduboy.print(f!(b"eeprom:\0"));
-
-    //arduboy.print(eeprom.read() as u16);
-
+    arduboy.set_cursor(0, HEIGHT - FONT_HEIGHT);
+    arduboy.print(f!(b"InRam:\0"));
+    arduboy.print(count_in_ram as u16);
+    arduboy.set_cursor(10 * FONT_WIDTH, HEIGHT - FONT_HEIGHT);
+    arduboy.print(f!(b"EEPROM:\0"));
+    arduboy.print(count_in_eeprom as u16);
     arduboy.display();
 }

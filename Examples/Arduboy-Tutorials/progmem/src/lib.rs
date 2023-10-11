@@ -5,7 +5,7 @@
 //Include the Arduboy Library
 //Initialize the arduboy object
 use arduboy_rust::prelude::*;
-use arduboy_tones::tones_pitch::*;
+use tones_pitch::*;
 const arduboy: Arduboy2 = Arduboy2::new();
 const sound: ArduboyTones = ArduboyTones::new();
 // Progmem data
@@ -106,7 +106,10 @@ pub unsafe extern "C" fn loop_() {
         }
     }
     arduboy.clear();
-    arduboy.set_cursor((WIDTH as i16 / 2) - (text1.len() as i16 * FONT_SIZE as i16 / 2), 10);
+    arduboy.set_cursor(
+        (WIDTH as i16 / 2) - (text1.len() as i16 * FONT_WIDTH / 2),
+        10,
+    );
     arduboy.print(get_string_addr!(text1));
     sprites::draw_override(playerx, playery, get_sprite_addr!(player_sprite1), 0);
     arduboy.display();

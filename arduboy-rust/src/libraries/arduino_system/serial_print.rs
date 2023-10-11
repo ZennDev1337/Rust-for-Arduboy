@@ -1,10 +1,10 @@
 //! This is the Module to interact in a save way with the Arduino Serial C++ library.
 //!
 //! You will need to uncomment the Arduino_Serial_Library in the import_config.h file.
-use crate::prelude::Pstring;
+use crate::arduino_system::progmem::Pstring;
 use core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
 
-use crate::print::Base;
+use crate::libraries::arduboy2_library::print::Base;
 extern "C" {
     #[link_name = "arduino_serial_begin"]
     fn serial_begin(serial: c_ulong);

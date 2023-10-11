@@ -32,7 +32,7 @@ add the following rule to the lsp settings :
 
 ```json
 {
-  "rust-analyzer.checkOnSave.allTargets": false
+    "rust-analyzer.checkOnSave.allTargets": false
 }
 ```
 
@@ -47,7 +47,7 @@ normal Arduboy C project.
 
 You can find the Docs here:
 
-- [arduboy-rust Crate Docs](https://zenndev1337.github.io/Rust-for-Arduboy/)
+-   [arduboy-rust Crate Docs](https://zenndev1337.github.io/Rust-for-Arduboy/)
 
 or you can use the following command to open the arduboy-rust Crate docs locally
 
@@ -68,9 +68,10 @@ I will from time to time also upload my projects to the Example folder so you ha
 
 requirements:
 
-- [PlatformIO Core](https://docs.platformio.org/en/latest/core/installation/methods/pypi.html) must be installed
-- The Arduboy must be plugged in
-- You are in the root directory of this project
+-   Python3.11 or higher
+-   [PlatformIO Core](https://docs.platformio.org/en/latest/core/installation/methods/pypi.html) must be installed
+-   The Arduboy must be plugged in
+-   You are in the root directory of this project
 
 All builded `.hex` files are saved inside of `arduboy-rust/Wrapper-Project/build/<GAMENAME>.hex` after you uploaded them
 to the Arduboy.
@@ -93,30 +94,30 @@ Windows:
 
 ### ZennDev1337 Games
 
-- drboy
+-   drboy
 
 ### Rust Games
 
-- snake
-- rustacean
+-   snake
+-   rustacean
 
 ### The demo games / tutorials from the official Arduboy forum [Rewritten in Rust]
 
-- [Make Your Own Arduboy Game: Part 1 - Setting Up Your Computer](https://community.arduboy.com/t/make-your-own-arduboy-game-part-1-setting-up-your-computer/7924/1)
-- [demo2] [Make Your Own Arduboy Game: Part 2 - Printing Text](https://community.arduboy.com/t/make-your-own-arduboy-game-part-2-printing-text/7925)
-- [demo3] [Make Your Own Arduboy Game: Part 3 - Storing Data & Loops](https://community.arduboy.com/t/make-your-own-arduboy-game-part-3-storing-data-loops/7926)
-- [demo4] [Make Your Own Arduboy Game: Part 4 - Questions & Button Input](https://community.arduboy.com/t/make-your-own-arduboy-game-part-4-questions-button-input/7927)
-- [demo5] [Make Your Own Arduboy Game: Part 5 - Your First Game!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-5-your-first-game/7928)
-- [demo6] [Make Your Own Arduboy Game: Part 6 - Graphics!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-6-graphics/7929)
-  Link for the [ZennDev1337 Tile Converter](https://zenndev1337.github.io/Rust-for-Arduboy/tile-converter.html)
-- [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
-- Prepare for
-  demo9 [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
-- [demo9] [Make Your Own Arduboy Game: Part 9 - Mapping DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-9-mapping-dinosmasher/7931)
-- [eeprom] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
-- [eeprom-byte] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
-- [progmem] Usage of the big 28'000 Bytes flash memory for Bitmaps Sound sequeces and Text.
-- [tone] [ArduboyTonesTest](https://github.com/MLXXXp/ArduboyTones/blob/master/examples/ArduboyTonesTest/ArduboyTonesTest.ino)
+-   [Make Your Own Arduboy Game: Part 1 - Setting Up Your Computer](https://community.arduboy.com/t/make-your-own-arduboy-game-part-1-setting-up-your-computer/7924/1)
+-   [demo2] [Make Your Own Arduboy Game: Part 2 - Printing Text](https://community.arduboy.com/t/make-your-own-arduboy-game-part-2-printing-text/7925)
+-   [demo3] [Make Your Own Arduboy Game: Part 3 - Storing Data & Loops](https://community.arduboy.com/t/make-your-own-arduboy-game-part-3-storing-data-loops/7926)
+-   [demo4] [Make Your Own Arduboy Game: Part 4 - Questions & Button Input](https://community.arduboy.com/t/make-your-own-arduboy-game-part-4-questions-button-input/7927)
+-   [demo5] [Make Your Own Arduboy Game: Part 5 - Your First Game!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-5-your-first-game/7928)
+-   [demo6] [Make Your Own Arduboy Game: Part 6 - Graphics!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-6-graphics/7929)
+    Link for the [ZennDev1337 Tile Converter](https://zenndev1337.github.io/Rust-for-Arduboy/tile-converter.html)
+-   [demo7] [Make Your Own Arduboy Game: Part 7 - Make Pong From Scratch!](https://community.arduboy.com/t/make-your-own-arduboy-game-part-7-make-pong-from-scratch/7930)
+-   Prepare for
+    demo9 [Make Your Own Arduboy Game: Part 8 - Starting DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-8-starting-dinosmasher/7932)
+-   [demo9] [Make Your Own Arduboy Game: Part 9 - Mapping DinoSmasher](https://community.arduboy.com/t/make-your-own-arduboy-game-part-9-mapping-dinosmasher/7931)
+-   [eeprom] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
+-   [eeprom-byte] [Help, I’m struggling with EEPROM!](https://community.arduboy.com/t/help-im-struggling-with-eeprom/7178)
+-   [progmem] Usage of the big 28'000 Bytes flash memory for Bitmaps Sound sequeces and Text.
+-   [tone] [ArduboyTonesTest](https://github.com/MLXXXp/ArduboyTones/blob/master/examples/ArduboyTonesTest/ArduboyTonesTest.ino)
 
 ## Usage of the FX Chip
 
@@ -146,13 +147,13 @@ See the examples in `Examples/ArduboyFX`.
 
 More information:
 
-- [Arduboy-Python-Utilities by MrBlinky](https://github.com/MrBlinky/Arduboy-Python-Utilities)
+-   [Arduboy-Python-Utilities by MrBlinky](https://github.com/MrBlinky/Arduboy-Python-Utilities)
 
 run Commands:
 
-- `fxbuild` is used to build the fxdata.dat file.
-- `fxupload` is used to upload the fxdata.dat file.
-- `fxall` is used to build and upload the fxdata.dat file and build and upload the game all in one step.
+-   `fxbuild` is used to build the fxdata.dat file.
+-   `fxupload` is used to upload the fxdata.dat file.
+-   `fxall` is used to build and upload the fxdata.dat file and build and upload the game all in one step.
 
 Linux:
 
@@ -272,10 +273,10 @@ that inspired me to try Rust on the Arduboy.
 
 You can license it under either one of those licenses:
 
-- Apache License, Version 2.0
-  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
-- MIT license
-  ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+-   Apache License, Version 2.0
+    ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+-   MIT license
+    ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 Whichever you may prefer.
 
