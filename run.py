@@ -7,23 +7,25 @@ import platform
 # Global Params
 param1 = ""
 param2 = ""
-fx_mode=False
-project_list=[]
-parameter_validation_check=False
-project=[]
+fx_mode = False
+project_list = []
+parameter_validation_check = False
+project = []
+
 
 # Functions
 def get_args():
     global param1
     global param2
     global fx_mode
-    if len(sys.argv)==1:
+    if len(sys.argv) == 1:
         help()
-    if len(sys.argv)>1:
+    if len(sys.argv) > 1:
         param1 = sys.argv[1]
-    if len(sys.argv)>2:
+    if len(sys.argv) > 2:
         param2 = sys.argv[2]
-        fx_mode=True
+        fx_mode = True
+
 
 def help():
     print("Usage build and upload Project:")
@@ -38,48 +40,66 @@ def help():
     print("                                  and the game in one step")
     sys.exit()
 
+
 def get_projects():
     global project_list
     with open("Cargo.toml", "rb") as f:
         data = tomllib.load(f)
-        path=data["workspace"]["members"]
+        path = data["workspace"]["members"]
         for p in path:
             name = p.split("/")[-1]
-            if name =="arduboy-rust":
+            if name == "arduboy-rust":
                 continue
-            project=[name,p]
+            project = [name, p]
             project_list.append(project)
+
 
 def validate_args():
     global parameter_validation_check
     global project
     if fx_mode:
         for p in project_list:
-            if param2 in p: 
-                parameter_validation_check=True
+            if param2 in p:
+                parameter_validation_check = True
                 project = p
 
     else:
         for p in project_list:
-            if param1 in p: 
-                parameter_validation_check=True
+            if param1 in p:
+                parameter_validation_check = True
                 project = p
     if not parameter_validation_check:
         help()
 
+
 def execute_options():
-    if param1=="list":
-        group=""
+    if param1 == "list":
+        group = ""
         for p in project_list:
-            if not group==p[1].split("/")[-2]:
-                group=p[1].split("/")[-2]
+            if not group == p[1].split("/")[-2]:
+                group = p[1].split("/")[-2]
                 print(f"\n{group}:")
             print(f"   {p[0]}")
         print("")
         exit()
-    if param1=="new":
+    if param1 == "new":
         create_new_project()
         exit()
+    if param1 == "doc":
+        if platform.system() == "Linux":
+            cmd = "cargo doc -p arduboy-rust; rm -r ./docs/doc/; cp -r ./target/arduboy/doc ./docs/"
+            process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+
+        elif platform.system() == "Windows":
+            cmd = 'cargo doc -p arduboy-rust; rm -r ./docs/doc/; cp -r ./target/arduboy/doc ./docs/'
+            process = subprocess.Popen(["powershell", "-Command", cmd], stdout=subprocess.PIPE)
+        else:
+            sys.exit()
+        for c in iter(lambda: process.stdout.read(1), b""):
+            sys.stdout.buffer.write(c)
+        if process.returncode != 0:
+            sys.exit()
+
 
 def _dumps_value(value):
     if isinstance(value, bool):
@@ -93,6 +113,7 @@ def _dumps_value(value):
     else:
         raise TypeError(f"{type(value).__name__} {value!r} is not supported")
 
+
 def dumps(toml_dict, table=""):
     toml = []
     for key, value in toml_dict.items():
@@ -103,31 +124,32 @@ def dumps(toml_dict, table=""):
             toml.append(f"{key} = {_dumps_value(value)}")
     return "\n".join(toml)
 
+
 def create_new_project():
-    project_name = param2.replace("-","_")
+    project_name = param2.replace("-", "_")
     for p in project_list:
-        if p[0]==project_name:
+        if p[0] == project_name:
             sys.exit()
-    error_code=os.system(f'cargo new --vcs=none --lib ./Project/{project_name}')
-    if error_code>0:
+    error_code = os.system(f'cargo new --vcs=none --lib ./Project/{project_name}')
+    if error_code > 0:
         sys.exit()
     # Edit main Cargo.toml
     with open("Cargo.toml", "rb") as f:
         data = tomllib.load(f)
     data["workspace"]["members"].append(f"Project/{project_name}")
-    with open("Cargo.toml","w") as f:
+    with open("Cargo.toml", "w") as f:
         f.write(dumps(data))
     # Edit new project Cargo.toml
     with open(f"Project/{project_name}/Cargo.toml", "rb") as f:
         data = tomllib.load(f)
-    newdata={}
-    newdata["package"]=data["package"]
-    newdata["lib"]={'crate-type':["staticlib"]}
-    newdata["dependencies"]={"arduboy-rust":{"path":"../../arduboy-rust"}}
-    with open(f"Project/{project_name}/Cargo.toml","w") as f:
+    newdata = {}
+    newdata["package"] = data["package"]
+    newdata["lib"] = {'crate-type': ["staticlib"]}
+    newdata["dependencies"] = {"arduboy-rust": {"path": "../../arduboy-rust"}}
+    with open(f"Project/{project_name}/Cargo.toml", "w") as f:
         f.write(dumps(newdata))
     # Edit lib.rs
-    with open(f"Project/{project_name}/src/lib.rs","w") as f:
+    with open(f"Project/{project_name}/src/lib.rs", "w") as f:
         f.write('''#![no_std]
 #![allow(non_upper_case_globals)]
 
@@ -155,52 +177,57 @@ pub unsafe extern "C" fn loop_() {
     // put your main code here, to run repeatedly:
 }''')
 
+
 def generate_import_h():
     with open(f"{project[1]}/config.toml", "rb") as f:
         data = tomllib.load(f)
-        strings=["#pragma once\n"]
+        strings = ["#pragma once\n"]
         for lib in data["Libraries"]:
             strings.append(f"#define {lib}_Library ;\n")
     f = open("arduboy-rust/Wrapper-Project/src/imports.h", "w")
     f.writelines(strings)
     f.close()
 
+
 def upload_to_arduboy():
     if not fx_mode:
-        game_name=param1
+        game_name = param1
     else:
-        game_name=param2
-    if platform.system()=="Linux":
-        cmd=f"cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm ./lib/libgame.a; cd ../../"
+        game_name = param2
+    if platform.system() == "Linux":
+        cmd = f"cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm ./lib/libgame.a; cd ../../"
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 
-    elif platform.system()=="Windows":
-        cmd=f'cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm lib/libgame.a; cd ../../'
+    elif platform.system() == "Windows":
+        cmd = f'cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm lib/libgame.a; cd ../../'
         process = subprocess.Popen(["powershell", "-Command", cmd], stdout=subprocess.PIPE)
     else:
         sys.exit()
-    for c in iter(lambda: process.stdout.read(1),b""):
+    for c in iter(lambda: process.stdout.read(1), b""):
         sys.stdout.buffer.write(c)
     if process.returncode != 0:
         sys.exit()
 
+
 def fx_build():
-    error_code=os.system(f'python ./Tools/Arduboy-Python-Utilities/fxdata-build.py ./{project[1]}/fxdata/fxdata.txt')
-    if error_code>0:
+    error_code = os.system(f'python ./Tools/Arduboy-Python-Utilities/fxdata-build.py ./{project[1]}/fxdata/fxdata.txt')
+    if error_code > 0:
         sys.exit()
 
+
 def fx_upload():
-    error_code=os.system(f'python ./Tools/Arduboy-Python-Utilities/fxdata-upload.py ./{project[1]}/fxdata/fxdata.bin')
-    if error_code>0:
+    error_code = os.system(f'python ./Tools/Arduboy-Python-Utilities/fxdata-upload.py ./{project[1]}/fxdata/fxdata.bin')
+    if error_code > 0:
         sys.exit()
+
 
 def fx_commands():
     print("")
-    if param1=="fxbuild":
+    if param1 == "fxbuild":
         fx_build()
-    elif param1=="fxupload":
+    elif param1 == "fxupload":
         fx_upload()
-    elif param1=="fxall":
+    elif param1 == "fxall":
         fx_build()
         fx_upload()
         upload_to_arduboy()

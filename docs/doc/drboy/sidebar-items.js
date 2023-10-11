@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["arduboy","sound"],"enum":["GameMode"],"fn":["loop_","setup"],"static":["eeprom","enemies","enemy_count","overlay_1heart","overlay_2hearts","overlay_3hearts","overlay_score","p","player","scorebord","titlescreen","vec_enemies"],"struct":["Enemy","Player","Scoreboard"]};
