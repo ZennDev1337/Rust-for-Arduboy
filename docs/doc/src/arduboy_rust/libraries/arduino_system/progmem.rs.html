@@ -141,11 +141,16 @@
 <a href="#141" id="141">141</a>
 <a href="#142" id="142">142</a>
 <a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//!This is the module to interact with the progmem memory
 </span><span class="attr">#![allow(unused_imports)]
 </span><span class="doccomment">/// Create a space for Progmem variable
 /// ## Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// //for text
 /// progmem!(
 ///     static text: [u8; _] = *b&quot;I&#39;m a PROGMEM Text\0&quot;;
@@ -262,6 +267,9 @@
 /// This automatically saves the given text to the Progmem.
 /// ## Example
 /// ```
+/// use arduboy_rust::prelude::*;
+/// #[allow(non_upper_case_globals)]
+/// const arduboy: Arduboy2 = Arduboy2::new();
 /// arduboy.print(f!(b&quot;Random text to print\0&quot;))
 /// ```
 </span><span class="attr">#[macro_export]

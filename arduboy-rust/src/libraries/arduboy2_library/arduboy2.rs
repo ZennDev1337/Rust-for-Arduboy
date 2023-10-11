@@ -351,7 +351,7 @@ impl Arduboy2 {
     ///- ASCII carriage return (\r, 0x0D, musical eighth note). This character will be ignored.
     ///
     ///
-    /// ## Example
+    /// ### Example
     /// ```
     /// #![allow(non_upper_case_globals)]
     /// use arduboy_rust::prelude::*;

@@ -31,6 +31,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxhelloworld/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/ArduboyFX/fxloadgamestate/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examples/Arduboy-Tutorials/eeprom_byte/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project/game_pro/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

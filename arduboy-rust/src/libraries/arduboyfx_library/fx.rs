@@ -5,10 +5,10 @@
 //! use arduboy_rust::prelude::*;
 //!
 //! fn setup() {
-//!     FX::begin()
+//!     fx::begin()
 //! }
 //! ```
-//! You will need to uncomment the ArduboyFX_Library in the import_config.h file.
+//! You will need to uncomment the ArduboyFX in the config.toml file.
 #![allow(non_upper_case_globals)]
 use super::drawable_number::DrawableNumber;
 use super::drawable_string::DrawableString;

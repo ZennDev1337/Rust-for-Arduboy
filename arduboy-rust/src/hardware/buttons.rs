@@ -46,19 +46,19 @@ pub struct ButtonSet {
 }
 
 impl ButtonSet {
-    pub unsafe fn pressed(&self) -> bool {
-        crate::libraries::arduboy2_library::binding::pressed(self.flag_set)
+    pub fn pressed(&self) -> bool {
+        unsafe { crate::libraries::arduboy2_library::binding::pressed(self.flag_set) }
     }
 
-    pub unsafe fn just_pressed(&self) -> bool {
-        crate::libraries::arduboy2_library::binding::just_pressed(self.flag_set)
+    pub fn just_pressed(&self) -> bool {
+        unsafe { crate::libraries::arduboy2_library::binding::just_pressed(self.flag_set) }
     }
 
-    pub unsafe fn just_released(&self) -> bool {
-        crate::libraries::arduboy2_library::binding::just_released(self.flag_set)
+    pub fn just_released(&self) -> bool {
+        unsafe { crate::libraries::arduboy2_library::binding::just_released(self.flag_set) }
     }
-    pub unsafe fn not_pressed(&self) -> bool {
-        crate::libraries::arduboy2_library::binding::not_pressed(self.flag_set)
+    pub fn not_pressed(&self) -> bool {
+        unsafe { crate::libraries::arduboy2_library::binding::not_pressed(self.flag_set) }
     }
 }
 

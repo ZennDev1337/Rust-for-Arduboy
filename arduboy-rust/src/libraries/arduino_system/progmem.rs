@@ -3,6 +3,7 @@
 /// Create a space for Progmem variable
 /// ## Example
 /// ```
+/// use arduboy_rust::prelude::*;
 /// //for text
 /// progmem!(
 ///     static text: [u8; _] = *b"I'm a PROGMEM Text\0";
@@ -119,6 +120,9 @@ pub(super) use get_string_addr;
 /// This automatically saves the given text to the Progmem.
 /// ## Example
 /// ```
+/// use arduboy_rust::prelude::*;
+/// #[allow(non_upper_case_globals)]
+/// const arduboy: Arduboy2 = Arduboy2::new();
 /// arduboy.print(f!(b"Random text to print\0"))
 /// ```
 #[macro_export]

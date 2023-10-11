@@ -1,6 +1,6 @@
 //! This is the Module to interact in a save way with the Arduino Serial C++ library.
 //!
-//! You will need to uncomment the Arduino_Serial_Library in the import_config.h file.
+//! You will need to uncomment the Serial in the config.toml file.
 use crate::arduino_system::progmem::Pstring;
 use core::ffi::{c_char, c_int, c_long, c_size_t, c_uchar, c_uint, c_ulong};
 

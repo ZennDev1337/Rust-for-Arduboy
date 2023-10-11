@@ -9,9 +9,9 @@
 //! use arduboy_rust::prelude::*;
 //! ```
 //! ### Disable C++ libraries
-//! Inside the root directory is a file named `import_config.h`
+//! Inside the project directory is a file named `config.toml`
 //!
-//! You can disable C++ libraries in the `import_config.h` file.
+//! You can disable C++ libraries in the `config.toml` file.
 //! Just comment the unused library definition out.
 //!
 //! Be careful with disabling libraries because:

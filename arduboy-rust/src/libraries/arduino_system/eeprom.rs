@@ -18,18 +18,21 @@ extern "C" {
 ///This is the struct to store and read structs objects to/from eeprom memory.
 /// ## Example
 /// ```
+/// use arduboy_rust::prelude::*;
+/// #[allow(non_upper_case_globals)]
 /// static e: EEPROM = EEPROM::new(10);
 /// struct Scorebord {
 ///     player1: u16,
 ///     text: &'static str,
 /// }
+/// #[allow(non_upper_case_globals)]
 /// static mut s: Scorebord = Scorebord {
 ///     player1: 0,
 ///     text: "lol\0",
 /// };
 ///
 /// // init inside of the setup function
-/// e.init(&mut s);
+/// unsafe { e.init(&mut s) };
 /// ```
 pub struct EEPROM {
     start_c1: i16,

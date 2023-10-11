@@ -119,19 +119,19 @@
 }
 
 <span class="kw">impl </span>ButtonSet {
-    <span class="kw">pub unsafe fn </span>pressed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">crate</span>::libraries::arduboy2_library::binding::pressed(<span class="self">self</span>.flag_set)
+    <span class="kw">pub fn </span>pressed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ <span class="kw">crate</span>::libraries::arduboy2_library::binding::pressed(<span class="self">self</span>.flag_set) }
     }
 
-    <span class="kw">pub unsafe fn </span>just_pressed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">crate</span>::libraries::arduboy2_library::binding::just_pressed(<span class="self">self</span>.flag_set)
+    <span class="kw">pub fn </span>just_pressed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ <span class="kw">crate</span>::libraries::arduboy2_library::binding::just_pressed(<span class="self">self</span>.flag_set) }
     }
 
-    <span class="kw">pub unsafe fn </span>just_released(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">crate</span>::libraries::arduboy2_library::binding::just_released(<span class="self">self</span>.flag_set)
+    <span class="kw">pub fn </span>just_released(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ <span class="kw">crate</span>::libraries::arduboy2_library::binding::just_released(<span class="self">self</span>.flag_set) }
     }
-    <span class="kw">pub unsafe fn </span>not_pressed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">crate</span>::libraries::arduboy2_library::binding::not_pressed(<span class="self">self</span>.flag_set)
+    <span class="kw">pub fn </span>not_pressed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ <span class="kw">crate</span>::libraries::arduboy2_library::binding::not_pressed(<span class="self">self</span>.flag_set) }
     }
 }
 

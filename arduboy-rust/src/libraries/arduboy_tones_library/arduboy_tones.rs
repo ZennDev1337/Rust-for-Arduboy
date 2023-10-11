@@ -2,7 +2,7 @@ use core::ffi::{c_uchar, c_uint, c_ulong};
 
 ///This is the struct to interact in a save way with the ArduboyTones C++ library.
 ///
-/// You will need to uncomment the ArduboyTones_Library in the import_config.h file.
+/// You will need to uncomment the ArduboyTones in the config.toml file.
 
 pub struct ArduboyTones {}
 impl ArduboyTones {
@@ -10,6 +10,7 @@ impl ArduboyTones {
     /// ## Example
     /// ```
     /// use arduboy_rust::prelude::*;
+    /// #[allow(non_upper_case_globals)]
     /// const sound: ArduboyTones = ArduboyTones::new();
     /// ```
     pub const fn new() -> ArduboyTones {
@@ -67,6 +68,7 @@ impl ArduboyTones {
     /// Example:
     /// ```
     /// use arduboy_rust::prelude::*;
+    /// #[allow(non_upper_case_globals)]
     /// const sound: ArduboyTones = ArduboyTones::new();
     /// progmem!(
     ///     static sound1: [u8; _] = [220, 1000, 0, 250, 440, 500, 880, 2000, TONES_END];
@@ -105,7 +107,7 @@ impl ArduboyTones {
     ///
     /// ```
     /// use arduboy_rust::prelude::*;
-    /// use arduboy_tones::tones_pitch::*;
+    /// use tones_pitch::*;
     /// let sound2: [u16; 9] = [220, 1000, 0, 250, 440, 500, 880, 2000, TONES_END];
     /// ```
     /// Using `tones()`, with the data in PROGMEM, is normally a better

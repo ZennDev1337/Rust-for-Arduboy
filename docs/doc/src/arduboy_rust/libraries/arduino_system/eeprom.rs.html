@@ -165,6 +165,9 @@
 <a href="#165" id="165">165</a>
 <a href="#166" id="166">166</a>
 <a href="#167" id="167">167</a>
+<a href="#168" id="168">168</a>
+<a href="#169" id="169">169</a>
+<a href="#170" id="170">170</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//!This is the module to interact with the eeprom memory
 </span><span class="kw">use </span>core::ffi::{c_int, c_uchar};
 
@@ -185,18 +188,21 @@
 <span class="doccomment">///This is the struct to store and read structs objects to/from eeprom memory.
 /// ## Example
 /// ```
+/// use arduboy_rust::prelude::*;
+/// #[allow(non_upper_case_globals)]
 /// static e: EEPROM = EEPROM::new(10);
 /// struct Scorebord {
 ///     player1: u16,
 ///     text: &amp;&#39;static str,
 /// }
+/// #[allow(non_upper_case_globals)]
 /// static mut s: Scorebord = Scorebord {
 ///     player1: 0,
 ///     text: &quot;lol\0&quot;,
 /// };
 ///
 /// // init inside of the setup function
-/// e.init(&amp;mut s);
+/// unsafe { e.init(&amp;mut s) };
 /// ```
 </span><span class="kw">pub struct </span>EEPROM {
     start_c1: i16,
