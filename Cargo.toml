@@ -1,29 +1,3 @@
-
 [workspace]
-members = [
-    "arduboy-rust",
-    "Examples/Arduboy-Tutorials/eeprom",
-    "Examples/Arduboy-Tutorials/eeprom_byte",
-    "Examples/Arduboy-Tutorials/progmem",
-    "Examples/Arduboy-Tutorials/tone",
-    "Examples/Arduboy-Tutorials/serial",
-    "Examples/Arduboy-Tutorials/demo2",
-    "Examples/Arduboy-Tutorials/demo3",
-    "Examples/Arduboy-Tutorials/demo4",
-    "Examples/Arduboy-Tutorials/demo5",
-    "Examples/Arduboy-Tutorials/demo6",
-    "Examples/Arduboy-Tutorials/demo7",
-    "Examples/Arduboy-Tutorials/demo9",
-    "Examples/ArduboyFX/fxbasicexample",
-    "Examples/ArduboyFX/fxchompies",
-    "Examples/ArduboyFX/fxdrawballs",
-    "Examples/ArduboyFX/fxdrawframes",
-    "Examples/ArduboyFX/fxhelloworld",
-    "Examples/ArduboyFX/fxloadgamestate",
-    "Examples/drboy",
-    "Examples/ardvoice",
-    "Examples/rustacean",
-    "Examples/snake",
-    "Project/game",
-]
+members = ["arduboy-rust", "Examples/Arduboy-Tutorials/eeprom", "Examples/Arduboy-Tutorials/eeprom_byte", "Examples/Arduboy-Tutorials/progmem", "Examples/Arduboy-Tutorials/tone", "Examples/Arduboy-Tutorials/serial", "Examples/Arduboy-Tutorials/demo2", "Examples/Arduboy-Tutorials/demo3", "Examples/Arduboy-Tutorials/demo4", "Examples/Arduboy-Tutorials/demo5", "Examples/Arduboy-Tutorials/demo6", "Examples/Arduboy-Tutorials/demo7", "Examples/Arduboy-Tutorials/demo9", "Examples/ArduboyFX/fxbasicexample", "Examples/ArduboyFX/fxchompies", "Examples/ArduboyFX/fxdrawballs", "Examples/ArduboyFX/fxdrawframes", "Examples/ArduboyFX/fxhelloworld", "Examples/ArduboyFX/fxloadgamestate", "Examples/drboy", "Examples/ardvoice", "Examples/rustacean", "Examples/snake", "Project/game"]
 resolver = "2"

@@ -1,6 +1,6 @@
 Libraries = [
     "Arduboy2",
-    "ArduboyTones",
+    #"ArduboyTones",
     #"ArduboyFX",
     #"ArdVoice",
     #"Serial",

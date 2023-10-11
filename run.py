@@ -176,6 +176,17 @@ pub unsafe extern "C" fn setup() {
 pub unsafe extern "C" fn loop_() {
     // put your main code here, to run repeatedly:
 }''')
+    with open(f"Project/{project_name}/config.toml", "w") as f:
+        data = '''Libraries = [
+    "Arduboy2",
+    #"ArduboyTones",
+    #"ArduboyFX",
+    #"ArdVoice",
+    #"Serial",
+    "EEPROM",
+    "Arduino",
+]'''
+        f.writelines(data)
 
 
 def generate_import_h():
