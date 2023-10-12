@@ -81,10 +81,10 @@ def execute_options():
                 print(f"\n{group}:")
             print(f"   {p[0]}")
         print("")
-        exit()
+        sys.exit(0)
     if param1 == "new":
         create_new_project()
-        exit()
+        sys.exit(0)
     if param1 == "doc":
         if platform.system() == "Linux":
             cmd = "cargo doc -p arduboy-rust; rm -r ./docs/doc/; cp -r ./target/arduboy/doc ./docs/"
@@ -94,11 +94,11 @@ def execute_options():
             cmd = 'cargo doc -p arduboy-rust; rm -r ./docs/doc/; cp -r ./target/arduboy/doc ./docs/'
             process = subprocess.Popen(["powershell", "-Command", cmd], stdout=subprocess.PIPE)
         else:
-            sys.exit()
+            sys.exit(1)
         for c in iter(lambda: process.stdout.read(1), b""):
             sys.stdout.buffer.write(c)
         if process.returncode != 0:
-            sys.exit()
+            sys.exit(1)
 
 
 def _dumps_value(value):
@@ -129,10 +129,10 @@ def create_new_project():
     project_name = param2.replace("-", "_")
     for p in project_list:
         if p[0] == project_name:
-            sys.exit()
+            sys.exit(1)
     error_code = os.system(f'cargo new --vcs=none --lib ./Project/{project_name}')
     if error_code > 0:
-        sys.exit()
+        sys.exit(1)
     # Edit main Cargo.toml
     with open("Cargo.toml", "rb") as f:
         data = tomllib.load(f)
@@ -213,23 +213,23 @@ def upload_to_arduboy():
         cmd = f'cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm lib/libgame.a; cd ../../'
         process = subprocess.Popen(["powershell", "-Command", cmd], stdout=subprocess.PIPE)
     else:
-        sys.exit()
+        sys.exit(1)
     for c in iter(lambda: process.stdout.read(1), b""):
         sys.stdout.buffer.write(c)
     if process.returncode != 0:
-        sys.exit()
+        sys.exit(1)
 
 
 def fx_build():
     error_code = os.system(f'python ./Tools/Arduboy-Python-Utilities/fxdata-build.py ./{project[1]}/fxdata/fxdata.txt')
     if error_code > 0:
-        sys.exit()
+        sys.exit(1)
 
 
 def fx_upload():
     error_code = os.system(f'python ./Tools/Arduboy-Python-Utilities/fxdata-upload.py ./{project[1]}/fxdata/fxdata.bin')
     if error_code > 0:
-        sys.exit()
+        sys.exit(1)
 
 
 def fx_commands():
