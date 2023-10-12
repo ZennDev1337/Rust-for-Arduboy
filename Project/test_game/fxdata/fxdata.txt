@@ -1,1 +1,1 @@
-image_t FX_DATA_TILES   = "../assets/player_8x8.png"
+image_t FX_PLAYER   = "../assets/player_8x8.png"
