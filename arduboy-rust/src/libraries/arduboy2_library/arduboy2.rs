@@ -665,3 +665,30 @@ impl Arduboy2 {
         unsafe { arduboy_exit_to_bootloader() }
     }
 }
+
+impl ButtonSet {
+    pub fn pressed(&self) -> bool {
+        unsafe { pressed(self.flag_set) }
+    }
+
+    pub fn just_pressed(&self) -> bool {
+        unsafe { just_pressed(self.flag_set) }
+    }
+
+    pub fn just_released(&self) -> bool {
+        unsafe { just_released(self.flag_set) }
+    }
+    pub fn not_pressed(&self) -> bool {
+        unsafe { not_pressed(self.flag_set) }
+    }
+}
+
+impl core::ops::BitOr for ButtonSet {
+    type Output = Self;
+
+    fn bitor(self, other: Self) -> Self {
+        Self {
+            flag_set: self.flag_set | other.flag_set,
+        }
+    }
+}

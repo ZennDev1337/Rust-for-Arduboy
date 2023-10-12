@@ -4,7 +4,7 @@
 #[doc(hidden)]
 pub mod arduboy2;
 #[doc(hidden)]
-pub mod binding;
+mod binding;
 #[doc(hidden)]
 pub mod print;
 

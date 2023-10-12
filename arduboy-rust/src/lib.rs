@@ -27,7 +27,8 @@
 
 extern crate panic_halt;
 pub mod hardware;
-mod libraries;
+#[doc(hidden)]
+pub mod libraries;
 pub mod prelude;
 
 #[doc(inline)]

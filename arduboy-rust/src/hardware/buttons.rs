@@ -44,30 +44,3 @@ pub const B_BUTTON: ButtonSet = B;
 pub struct ButtonSet {
     pub flag_set: u8,
 }
-
-impl ButtonSet {
-    pub fn pressed(&self) -> bool {
-        unsafe { crate::libraries::arduboy2_library::binding::pressed(self.flag_set) }
-    }
-
-    pub fn just_pressed(&self) -> bool {
-        unsafe { crate::libraries::arduboy2_library::binding::just_pressed(self.flag_set) }
-    }
-
-    pub fn just_released(&self) -> bool {
-        unsafe { crate::libraries::arduboy2_library::binding::just_released(self.flag_set) }
-    }
-    pub fn not_pressed(&self) -> bool {
-        unsafe { crate::libraries::arduboy2_library::binding::not_pressed(self.flag_set) }
-    }
-}
-
-impl core::ops::BitOr for ButtonSet {
-    type Output = Self;
-
-    fn bitor(self, other: Self) -> Self {
-        Self {
-            flag_set: self.flag_set | other.flag_set,
-        }
-    }
-}

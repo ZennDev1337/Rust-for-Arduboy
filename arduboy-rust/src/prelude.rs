@@ -9,7 +9,8 @@ pub use crate::hardware::buttons::*;
 #[doc(inline)]
 pub use crate::hardware::led::*;
 pub use crate::heapless::{LinearMap, String, Vec};
-pub use crate::libraries::arduboy2_library::*;
+pub use crate::libraries::arduboy2_library::arduboy2::*;
+pub use crate::libraries::arduboy2_library::{print, sprites};
 pub use crate::libraries::arduboy_tones_library::*;
 pub use crate::libraries::arduboyfx_library::*;
 pub use crate::libraries::arduino_system::arduino::*;
