@@ -1,0 +1,1 @@
+image_t FX_DATA_TILES   = "../assets/player_8x8.png"

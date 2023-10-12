@@ -3,9 +3,9 @@
 
 //Include the Arduboy Library
 //Initialize the arduboy object
+
 use arduboy_rust::prelude::*;
 use fx_consts::{dbmMasked, dbmNormal};
-
 const arduboy: Arduboy2 = Arduboy2::new();
 
 // FX Data
