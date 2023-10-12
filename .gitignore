@@ -5,3 +5,4 @@ arduboy-rust/Wrapper-Project/.pio
 arduboy-rust/Wrapper-Project/lib/*.a
 arduboy-rust/Wrapper-Project/build/*.hex
 **/imports.h
+uploader.exe
