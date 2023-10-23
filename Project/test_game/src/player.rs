@@ -8,7 +8,9 @@ use arduboy_rust::prelude::*;
 pub struct Player {
     posx: i16,
     posy: i16,
+    left: bool,
     sprite: Sprite,
+    sprite_left: Sprite,
     animation_state_machine: AnimationStateMachine,
 }
 impl Character for Player {
@@ -40,21 +42,33 @@ impl Character for Player {
         self.animation_state_machine.set_animation_state(arduboy);
     }
     fn draw(&self) {
-        fx::draw_bitmap(
-            self.posx,
-            self.posy,
-            self.sprite.Sprite,
-            self.sprite.frame,
-            self.sprite.mode,
-        )
+        if self.left {
+            fx::draw_bitmap(
+                self.posx,
+                self.posy,
+                self.sprite_left.Sprite,
+                self.sprite.frame,
+                self.sprite.mode,
+            )
+        } else {
+            fx::draw_bitmap(
+                self.posx,
+                self.posy,
+                self.sprite.Sprite,
+                self.sprite.frame,
+                self.sprite.mode,
+            )
+        }
     }
 }
 impl Player {
-    pub const fn new(Sprite: u32, Width: u16, Height: u16) -> Self {
+    pub const fn new(Sprite: u32, Sprite_Left: u32, Width: u16, Height: u16) -> Self {
         Player {
             posx: 0,
             posy: 0,
+            left: false,
             sprite: Sprite::new(Sprite, Width, Height),
+            sprite_left: Sprite::new(Sprite_Left, Width, Height),
             animation_state_machine: AnimationStateMachine::new(),
         }
     }
@@ -74,11 +88,11 @@ impl Player {
         }
         if LEFT.pressed() {
             self.posx -= 1;
-            self.sprite.mode = dbmMasked
+            self.left = true;
         }
         if RIGHT.pressed() {
             self.posx += 1;
-            self.sprite.mode = dbmMasked
+            self.left = false;
         }
     }
 }

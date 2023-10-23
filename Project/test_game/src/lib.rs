@@ -20,7 +20,7 @@ const arduboy: Arduboy2 = Arduboy2::new();
 
 // dynamic ram variables
 
-static mut player: Player = Player::new(FX_PLAYER, 8, 8);
+static mut player: Player = Player::new(FX_PLAYER, FX_PLAYER_LEFT, 8, 8);
 
 // The setup() function runs once when you turn your Arduboy on
 #[no_mangle]

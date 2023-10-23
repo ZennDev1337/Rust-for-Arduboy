@@ -6,11 +6,16 @@ using uint24_t = __uint24;
 
 // Initialize FX hardware using  FX::begin(FX_DATA_PAGE); in the setup() function.
 
-constexpr uint16_t FX_DATA_PAGE  = 0xffff;
-constexpr uint24_t FX_DATA_BYTES = 244;
+constexpr uint16_t FX_DATA_PAGE  = 0xfffe;
+constexpr uint24_t FX_DATA_BYTES = 488;
 
 constexpr uint24_t FX_PLAYER = 0x000000;
 constexpr uint16_t FX_PLAYER_WIDTH  = 8;
 constexpr uint16_t FX_PLAYERHEIGHT  = 8;
 constexpr uint8_t  FX_PLAYER_FRAMES = 15;
+
+constexpr uint24_t FX_PLAYER_LEFT = 0x0000F4;
+constexpr uint16_t FX_PLAYER_LEFT_WIDTH  = 8;
+constexpr uint16_t FX_PLAYER_LEFTHEIGHT  = 8;
+constexpr uint8_t  FX_PLAYER_LEFT_FRAMES = 15;
 
