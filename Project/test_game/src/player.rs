@@ -5,11 +5,21 @@ use arduboy_rust::prelude::fx_consts::{
 use arduboy_rust::prelude::*;
 
 #[derive(PartialEq, Debug, Copy, Clone)]
+pub enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+}
+
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub struct Player {
     posx: i16,
     posy: i16,
+    direction: Direction,
     left: bool,
     sprite: Sprite,
+    weapon: Sprite,
     sprite_left: Sprite,
     animation_state_machine: AnimationStateMachine,
 }
@@ -42,32 +52,47 @@ impl Character for Player {
         self.animation_state_machine.set_animation_state(arduboy);
     }
     fn draw(&self) {
-        if self.left {
-            fx::draw_bitmap(
+        match self.direction {
+            Direction::LEFT => fx::draw_bitmap(
                 self.posx,
                 self.posy,
                 self.sprite_left.Sprite,
                 self.sprite.frame,
                 self.sprite.mode,
-            )
-        } else {
-            fx::draw_bitmap(
+            ),
+            Direction::DOWN => fx::draw_bitmap(
+                self.posx,
+                self.posy,
+                self.sprite_left.Sprite,
+                self.sprite.frame,
+                self.sprite.mode,
+            ),
+            Direction::RIGHT => fx::draw_bitmap(
                 self.posx,
                 self.posy,
                 self.sprite.Sprite,
                 self.sprite.frame,
                 self.sprite.mode,
-            )
+            ),
+            Direction::UP => fx::draw_bitmap(
+                self.posx,
+                self.posy,
+                self.sprite.Sprite,
+                self.sprite.frame,
+                self.sprite.mode,
+            ),
         }
     }
 }
 impl Player {
-    pub const fn new(Sprite: u32, Sprite_Left: u32, Width: u16, Height: u16) -> Self {
+    pub const fn new(Sprite: u32, Sprite_Left: u32, weapon: u32, Width: u16, Height: u16) -> Self {
         Player {
             posx: 0,
             posy: 0,
+            direction: Direction::RIGHT,
             left: false,
             sprite: Sprite::new(Sprite, Width, Height),
+            weapon: Sprite::new(weapon, Width, Height),
             sprite_left: Sprite::new(Sprite_Left, Width, Height),
             animation_state_machine: AnimationStateMachine::new(),
         }
@@ -82,17 +107,21 @@ impl Player {
         }
         if UP.pressed() {
             self.posy -= 1;
+            self.direction = Direction::UP;
         }
         if DOWN.pressed() {
             self.posy += 1;
+            self.direction = Direction::DOWN;
         }
         if LEFT.pressed() {
             self.posx -= 1;
             self.left = true;
+            self.direction = Direction::LEFT;
         }
         if RIGHT.pressed() {
             self.posx += 1;
             self.left = false;
+            self.direction = Direction::RIGHT;
         }
     }
 }

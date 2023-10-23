@@ -5,6 +5,7 @@ mod character;
 
 mod fxdata;
 mod player;
+mod weapon;
 
 //Include the Arduboy Library
 
