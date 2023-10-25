@@ -1,3 +1,0 @@
-image_t FX_PLAYER   = "../assets/player_8x8.png"
-image_t FX_PLAYER_LEFT   = "../assets/player_left_8x8.png"
-image_t FX_SWORD   = "../assets/sword_8x8.png"
