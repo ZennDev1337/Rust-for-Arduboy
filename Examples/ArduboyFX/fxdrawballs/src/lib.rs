@@ -1,5 +1,6 @@
 #![no_std]
 #![allow(non_upper_case_globals)]
+#![allow(dead_code)]
 
 //Include the Arduboy Library
 //Initialize the arduboy object

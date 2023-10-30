@@ -84,7 +84,7 @@ extern "C" {
 
     #[link_name = "arduboy_print_long"]
     pub fn print_long(n: c_long, base: c_int) -> c_size_t;
-
+    #[allow(dead_code)]
     #[link_name = "arduboy_print_unsigned_char"]
     pub fn print_unsigned_char(n: c_uchar, base: c_int) -> c_size_t;
 
