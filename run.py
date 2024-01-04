@@ -207,7 +207,7 @@ def upload_to_arduboy():
         game_name = param2
     if platform.system() == "Linux":
         cmd = f"cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm ./lib/libgame.a; cd ../../"
-        process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 
     elif platform.system() == "Windows":
         cmd = f'cargo build -p {game_name} --release; cp ./target/arduboy/release/lib{game_name}.a ./arduboy-rust/Wrapper-Project/lib/libgame.a; cd arduboy-rust/Wrapper-Project/; pio run -v -t upload; cp ./.pio/build/arduboy/firmware.hex ./build/{game_name}.hex; pio run -t clean; rm lib/libgame.a; cd ../../'
